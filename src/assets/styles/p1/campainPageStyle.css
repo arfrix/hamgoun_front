@@ -1,0 +1,31 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+.card-container{
+    /* height: 22vh; */
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: right;
+    align-items: center;
+    
+}
+
+.list{
+    display: flex;  
+    flex-direction: row-reverse;
+    overflow-x: auto;
+    direction: ltr;
+    /* padding-top: 2vw; */
+    padding-bottom: 2vw;
+    /* background-color: rgb(22, 36, 68); */
+}

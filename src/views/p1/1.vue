@@ -34,10 +34,10 @@
                     <div v-for="item in this.$store.state.jilizViliz_cards" :key="item.id"  @click="goto_postPage(item)">
                         <miniCard   :kind="item.kind" :imgUrl="item.coverImgUrl" :title="item.title" :subCategory="item.subCategory" :mainCategory="item.mainCategory" :username="item.publisherUsername" duration="" :text="item.postSummary" ></miniCard>
                     </div>
-                </div>
-                <div  v-else class="col-m-6 waitin-lable-container">
-                    <h1 class="col-m-10 waiting-lable"> ... پستا تو راهن  </h1>
-                </div>
+                  </div>
+                  <div  v-else class="col-m-6 waitin-lable-container">
+                      <h1 class="col-m-10 waiting-lable"> ... پستا تو راهن  </h1>
+                  </div>
               </div>
               <div class="col-m-9 devider-line"></div>
           </div>
