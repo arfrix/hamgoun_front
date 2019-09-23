@@ -1,0 +1,172 @@
+.main{
+    width: 100%;
+    background-color: #14213D;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+.public-mode{
+    display: flex;
+    flex-direction: column
+}
+
+.line{
+    font-size: 5vw;
+    font-family: IranSans_light;
+    float: right;
+    color: rgb(255, 255, 255);
+}
+
+
+.topRow_sec1{
+    background-color: #3C425E;
+    position: relative;
+   padding-top: 10vw;
+   background-image: url(./../../images/backGround/art.png);
+   background-size: cover;
+   /* padding-bottom: 10vw; */
+}
+.semi-oval{
+    position: absolute;
+    
+    background-color: #3C425E;
+    width: 100%;
+    height: 8vw;
+    border-radius: 50% / 100%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    background-image: url(./../../images/backGround/art.png);
+   background-size: cover;
+}
+.topRow_sec2{
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    position: relative;
+    
+    background: linear-gradient(#30344A, rgb(56, 61, 87));
+    margin-bottom: 6vw;
+    margin-top: 15vw;
+}
+
+.main-category-card{
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: center;
+    /* height: 25vw; */
+    padding-left: 4vw;
+    margin-right: 3vw;
+    border-left: 2px dashed #fff;
+}
+.main-category-card-title{
+    font-family: IranSans_UltraLight;
+    
+    color: #fff;
+    margin-bottom: 2vw;
+    white-space: nowrap;
+}
+
+.bottomRow{
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    /* padding-bottom: 13vw; */
+    
+}
+.card-container{
+    /* height: 22vh; */
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: right;
+    align-items: center;
+    
+}
+.space{
+    height: 0.5vw;
+}
+
+.test{
+    height: 1px;
+    width: 150px;
+    position: absolute;
+    top: 1239px;
+    background-color: rgb(233, 54, 54);
+    z-index: 20;
+}
+.hotTopic-section{
+    margin-bottom: 7vw;
+}
+.campain-section{
+    margin-bottom: 7vw;
+    margin-top: 7vw;
+    
+}
+.fullDiscusion-section{
+    margin-bottom: 14vw;
+}
+
+.list{
+    display: flex;  
+    flex-direction: row-reverse;
+    overflow-x: auto;
+    direction: ltr;
+    /* padding-top: 2vw; */
+    padding-bottom: 2vw;
+    /* background-color: rgb(22, 36, 68); */
+}
+.card{
+    /* min-width: 20vw;     */
+        
+    white-space: nowrap;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+.cardt{
+    min-width: 20vw;    
+    height: 10vh;
+    background-color: #fff;
+    margin: 1vw;    
+    white-space: nowrap;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.section-lable-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 4vw;
+    margin-bottom: 4vw;
+}
+.section-lable{
+    color: #fff;
+    font-family: IranSans;
+    font-size: 4vw;   
+}
+
+.devider-line{
+    height: 0px;
+    border: 0.5px solid rgba(255, 255, 255, 0.11);
+    margin-right: 5%;
+    margin-top: 3.5vw;
+}
+
+.waiting-lable{
+    
+    font-family: IranSans;
+
+}
+.waitin-lable-container{
+    margin-right: 20%;
+}

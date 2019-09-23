@@ -1,0 +1,128 @@
+.categoryList-main-div{
+    background-color: #FFD615;
+}
+.list{
+    /* width: 100vw; */
+    display: flex;  
+    flex-direction: row-reverse;
+    overflow-x: auto;
+    direction: ltr;
+    /* padding-right: 7px; */
+}
+.card{
+    /* min-width: 20vw;     */
+        
+    white-space: nowrap;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+.mainCategory-container{
+    background-color: #14213D;
+    padding-top: 3vw;
+    padding-bottom: 4.5vw;
+    padding-right: 4.5vw;
+    box-shadow:0px 3px 6px #00000028 ;
+}
+.mainCategory-container-bordered{
+    background-color: #14213D;
+    padding-top: 2.5vw;
+    padding-bottom: 3.5vw;
+    border-radius: 0px 0px 19px 19px;
+    box-shadow:0px 3px 6px rgba(0, 0, 0, 0.315) ;
+}
+
+.mainCategory-horizantal-list{
+    
+}
+
+.mainCategory-card{
+    margin-left: 7vw;
+}
+.mainCategory-img{
+    width: 90%;
+}
+
+
+
+.mc0{
+    width: 77%;
+}
+.mc1{
+    width: 69%;
+}
+.mc2{
+    width: 59%;
+}
+.mc3{
+    width: 80%;
+}
+.mc4{
+    width: 58%;
+}
+.mc5{
+    width: 62%;
+}
+.mc6{
+    width: 62%;
+}
+
+.mcc0{
+    margin-right: 3.5vw;
+}
+.mcc6{
+
+}
+
+.subCategory-container{
+    margin-top: 3vw;
+    margin-bottom: 3vw;
+    
+}
+.subCategory-horizantal-list{
+    
+    padding-left: 5vw;
+    
+}
+.subCategory-card{
+    position: relative;
+    border: 1px solid rgba(20, 33, 61, 0.521);
+    border-radius: 4px;
+    padding-right: 1vw;
+    padding-left: 1vw;
+    margin-right: 5vw;
+    min-width: 10vw;
+    /* margin-left: 4vw; */
+}
+.subCategory-card-clicked{
+    position: relative;
+    border: 1px solid #F95959;
+    border-radius: 4px;
+    padding-right: 1vw;
+    padding-left: 1vw;
+    margin-right: 5vw;
+    min-width: 10vw;
+    /* margin-left: 4vw; */
+}
+.subCategory-name{
+    font-family: IranSans_UltraLight;
+    font-size: 4vw;
+}
+.message{
+    font-family: IranSans_Light;
+    font-size: 4vw;
+    margin-top: 3vw;
+    margin-bottom: 3vw;
+}
+.subCategoryCard-endspace{
+    width: 50vw;
+    height: 20px;
+    background-color: #fff;
+}
+.gap{
+    color: #FFD615
+}

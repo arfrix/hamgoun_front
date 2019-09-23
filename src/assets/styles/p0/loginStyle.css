@@ -1,0 +1,196 @@
+
+
+.login-main-container{
+    width: 100%;
+    background-color: #30344A;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-image: url(../../images/backGround/bc2.png);
+    background-size:contain ; 
+}
+.inputs-container{
+    /* position: absolute;
+    bottom: 30vh; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.input-container{
+    display: flex;
+    flex-direction: column;
+    position: relative
+}
+.input{
+    background-color: rgba(255, 255, 255, 0);
+    color: #000000;
+    font-family: IranSans;
+    
+    border: none;
+    
+    width: 100%;
+    height: 100%;
+    
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.button{
+    width: 35vw;
+    margin-top: 4vw;
+    font-family: IranSans;
+    color: rgb(236, 197, 19);
+    font-size: 5vw;
+    /* padding-top: 1vw; */
+    padding-bottom: 0.75vw;
+    background-color: #000000;
+    
+    border-radius: 3px;
+    margin-bottom: 5vw;;
+    height: 10vw;
+    /* position: absolute;
+    bottom: 2vw; */
+}
+.button-lable{
+    font-size: 4.5vw;
+    font-family: IranSans;
+}
+.gotoRegister-button{
+    
+    /* left: 2vw; */
+    
+}
+.gotoRegister-button-lable{
+    font-size: 3.5vw;
+    font-family: IranSans_Light;
+    white-space: nowrap;
+}
+.gotoForgetPass-button-lable{
+    font-size: 3.5vw;
+    font-family: IranSans_Light;
+    white-space: nowrap;
+}
+.nav-container{
+    /* position: absolute;
+    bottom: 20vh; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 5vw;
+    color: #000000;
+}
+input:focus {
+    outline:none;
+ }
+
+ .selected-line{
+    /* width: 80%; */
+    height: 1px;
+    border: 1px solid #FF5B5B;
+    background-color: #FF5B5B;
+    border-radius: 5px;
+ }
+ .unSelected-line{
+    /* width: 0%; */
+    height: 0px;
+    border: 1px solid #000000;
+    background-color: #000000;
+ }
+ .placeHolder{
+     font-family: IranSans;
+     font-size: 4vw;
+     color: #0000007e;
+     align-self: flex-end;
+     margin-bottom: 1vw;
+     position: absolute;
+ }
+ .unSelected-placeHolder{
+    bottom: 1vh
+ }
+ 
+ .selected-placeHolder{
+    bottom: 3vh
+ }
+ 
+
+ .login-bc{
+     width: 100%;
+     height: 100%;
+ }
+ .pass{
+    /* bottom: 32.5vh; */
+ }
+ .userName{
+    margin-bottom: 19vw;
+ }
+ .text-wellcoming-container{
+     /* position: absolute;
+     bottom:65vh; */
+     display: flex;
+     flex-direction: column;
+     align-items: flex-end;
+     margin-bottom: 10vw;
+ }
+ .sent1{
+    font-family: IranSans_Medium;
+    color:#000000;
+    font-size: 7vw;
+ }
+ .sent2{
+    font-family: IranSans_Light;
+    color:#000000;
+    font-size: 4vw;
+ }
+
+ .logo-container{
+     /* position: absolute;
+     top: 2vh; */
+     display: flex;
+     align-items: center;
+     
+ }
+ .logo{
+     margin: auto;
+ }
+
+
+
+
+
+ @keyframes blink {
+   
+    0% {
+      opacity: .2;
+    }
+   
+    20% {
+      opacity: 1;
+    }
+   
+    100% {
+      opacity: .2;
+    }
+}
+
+.button-waiting-lable h6 {
+    font-size: 7vw;
+    animation-name: blink;    
+    animation-duration: 1.4s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+}
+
+.button-waiting-lable h6:nth-child(2) {
+    animation-delay: .2s;
+}
+
+.button-waiting-lable h6:nth-child(3) {
+    animation-delay: .4s;
+}
+.errorMessage-contaner{
+    /* height: 10vh; */
+    font-family: IranSans_Light;
+    color: rgb(253, 0, 0);
+ }

@@ -1,0 +1,135 @@
+<template>
+    <div class="col-m-10 write-comment-main">
+        <div id="editor" class="test" v-on:keydown.enter="enterKeyPressed()">
+
+        </div>
+        <div id="toolbar">
+          <select class="ql-size">
+            <option value="small"></option>
+            <!-- Note a missing, thus falsy value, is used to reset to default -->
+            <option selected></option>
+            <option value="large"></option>
+            <option value="huge"></option>
+          </select>
+          <!-- Add a bold button -->
+          <button class="ql-bold"></button>
+          <button class="ql-image"></button>
+
+        </div>
+    </div>
+</template>
+
+<script>
+import Quill from 'quill'
+import Axios from 'axios'
+
+export default {
+  props: {
+    value: {
+      type: String,
+      default: ''
+    }
+  },
+
+  data () {
+    return {
+      editor: null
+
+    }
+  },
+  mounted () {
+    var Image = Quill.import('formats/image')
+    Image.className = 'img-body'
+    Quill.register(Image, true)
+
+    this.editor = new Quill('#editor', {
+
+      modules: {
+        toolbar: {
+
+          //   container: [ ['bold', 'italic', 'underline'], [{ 'color': [] }, { 'background': [] }], // toggled buttons
+          //     [ 'code-block', 'link'], [{ 'list': 'ordered' }, { 'list': 'bullet' }], ['image']],
+          container: '#toolbar',
+          handlers: {
+            image: imageHandler
+          }
+        }
+      },
+      // placeholder: 'هان ؟؟؟؟؟؟؟؟',
+      theme: 'bubble' // or 'bubble'
+    })
+
+    function imageHandler () {
+      const input = document.createElement('input')
+
+      input.setAttribute('type', 'file')
+      input.setAttribute('accept', 'image/*')
+      input.click()
+
+      input.onchange = async () => {
+        const file = input.files[0]
+        const formData = new FormData()
+
+        formData.append('file', file)
+
+        // Save current cursor state
+
+        const range = this.quill.getSelection(true)
+
+        // Insert temporary loading placeholder image
+        this.quill.insertEmbed(range.index, 'image', 'http://45.82.136.106:8080/images/giphy.gif')
+
+        // Move cursor to right side of image (easier to continue typing)
+        this.quill.setSelection(range.index + 1)
+
+        // const res = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/480px-JavaScript-logo.png'; // API post, returns image location as string e.g. 'http://www.example.com/images/foo.png'
+        // const res = 'http://192.168.1.61/fenjooon/huge-size-image.jpg'; // API post, returns image location as string e.g. 'http://www.example.com/images/foo.png'
+
+        let response = ''
+        try {
+          console.log('55555')
+          response = await Axios.post('http://45.82.136.106:8080/Images/upload', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+
+          })
+          console.log('img response')
+          console.log(response)
+        } catch (error) {
+
+        }
+
+        console.log('await check')
+        console.log(response.data.substring(87))
+
+        // Remove placeholder image
+
+        this.quill.deleteText(range.index, 1)
+
+        // Insert uploaded image
+        this.quill.insertEmbed(range.index, 'image', 'http://45.82.136.106:8080/images/' + response.data)
+        // this.quill.insertEmbed(range.index + 1, 'code-block','djfhvba');
+        this.quill.setSelection(range.index + 5)
+      }
+    }
+
+    this.editor.root.innerHTML = this.value
+
+    this.editor.on('text-change', () => this.update())
+  },
+
+  methods: {
+    update () {
+      this.$emit('input', this.editor.getText() ? this.editor.root.innerHTML : '')
+    },
+    enterKeyPressed () {
+      this.editor.theme.tooltip.show()
+      // this.editor.theme.tooltip.edit()
+      // console.log(this.editor)
+    }
+  }
+}
+</script>
+<style scoped src='../../assets/styles/p5/editorStyle.css'>
+</style>

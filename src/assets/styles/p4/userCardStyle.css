@@ -1,0 +1,35 @@
+.userCard-main-div{
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5vw;
+}
+
+.userName-container{
+    width: 100%;
+    margin-top: 7.5vw;
+    border: 1px solid #F95959;
+    border-radius: 10px;
+    padding-top: 8vw;
+    padding-bottom: 1vw;
+}
+.profile-img-container{
+    position: absolute;
+    width: 14vw;
+    height: 14vw;
+    border-radius: 50%;
+    overflow: hidden;
+    background-image: url('../../icons/user.png');
+    background-size: cover;
+    background-color: #14213D;
+}
+.profile-img{
+    width: 100%;
+}
+
+.username{
+    font-family:IranSans_Light;
+    font-size: 4.5vw;
+    color:#FFD615;
+}

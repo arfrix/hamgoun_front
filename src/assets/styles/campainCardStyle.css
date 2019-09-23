@@ -1,0 +1,55 @@
+.campainCard-main-div{
+    /* width: 25vw; */
+    min-width: 25vw;
+    max-width: 40vw;
+    border: 1.5px solid #F95959;
+    border-radius: 15px;
+    height: 14vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    direction: rtl;
+    position: relative;
+    padding-left: 10vw;
+    padding-right: 2.5vw;
+    margin-right: 4vw;
+    box-shadow:0px 3px 6px #00000028 ;
+}
+
+.campainName-section{
+    min-width: 25vw;
+    /* background-color: #fff; */
+}
+.campainName{
+    font-family: lalezar;
+    color: #FED514;
+    font-size: 9.5vw;
+}
+.catName-section{
+    position: absolute;
+    left: -3.45vw;
+    min-width: 13.15vw;
+    color: #ffffff;
+    background-color: #F95959;
+    border-radius: 0 0 13px 11px;
+    transform: rotate(90deg);
+    margin-top: 0.2px;
+}
+.catName{
+    
+    font-family:IranSans_Light;
+    font-size: 2.8vw;
+    white-space: nowrap;
+    
+}
+.card{
+    /* min-width: 20vw;     */
+        
+    white-space: nowrap;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}

@@ -1,0 +1,114 @@
+.main{
+    width: 100%;
+    background-color: #14213D;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.card-container{
+    margin-top: 4vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.topRow{
+    display: flex;
+    flex-direction: column;
+    background-color: #FFD615;
+}
+.searchBar-container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    box-shadow:0px 3px 6px rgba(0, 0, 0, 0.315) ;
+    background-color: #14213D;
+    /* padding-right: 5vw; */
+}
+.search-input{
+    height: 12vw;
+    background-color: #14213D;
+    border:none;
+    color: #fff;
+    text-align: right;
+    font-size: 4.8vw;
+    font-family: IranSans;
+    margin-right: 5vw;
+}
+input:focus {
+    outline:none;
+ }
+.input-placeHolder{
+    position: absolute;
+    right: 15vw;
+    top:3vw;
+    font-size: 4.8vw;
+    font-family: IranSans;
+    color: rgb(102, 120, 158);
+}
+.search-icon{
+    position: absolute;
+    right: 3.5vw;
+    top:2vw;
+    width: 7.5%;
+}
+.switch-container{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: center;
+    height: 13vw;
+}
+.switch-btn{
+    height: 6vw;
+    border-radius: 12px;
+    padding-right: 3.5vw;
+    padding-left: 3.5vw;
+    border:1px solid #14213D;
+}
+.switch-btn-selected{
+    height: 6vw;
+    border-radius: 12px;
+    padding-right: 3.5vw;
+    padding-left: 3.5vw;
+    border:1px solid #14213D;
+    color: #fff;
+    background-color: #000000;
+    box-shadow:0px 3px 6px rgba(0, 0, 0, 0.4);
+}
+.switch-lable{
+    font-family: IranSans;
+    font-size: 4vw;
+    margin-right: 2.5vw;
+}
+.switch-btn-lable{
+    font-family: IranSans_Light;
+    font-size: 3.1vw;
+}
+
+.waiting-container{
+    position: absolute;
+    top: 100vw;
+    right: 25vw;
+    width: 50vw;
+    height: 50vw;
+    color: #FFD615;
+    z-index: 10;
+    font-family: IranSans_Bold;
+    font-size: 7vw
+}
+
+.user-loop-container{
+    display: flex;
+    flex-wrap: wrap;
+    direction: rtl;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.post-loop-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

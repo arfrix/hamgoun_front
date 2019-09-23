@@ -1,0 +1,129 @@
+.bio-main{
+    display: flex;
+    flex-direction: column;
+}
+.tab-row-container{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    margin-top: 4.5vw;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 22%;
+}
+.card-icon{
+    width: 95%;
+}
+.card-lable{
+
+}
+
+.c0{
+    width: 71%;
+}
+.c1{
+    width: 50%;
+}
+.c2{
+    width: 46%;
+}
+.c3{
+    width: 46%;
+}
+.card-lable{
+    color: #fff;
+    font-size: 3vw;
+    font-family: IranSans_Light;
+    margin-top: 2vw;;
+}
+
+.inputs-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    /* padding-right: 8vw; */
+    margin-top: 13vw;
+}
+.input-card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-right: 4px solid #F95959;
+    padding-right: 3vw;
+    margin-bottom: 3vw;
+    margin-right: 7vw;
+
+    animation-name: visible;
+    animation-duration: 0.3s;  
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+.selected-input-card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-right: 4px solid #FFD615;
+    padding-right: 3vw;
+    margin-bottom: 3vw;
+    margin-right: 7vw;
+}
+.placeHolder{
+    font-size: 5vw;
+    font-family: IranSans;
+    position: absolute;
+    right: 3vw;
+    top:0;
+    color: rgb(102, 120, 158);
+}
+.other-user-placeHolder{
+    font-size: 5vw;
+    font-family: IranSans;
+    position: absolute;
+    right: 3vw;
+    top:0;
+    color: rgb(226, 226, 226);
+}
+.input{
+    align-self: flex-end;
+    height: 7vw;
+    background-color: #14213D;
+    border:none;
+    color: #fff;
+    text-align: right;
+    font-size: 4.8vw;
+    font-family: IranSans;
+}
+input:focus {
+    outline:none;
+ }
+ .submit-btn{
+     border: 1px solid #FFD615;
+     color: #FFD615;
+     border-radius: 5px;
+    padding-bottom: 1vw;
+    margin-top: 8vw;
+    margin-left: 4vw;
+ }
+ .btn-lable{
+     font-family: IranSans_Light;
+     font-size: 3vw;
+     
+ }
+
+
+
+ .animate-inputs{
+    animation-name: visibla;
+    animation-duration: 0.5s;  
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+ }
+
+ @keyframes visible {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }

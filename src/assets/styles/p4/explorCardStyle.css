@@ -1,0 +1,126 @@
+
+
+
+
+.card-main-div{
+    
+    /* padding: 2vw; */
+    position: relative;
+    background-color: #444967;
+    margin-bottom: 5vw;
+}
+
+.top-section{
+
+}
+.middle-section{
+
+}
+
+
+
+
+
+
+.share-icon-img{
+    
+}
+
+
+
+
+.top-section{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    /* margin-bottom: 1vw; */
+    margin-top: 1vw;
+}
+
+
+.middle-section{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* background-color: rgb(247, 206, 206); */
+}
+
+
+.profile-img{
+    
+}
+.usename{
+    font-family: IranSans_UltraLight;
+    color: #ffffffb0;
+}
+
+
+.card-img-div{
+    height: 33vw;
+    
+}
+.card-img{
+    height: 33vw;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0 0 0 9px;
+}
+
+
+.icon-div{
+    overflow: hidden;
+}
+
+.card-texts-div-1{
+    height: 29vw;
+    
+   
+    background-color: rgb(255, 255, 255);
+    direction: rtl;
+    border-radius: 0 0 9px 0;
+
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+    /* padding-right: 3vw; */
+}
+.card-texts-div-2{
+    
+    background-color: rgb(255, 255, 255);
+    direction: rtl;
+    border-radius:0 0 9px 9px ;
+
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+    /* padding-right: 3vw; */
+    margin-bottom: -1px;
+    
+}
+.card-mini-description-text{
+    font-family: IranSans_light;
+    text-align: right;
+    font-size: 3.3vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+    padding-right: 2.5vw;
+    padding-left: 2.5vw;
+    
+}
+
+.title{
+    font-family: IranSans_Medium;
+    white-space: nowrap;
+}
+
+.description-div{
+
+    
+}
+
+.title-section{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2vw;
+}

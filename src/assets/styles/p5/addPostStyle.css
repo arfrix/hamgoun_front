@@ -1,0 +1,62 @@
+
+
+.main{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.bottomRow{
+
+}
+
+.header{
+    background-color: #FFD615;
+}
+.round-bc{
+    background-color: #14213D;
+    box-shadow:0px -4px 6px #00000028 ;
+    border-radius: 29px 29px 0px 0px;
+    height: 13vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header-lable{
+    font-size: 5vw;
+    color: rgba(255, 255, 255, 0.911);
+    font-family: IranSans;
+    margin-top: 1vw;
+}
+
+.card-container{
+    min-height: 63vh;
+    min-width: 30vw;
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-evenly;
+    align-content: space-around;
+    direction: rtl;
+    
+}
+.template-card{
+    border: 2px dashed rgba(255, 255, 255, 0.4);
+    min-height: 35vw;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 4vw;
+    padding-left: 4vw;
+    margin-bottom: 5vw;
+}
+.card-lable{
+    font-family: IranSans_Light;
+    font-size: 3.5vw;
+    color: #F9A110;
+}
+.warning-lable{
+    font-family: IranSans;
+    font-size: 5vw;
+    color: rgb(129, 129, 129);
+}

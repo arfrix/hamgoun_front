@@ -1,0 +1,51 @@
+.my-content-main{
+    width: 100%;
+    background-color: #14213D;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.topRow{
+    width: 100vw;
+}
+
+
+.bottomRow{
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    /* padding-bottom: 13vw; */
+    
+}
+.card-container{
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    min-height: 50vh;
+}
+.space{
+    height: 0.5vw;
+}
+
+.error-lable{
+    font-family: IranSans;
+    font-size: 7vw;
+    color: rgb(164, 169, 182);
+}
+.waiting-lable{
+    font-family: IranSans;
+    font-size: 7vw;
+    color: rgb(141, 124, 47);
+}
+.column-direction{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

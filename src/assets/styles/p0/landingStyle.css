@@ -1,0 +1,83 @@
+
+
+
+
+
+.landing-main-container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    /* background-color: #050C31; */
+}
+.login-button{
+    
+    font-family: IranSans;
+    color: rgb(236, 197, 19);
+    font-size: 5vw;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    background-color: #000000;
+    border: 2px solid #000000;
+    border-radius: 3px;
+    margin-bottom: 5vw;;
+}
+.register-button{
+    
+    font-family: IranSans;
+    color: #000000;
+    font-size: 5vw;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    border: 2px solid #000000;
+    border-radius: 3px;
+    
+}
+/* .our-story-button{
+    position: absolute;
+    top: 0vw;
+    left: 0.5vw;
+    font-family: IranSans_Light;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 4vw;
+    padding: 2.5vw;
+} */
+
+.bc-img{
+    height: 100vh;
+}
+.abs-container{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top:0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.logo{
+    width: 100%;
+}
+
+
+.text-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 10vw;
+    margin-bottom: 40vw;
+}
+.name{
+    font-family: IranSans_Bold;
+    font-size: 10vw;
+    margin-right: 3vw;
+    color: #000000;
+
+}
+.text{
+    font-family: IranSans_Light;
+    font-size: 5vw;
+    color: #000000cb;
+    padding: 0;
+}

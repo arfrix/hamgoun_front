@@ -1,0 +1,56 @@
+
+
+
+/* ! for changing toolbar style go to quill.snow.css and then put your style in
+! .ql-toolbar.ql-snow{...} class
+*/
+/* ! for changing container style go to quill.snow.css and then put your style in
+! .ql-container.ql-snow{...} class
+*/
+
+
+.ql-container.ql-snow {
+    /* border: 1px solid rgb(187, 43, 43); */
+    background-color: #fff;
+  }
+  .ql-toolbar.ql-snow {
+   /* ! nemidonam chera ro in class javab nemide */
+  }
+
+
+
+
+  /* !--------------------------------------------------------------- */
+#editor{
+    font-family:IranSans;
+    /* direction: rtl; */
+    
+}
+
+.write-comment-main{
+    position: absolute;
+    right: 2.5vw;
+    top: 60vh;
+    /* height: 40vh; */
+    /* background-color: rgb(228, 139, 139); */
+    z-index: 2;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    
+}
+.test{
+    height:34.5vh ;
+    
+}
+
+
+
+.submit{
+    background-color: #fff;
+    border:1px solid rgb(192, 79, 79);
+    align-self: center;
+    margin-bottom: 2vw;
+    margin-top: 2vw;
+}
