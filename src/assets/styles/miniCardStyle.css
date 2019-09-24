@@ -52,21 +52,26 @@
 }
 .title{
     font-size: 3.5vw;
-    font-family: IranSans_Bold; 
+    font-family: IranSans_Medium; 
     white-space: nowrap;
     color: #fdfdfd;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
 }
 .img-card-title{
     font-size: 3.5vw;
     font-family: IranSans_Bold; 
     margin-right: 0.5vw;
     color: #fdfdfd;
-
+    margin-top: 1vw;
+    margin-bottom: 1vw;
 }
 .body{
-    font-size: 3.25vw;
+    font-size: 3.2vw;
     text-align: right;
     font-family: IranSans_UltraLight;
+    color: #dddddd;
+    
 }
 .details-container{
     margin-top: 2vw;
@@ -75,7 +80,7 @@
     font-size: 3vw;
     margin-left: 4vw;
     font-family: IranSans_Medium;
-    color: #fdfdfd;
+    color: #f8f8f8;
 }
 .duration{
     font-size: 3vw;
@@ -109,12 +114,13 @@
     overflow: hidden;
     text-align: right;
     overflow: hidden;
+    
 }
 
 .img-card-username{
     font-size: 3vw;
     margin-left: 4vw;
     font-family: IranSans_Medium;
-    color: #c5c3c3;
+    color: #f8f8f8;
     margin-right: 0.5vw;
 }

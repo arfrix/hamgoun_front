@@ -20,7 +20,9 @@
                 <h3 class="section-lable">کمپین ها</h3>
             </div>
               <div class="list">
-                  <campainCard name="راه من" cat="کار و بار"></campainCard>
+                <div @click="gotoCampainPage()">
+                  <campainCard name="راه من" cat="کار و بار" ></campainCard>
+                 </div>
               </div>
               <div class="col-m-9 devider-line"></div>
           </div>
@@ -136,6 +138,10 @@ export default {
     },
     goto_postPage (data) {
       this.$router.push({ name: 'postPage', params: { postData: data } })
+    },
+    gotoCampainPage () {
+      console.log('****')
+      this.$router.push('/campainPage')
     }
 
   }

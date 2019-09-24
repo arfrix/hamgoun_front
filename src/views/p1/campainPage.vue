@@ -1,10 +1,10 @@
 <template>
-  <div class="main">
-    <div class="campain-details-container">
-      <div class="campain-tile-container">
+  <div class="capain-page-main">
+    <div class="col-m-9-4 campain-details-container">
+      <div class="col-m-10 campain-tile-container">
         <h3 class="campain-title">{{campainTitle}}</h3>
       </div>
-      <div class="campain-description-container">
+      <div class="col-m-10 campain-description-container">
         <h3 class="campain-description">{{campainDescription}}</h3>
       </div>
     </div>
@@ -12,23 +12,22 @@
       <!-- <miniCard class="col-m-3"  kind=0 imgUrl="images/cardImage2.jpg" title="فیلم maz runner" category="طراحی" username="mandora" duration="" text="این فیلم رو اولین بار تو دوران منم و در کنکور دیدم یادمه تو اون زمان خیل وقت برا این کارا نبود که بشه اینطوری سر در  "></miniCard> -->
       <div
         v-if="!this.$store.state.waiteFor_fetch_jilizViliz_cards"
-        class="col-m-10 card-container list"
+        class="col-m-9-4 card-container"
       >
         <div
           v-for="item in this.$store.state.jilizViliz_cards"
           :key="item.id"
           @click="goto_postPage(item)"
         >
-          <miniCard
+          <card
             :kind="item.kind"
             :imgUrl="item.coverImgUrl"
             :title="item.title"
             :subCategory="item.subCategory"
             :mainCategory="item.mainCategory"
             :username="item.publisherUsername"
-            duration
             :text="item.postSummary"
-          ></miniCard>
+          ></card>
         </div>
       </div>
       <div v-else class="col-m-6 waitin-lable-container">
@@ -41,9 +40,11 @@
 </template>
 
 <script>
+
+import card from '../../components/global/card'
 export default {
   name: 'campainPage',
-  components: {},
+  components: { card },
 
   data () {
     return {
@@ -51,6 +52,10 @@ export default {
       campainDescription:
         'خب توی ای کمپین میخوای درمورد مسیری که توی طی کردی از پیدا کردن شغل تا مسائل محیط کار رو بهمون بگی'
     }
+  },
+  beforeMount () {
+    // this.$store.dispatch('fetch_home_page_cards',{'FollowerId':1,'MainCategory':1,'SubCategory':1})
+    this.$store.dispatch('fetch_jilizViliz_cards')
   }
 }
 </script>

@@ -9,6 +9,7 @@ import Landing from './views/p0/landing.vue'
 import Profile from './views/p3/profile.vue'
 import Explorer from './views/p4/explorer.vue'
 import AddPost from './views/p5/addPost.vue'
+import CampainPage from './views/p1/campainPage.vue'
 
 Vue.use(Router)
 
@@ -33,6 +34,11 @@ export default new Router({
       path: '/home',
       name: 'P1_1',
       component: P1_1
+    },
+    {
+      path: '/campainPage',
+      name: 'campainPage',
+      component: CampainPage
     },
 
     {

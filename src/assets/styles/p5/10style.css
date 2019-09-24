@@ -118,6 +118,7 @@
     color: #fff;
     font-family: IranSans;
     font-size: 5vw;
+    direction: rtl;
 }
 
 input:focus {
@@ -127,12 +128,12 @@ input:focus {
 
 
  .publish-detail-container{
-    position: absolute;
+    position: fixed;
     top: 100vh;
     border-radius: 20px 20px 0 0 ;
     background-color: #2c3742;
     box-shadow:0px -4px 6px #00000031 ;
-    height: 60vh;
+    height: 65vh;
     width: 100vw;
     z-index: 3;
     animation-name: pdc;
@@ -143,7 +144,7 @@ input:focus {
  
  @keyframes pdc {
     from {top: 100vh;}
-    to {top: 40vh;}
+    to {top: 33vh;}
   }
 
   .publish-detail-container{
@@ -160,6 +161,7 @@ input:focus {
       padding-top: 0.5vw;
       padding-bottom: 0.5vw;
       box-shadow:0px 3px 6px #00000031 ;
+      margin-bottom: 15vw;
   }
   .publish-btn-lable{
       font-family: IranSans_Light;
@@ -168,6 +170,7 @@ input:focus {
   .inputs-container{
     flex-direction: column;
     color: #B7B7B7;
+    
   }
   .summery-container{
     flex-direction: column;
@@ -191,7 +194,7 @@ input:focus {
       font-family: IranSans;
       color: rgb(230, 230, 230);
       font-size: 4vw;
-      
+      direction: rtl;
   }
 
   .bottom-line{
@@ -212,7 +215,7 @@ input:focus {
   }
 
   .upload-img-container{
-      height: 20vw;
+      height: 30vw;
       border: 2px dashed #FFD615;
       border-radius: 20px;
       margin-bottom: 10vw;
@@ -225,5 +228,5 @@ input:focus {
       color: #B7B7B7;
   }
   .coverImg{
-    height: 20vw;
+    height: 28vw;
   }

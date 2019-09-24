@@ -1,7 +1,36 @@
 
 
+    .capain-page-main{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 4vw;
+    }
+    
+    .campain-tile-container{
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+    }
+    .campain-title{
+        font-family: lalezar;
+        font-size: 9.5vw; 
+        color: #FFD615;  
+    }
 
+    .campain-description-container{
+        text-align: right;
+        margin-top: 2vw;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.178);
+        padding-bottom: 7vw;
+    }
 
+    .campain-description{
+        font-family: IranSans_Light;
+        color: rgba(255, 255, 255, 0.842);
+        font-size: 4.5vw;
+    }
 
 
 
@@ -14,18 +43,19 @@
 .card-container{
     /* height: 22vh; */
     display: flex;
-    flex-direction: row-reverse;
-    justify-content: right;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    
+    margin-top: 5vw;
+    padding-bottom: 13vh;
 }
 
-.list{
-    display: flex;  
-    flex-direction: row-reverse;
-    overflow-x: auto;
-    direction: ltr;
-    /* padding-top: 2vw; */
-    padding-bottom: 2vw;
-    /* background-color: rgb(22, 36, 68); */
+
+.waiting-lable{
+    
+    font-family: IranSans;
+
+}
+.waitin-lable-container{
+    margin-right: 20%;
 }

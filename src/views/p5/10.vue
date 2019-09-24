@@ -2,7 +2,7 @@
 <div class="add-post-main">
 
       <div v-if="show_publish_detail" class="col-m-10 publish-detail-container">
-        <div class="col-m-7 upload-img-container center" @click="profileImg()">
+        <div class="col-m-6-5 upload-img-container center" @click="profileImg()">
             <h3 v-if="!showUploadedCoveImg" class="upload-lable">آپلود عکس کاور</h3>
             <img v-if="showUploadedCoveImg" :src="coverImgUrl(coverImg)" alt="" class="coverImg">
         </div>
