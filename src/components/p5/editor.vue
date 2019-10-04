@@ -1,19 +1,29 @@
 <template>
-    <div class="col-m-10 write-comment-main">
+    <div class="col-m-10 write-body-main">
         <div id="editor" class="test" v-on:keydown.enter="enterKeyPressed()">
 
         </div>
-        <div id="toolbar">
-          <select class="ql-size">
-            <option value="small"></option>
-            <!-- Note a missing, thus falsy value, is used to reset to default -->
-            <option selected></option>
-            <option value="large"></option>
-            <option value="huge"></option>
-          </select>
-          <!-- Add a bold button -->
-          <button class="ql-bold"></button>
-          <button class="ql-image"></button>
+
+        <transition name="totil">
+          <div v-show="iSshowToolTip" id="toolbar" class="totil" >
+            <select class="ql-size">
+              <option value="small"></option>
+              <!-- Note a missing, thus falsy value, is used to reset to default -->
+              <option selected></option>
+              <option value="large"></option>
+              <option value="huge"></option>
+            </select>
+            <!-- Add a bold button -->
+            <button class="ql-bold"></button>
+            <button class="ql-image"></button>
+          </div>
+        </transition>
+
+        <div id="bottom" class="col-m-10 bottom-space">
+
+          <div class="tooltip-button" @click="showToolTip">
+              <img src="../../assets/icons/pencil-case.png" alt="" class="showTotilimg">
+          </div>
 
         </div>
     </div>
@@ -33,7 +43,8 @@ export default {
 
   data () {
     return {
-      editor: null
+      editor: null,
+      iSshowToolTip: false
 
     }
   },
@@ -124,10 +135,19 @@ export default {
       this.$emit('input', this.editor.getText() ? this.editor.root.innerHTML : '')
     },
     enterKeyPressed () {
+      console.log('***')
+      // this.iSshowToolTip = false
+      //! to forbis of hiding tooltip comment --- display: none; --- on quill.bubble.css on  ---  .ql-bubble .ql-hidden {} ---
+      this.editor.theme.tooltip.show()
+
+      window.scrollBy(0, window.innerHeight)
+    },
+    showToolTip () {
+      this.iSshowToolTip = !this.iSshowToolTip
       this.editor.theme.tooltip.show()
       // this.editor.theme.tooltip.edit()
-      // console.log(this.editor)
     }
+
   }
 }
 </script>

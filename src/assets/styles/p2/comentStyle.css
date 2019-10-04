@@ -15,14 +15,14 @@
     /* margin-top: 5vw; */
     position: relative;
     border-bottom:1px solid rgba(255, 214, 21);
-    padding:3vw;
+    padding-right:3vw;
     padding-top: 2vw;
     padding-left: 0vw;
     
 }
 .small{
     position: relative;
-    padding:3vw;
+    padding-right:3vw;
     padding-top: 2vw;
     padding-left: 0vw;
     
@@ -41,6 +41,12 @@
     height: 10vw;
     border-radius: 50%;
     box-shadow:0px 3px 6px #0000001e ;
+    background-image: url(../../icons/user.png);
+    background-size: cover;
+    overflow: hidden;
+}
+.profile-img{
+    width: 100%;
 }
 .mtb{
     
@@ -55,10 +61,35 @@
 
 .reply{
     position: absolute;
-    bottom: 0vw;
+    bottom: 2vw;
     left: -9vw;
     /* color: rgba(245, 58, 58, 0.8);
     color: rgba(0, 243, 53, 0.822);
     color: rgb(255, 81, 0); */
     color:rgba(249, 89, 89);
+}
+.mizouniat-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    direction: rtl;
+    margin-top: 6vw;
+    margin-bottom: 1.5vw;
+}
+.mizoun-img{
+    width: 5.75vw;
+    margin-left: 1vw;
+}
+.namizoun-img{
+    width: 5.75vw;
+    margin-left: 1.5vw;
+}
+.mizount-count{
+    margin-left: 7vw;
+    font-family: IranSans_Light;
+    font-size: 3.5vw;
+}
+.namizoun-count{
+    font-family: IranSans_Light;
+    font-size: 3.5vw;
 }

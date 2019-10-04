@@ -80,7 +80,7 @@
 .comments-container{
     display:flex;
     flex-direction:column;
-    align-items:center;
+    align-items:flex-end;
     padding-top:2vw;
     padding-bottom: 10vw;
 }
@@ -122,4 +122,170 @@
     box-shadow:0px 3px 6px #00000028 ;
     background-image: url(../../icons/user.png);
     background-size: cover;
+}
+
+.input-comment-container{
+    position: fixed;
+    bottom: 0vh;
+    z-index: 4;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 0.5px solid #FFD615;
+    border-bottom: 0.5px solid #FFD615;
+    box-shadow:0px -3px 6px #00000049 ;
+    background-color: rgb(26, 41, 73);
+}
+
+
+
+.fade-enter-active {
+    transition: opacity 0s;
+    animation: totil-rise 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+  }
+.fade-leave-active{
+    transition: opacity 0s;
+    animation: totil-fall 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+    
+  }
+
+  @keyframes totil-rise {
+    from {top: 110vh;opacity: 0;}
+    to {top: 95vh;opacity: 1;}
+}
+  @keyframes totil-fall {
+    from {top: 95vh;opacity: 1;}
+    to {top: 110vh;opacity: 0;}
+}
+
+.input-comment{
+    height: 5vh;
+    min-height: 12.5vw;
+    border: none;
+     border-top: 0.5px solid #FFD615;
+    border-bottom: 0.5px solid #FFD615; 
+    /* box-shadow:0px -3px 6px #00000049 ; */
+    background-color: rgb(26, 41, 73);
+    font-family: IranSans_Light;
+    font-size: 4.25vw;
+    padding-bottom: 2.5vw;
+    direction: rtl;
+    padding-right: 3vw;
+    
+    color: #fff;
+}
+
+textarea:focus {
+    
+    outline:none;
+ }
+
+ .submit{
+     color: #FFD615;
+     font-family: IranSans;
+     font-size: 4vw;
+     margin-right: 3vw;
+ }
+
+ .rating-container{
+     width: 18vw;
+     background-color: rgb(26, 41, 73);
+     border-top-right-radius:10px; 
+     border-bottom-right-radius:10px; 
+     position: fixed;  
+     top: 20vh;  
+     left: 0vw;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: space-evenly;
+     overflow: hidden;
+     z-index: 5;
+     box-shadow:5px 3px 6px #00000015 ;
+     border-top: 1px solid #FFD615;
+     border-bottom: 1px solid #FFD615;
+     border-right: 1px solid #FFD615;
+ }
+ .votesCount{
+     margin-top: 10vw;
+     color: #FFD615;
+     font-family: IranSans;
+     font-size: 4.5vw;
+ }
+ .voteLable{
+     color: #fff;
+     font-family: IranSans_Light;
+     font-size: 3.5vw;
+     margin-bottom: 6vw;
+ }
+ .miz1{
+     width: 12vw;
+     margin-top: 8vw;
+ }
+ .miz2{
+     width: 11vw;
+     margin-top: 3vw;
+ }
+ .miz3{
+     width: 10vw;
+     margin-top: 3vw;
+ }
+ .miz4{
+     width: 9vw;
+     margin-top: 3vw;
+ }
+ .miz5{
+     width: 8vw;
+     margin-top: 3vw;
+ }
+ .rateImg{
+     width: 7.5vw;
+ }
+ .rate-number-container{
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: flex-start;
+ }
+ .rateNumber{
+     color: #FFD615;
+     font-family: IranSans_Light;
+     font-size: 5vw;
+     margin-right: 2vw;
+     margin-top: 1vw;
+ }
+
+ .ratingPopUp-enter-active {
+    transition: opacity 0s;
+    animation: ratingPopUp-rise 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+  }
+.ratingPopUp-leave-active{
+    transition: opacity 0s;
+    animation: ratingPopUp-fall 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    
+}
+  .ratingPopUp-enter, .ratingPopUp-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+    
+  }
+
+  @keyframes ratingPopUp-rise {
+    from {left: -20vw;opacity: 0;}
+    to {left: 0vw;opacity: 1;}
+}
+  @keyframes ratingPopUp-fall {
+    from {left: 0vw;opacity: 1;}
+    to {left: -20vw;opacity: 0;}
 }

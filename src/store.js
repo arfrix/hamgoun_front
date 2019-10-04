@@ -4,8 +4,8 @@ import Axios from 'axios'
 
 Vue.use(Vuex)
 
-const baseUrl = 'http://45.82.136.106:8080'
-// const baseUrl = 'http://localhost:5000'
+// const baseUrl = 'http://45.82.136.106:8080'
+const baseUrl = 'https://localhost:5001'
 
 export default new Vuex.Store({
   state: {
@@ -152,6 +152,8 @@ export default new Vuex.Store({
 
     //! relate to api
     userId: parseInt(localStorage.userId),
+    user_userName: localStorage.userName,
+    user_profileImgUrl: localStorage.profileImgUrl,
     // ! api response container -----------------------
     home_page_cards: '',
     user_profile_data: '',
@@ -174,7 +176,10 @@ export default new Vuex.Store({
     fullDiscusion_cards: '',
     waitFor_fullDiscusion_cards: false,
     waitingForLogin: false,
-    waitingForRegister: false
+    waitingForRegister: false,
+    waitForSubmitaComment: false,
+    commentsList: ''
+    // commentToSend: ''
 
   },
   mutations: {
@@ -220,6 +225,8 @@ export default new Vuex.Store({
     },
     writeUser_profile_data (state, data) {
       state.user_profile_data = data
+      localStorage.userName = data.userName
+      localStorage.profileImgUrl = data.profileImgUrl
     },
     write_on_userProfile (state, data) {
       console.log('from mutation ' + data.propName + ' ' + data.value)
@@ -275,6 +282,10 @@ export default new Vuex.Store({
     write_fullDiscusion_cards (state, data) {
       state.fullDiscusion_cards = data
       state.waitFor_fullDiscusion_cards = false
+    },
+    write_commentsList (state, data) {
+      state.commentsList = data
+      state.waitingForRegister = false
     }
 
     // write_otherUser_profile_data (state, data) {
@@ -598,6 +609,7 @@ export default new Vuex.Store({
 
         commit('write_userPassRegister', response.data.status)
         if (response.data.status) {
+          //! fech konam do khat bady cherte va mishe to writeUser_profile_data gonjondeshon !!!!
           localStorage.userId = response.data.data.value.id
           commit('write_userId', response.data.data.value.id)
           commit('writeUser_profile_data', response.data.data.value)
@@ -636,6 +648,88 @@ export default new Vuex.Store({
       try {
         response = await Axios.get(baseUrl + '/Posts/')
         commit('write_fullDiscusion_cards', response.data)
+      } catch (error) {
+
+      }
+    },
+
+    async fetchComments ({ commit, state }, postId) {
+      let response = ''
+      try {
+        response = await Axios.get(baseUrl + '/Comments/GetCommentofPosts/' + postId)
+        console.log(response.data)
+        commit('write_commentsList', response.data)
+      } catch (error) {
+
+      }
+    },
+    async submitComment ({ commit, state }, params) {
+      state.waitForSubmitaComment = true
+      try {
+        await Axios.post(baseUrl + '/Comments', {
+          PublisherId: state.userId,
+          PostId: params.PostId,
+          CommentText: params.CommentText,
+          PublisherUsername: localStorage.userName,
+          publisherImg: localStorage.profileImgUrl
+        })
+      } catch (error) {
+
+      }
+    },
+    async submitCommentReply ({ commit, state }, params) {
+      console.log(params.isReply)
+      state.waitForSubmitaComment = true
+      try {
+        Axios.post(baseUrl + '/Comments', {
+          PublisherId: state.userId,
+          PostId: params.PostId,
+          CommentText: params.CommentText,
+          PublisherUsername: localStorage.userName,
+          ParentCommentId: params.parentCommentId,
+          publisherImg: localStorage.profileImgUrl,
+          IsReply: true
+
+        })
+      } catch (error) {
+
+      }
+    },
+
+    async submitRating ({ commit, state }, params) {
+      try {
+        await Axios.post(baseUrl + '/RatingEvents/PostRating', {
+          JudgeId: state.userId,
+          PostId: params.PostId,
+          IsPostRating: true,
+          PostRate: params.rate
+
+        })
+      } catch (error) {
+
+      }
+    },
+    async submitMizoun ({ commit, state }, params) {
+      console.log(params)
+
+      try {
+        await Axios.post(baseUrl + '/RatingEvents/Mizoun', {
+          JudgeId: state.userId,
+          CommentId: params.commentId,
+          IsMizoun: true
+        })
+      } catch (error) {
+
+      }
+    },
+    async submitNamizoun ({ commit, state }, params) {
+      try {
+        await Axios.post(baseUrl + '/RatingEvents/Namizoun', {
+          JudgeId: state.userId,
+          CommentId: params.commentId,
+          IsNamizoun: true
+
+        })
       } catch (error) {
 
       }
