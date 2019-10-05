@@ -73,7 +73,7 @@
           </transition>
           <div class="col-m-8-5 devider-line"></div>
           <!--//tip agar bind nakony miad props ro be sorat string mifreste   -->
-          <div class="comments-container">
+          <div class="col-m-10 comments-container">
               <div v-for="comment in this.$store.state.commentsList" :key="comment.id" class="col-m-10 looper">
                 <coment v-bind:id="comment.id" :parentCommentId="comment.parentCommentId" :isBig="!comment.isReply" :username="comment.publisherUsername" :imgUrl="comment.publisherImg" :comment="comment.commentText" @isReply="toReply" :namizoun="comment.namizoun" :mizoun="comment.mizoun"></coment>
               </div>
