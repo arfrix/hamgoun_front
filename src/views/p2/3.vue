@@ -16,9 +16,9 @@
         <div  class="row top-section">
 
             <div class="col-m-6-7 gap"></div>
-            <h4 class="col-m-2 usename">{{postData.publisherUsername}}</h4>
+            <h4 class="col-m-2 usename" @click="gotoProfile">{{postData.publisherUsername}}</h4>
 
-            <div class="col-m-1-5 circle-img-div">
+            <div class="col-m-1-5 circle-img-div" @click="gotoProfile">
                 <img :src="'http://45.82.136.106:8080/images/'+ postData.publisherProfileImg" alt="" class="img profile-img">
             </div>
         </div>
@@ -194,6 +194,9 @@ export default {
     },
     showRatingPopUp () {
       this.isShowRatingPopUp = true
+    },
+    gotoProfile () {
+      this.$router.push({ name: 'profile', params: { is_other_user_profile: true, fetch_other_user_data: true, other_user_id: this.postData.publisherId } })
     }
 
   }

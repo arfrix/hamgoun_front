@@ -733,6 +733,19 @@ export default new Vuex.Store({
       } catch (error) {
 
       }
+    },
+    async follow ({ commit, state }, params) {
+      try {
+        await Axios.post(baseUrl + '/Relations', {
+          FollowerId: state.userId,
+          FollowedId: params.followedId,
+          MainCategory: params.mCat,
+          SubCategory: params.sCat
+
+        })
+      } catch (error) {
+
+      }
     }
 
   }

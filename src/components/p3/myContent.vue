@@ -7,6 +7,10 @@
 
     </div>
     <div id="tt" class="col-m-10 row bottomRow">
+
+      <div v-if="is_other_user_content && showPostList" class="col-m-4 follow-btn" @click="follow">
+          <h3 class="btn-lable">پیگیر شو</h3>
+      </div>
       <!-- <div v-for="(card,index) in this.$store.state.cards" :key="index" class="card-container"> -->
       <div  class="col-m-9-5 card-container">
         <div v-if="showPostList && this.$store.state.my_postsList.status && !this.$store.state.waitFor_fetch_my_postList" class="column-direction">
@@ -42,6 +46,9 @@ import list from '../../components/global/categoryList'
 
 export default {
   name: 'myContent',
+  props: [
+    'is_other_user_content', 'other_user_Id'
+  ],
   components: {
     card,
     list
@@ -102,6 +109,11 @@ export default {
     },
     goto_postPage (data) {
       this.$router.push({ name: 'postPage', params: { postData: data } })
+    },
+    follow () {
+      this.$store.dispatch('follow', { followedId: this.other_user_Id, mCat: this.mainCat, sCat: this.subCat }).then(() => {
+        alert('followed')
+      })
     }
 
   }

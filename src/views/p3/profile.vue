@@ -49,8 +49,8 @@
             </div>
 
             <div class="bottom-section">
-              <bio v-if="witchTab[0]" :is_other_user_profile="false" :profile="profileData"></bio>
-              <myContent v-if="witchTab[1]"></myContent>
+              <bio v-if="witchTab[0]" :is_other_user_bio="is_other_user_profile" :profile="profileData"></bio>
+              <myContent v-if="witchTab[1]" :is_other_user_content="is_other_user_profile" :other_user_Id="other_user_id"></myContent>
             </div>
       </div>
         <navigation></navigation>
@@ -70,7 +70,7 @@ export default {
     bio, myContent
   },
   props: [
-    'profile', 'is_other_user_profile'
+    'profile', 'is_other_user_profile', 'fetch_other_user_data', 'other_user_id'
   ],
   data () {
     return {
@@ -83,14 +83,20 @@ export default {
 
   beforeMount () {
     this.height = window.innerHeight
-
-    if (this.is_other_user_profile) {
-      this.profileData = this.profile
-    } else {
-      this.$store.dispatch('fetch_user_profile_data', this.$store.state.userId).then(() => {
+    if (this.fetch_other_user_data) {
+      this.$store.dispatch('fetch_user_profile_data', this.other_user_id).then(() => {
         this.profileData = this.$store.state.user_profile_data
       })
+    } else {
+      if (this.is_other_user_profile) {
+        this.profileData = this.profile
+      } else {
+        this.$store.dispatch('fetch_user_profile_data', this.$store.state.userId).then(() => {
+          this.profileData = this.$store.state.user_profile_data
+        })
+      }
     }
+
     this.$store.dispatch('actSetWitch_route_we_are', 12)
   },
 
@@ -120,34 +126,36 @@ export default {
       }
     },
     profileImg () {
-      const input = document.createElement('input')
+      if (!this.is_other_user_profile) {
+        const input = document.createElement('input')
 
-      input.setAttribute('type', 'file')
-      input.setAttribute('accept', 'image/*')
-      input.click()
+        input.setAttribute('type', 'file')
+        input.setAttribute('accept', 'image/*')
+        input.click()
 
-      input.onchange = async () => {
-        const file = input.files[0]
-        const formData = new FormData()
-        formData.append('file', file)
+        input.onchange = async () => {
+          const file = input.files[0]
+          const formData = new FormData()
+          formData.append('file', file)
 
-        let response = ''
-        try {
-          console.log('55555')
-          response = await Axios.post('http://45.82.136.106:8080/Images/upload', formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            }
+          let response = ''
+          try {
+            console.log('55555')
+            response = await Axios.post('http://45.82.136.106:8080/Images/upload', formData, {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+              }
 
-          })
-          console.log('img response')
-          console.log('http://45.82.136.106:8080/images/' + response.data)
-        } catch (error) {
+            })
+            console.log('img response')
+            console.log('http://45.82.136.106:8080/images/' + response.data)
+          } catch (error) {
 
+          }
+
+          this.profileData.profileImgUrl = response.data
+          this.$store.dispatch('update_user_profile', this.profileData)
         }
-
-        this.profileData.profileImgUrl = response.data
-        this.$store.dispatch('update_user_profile', this.profileData)
       }
     }
 

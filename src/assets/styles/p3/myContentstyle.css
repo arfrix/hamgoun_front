@@ -22,7 +22,7 @@
     
 }
 .card-container{
-    margin-top: 5vh;
+    margin-top: 3.5vh;
     display: flex;
     flex-direction: column;
     
@@ -48,4 +48,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.follow-btn{
+    margin-top: 3.5vh;
+    border: 1px solid #FFD615;
+    border-radius: 5px;
+}
+.btn-lable{
+    font-family: IranSans_Light;
+    font-size: 4vw;
+    color: #FFD615;
 }

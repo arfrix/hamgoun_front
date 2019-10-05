@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        <div v-if="tab !== ''" @click="update()" class="col-m-1-7 submit-btn">
+        <div v-if="tab !== '' && !is_other_user_bio" @click="update()" class="col-m-1-7 submit-btn">
             <h4 class="btn-lable">تایید</h4>
         </div>
 
@@ -42,7 +42,7 @@ export default {
   components: {
   },
   props: [
-    'is_other_user_profile', 'profile'
+    'is_other_user_bio', 'profile'
   ],
   data () {
     return {
@@ -110,28 +110,30 @@ export default {
       }
     },
     inputClicked (index) {
-      if (index === 0) {
-        this.bioInputSideLight.fill(false)
-        this.$set(this.bioInputSideLight, 0, true)
-        this.$set(this.bioPlaceHolderToShow, 0, false)
-        document.getElementById('in1').focus()
-        document.getElementById('in2').blur()
-        document.getElementById('in3').blur()
-      } else {
-        if (index === 1) {
+      if (!this.is_other_user_bio) {
+        if (index === 0) {
           this.bioInputSideLight.fill(false)
-          this.$set(this.bioInputSideLight, 1, true)
-          this.$set(this.bioPlaceHolderToShow, 1, false)
-          document.getElementById('in2').focus()
-          document.getElementById('in1').blur()
+          this.$set(this.bioInputSideLight, 0, true)
+          this.$set(this.bioPlaceHolderToShow, 0, false)
+          document.getElementById('in1').focus()
+          document.getElementById('in2').blur()
           document.getElementById('in3').blur()
         } else {
-          this.bioInputSideLight.fill(false)
-          this.$set(this.bioInputSideLight, 2, true)
-          this.$set(this.bioPlaceHolderToShow, 2, false)
-          document.getElementById('in3').focus()
-          document.getElementById('in2').blur()
-          document.getElementById('in1').blur()
+          if (index === 1) {
+            this.bioInputSideLight.fill(false)
+            this.$set(this.bioInputSideLight, 1, true)
+            this.$set(this.bioPlaceHolderToShow, 1, false)
+            document.getElementById('in2').focus()
+            document.getElementById('in1').blur()
+            document.getElementById('in3').blur()
+          } else {
+            this.bioInputSideLight.fill(false)
+            this.$set(this.bioInputSideLight, 2, true)
+            this.$set(this.bioPlaceHolderToShow, 2, false)
+            document.getElementById('in3').focus()
+            document.getElementById('in2').blur()
+            document.getElementById('in1').blur()
+          }
         }
       }
     },
@@ -150,7 +152,7 @@ export default {
       }
     },
     placeHolder (toShow) {
-      if (this.is_other_user_profile || toShow) {
+      if (this.is_other_user_bio || toShow) {
         return {
           'other-user-placeHolder': true
         }
