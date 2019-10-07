@@ -101,7 +101,11 @@ import coment from './../../components/p2/coment'
 
 export default {
   name: '3',
-  props: ['postData'],
+  props: ['postData', 'isFetch'],
+  beforeMount () {
+    // !------------------------------------
+    this.$store.dispatch('fetchPostData')
+  },
   mounted () {
     window.addEventListener('scroll', this.onScroll)
     this.$store.dispatch('fetchComments', this.postData.id)
