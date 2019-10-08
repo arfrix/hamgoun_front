@@ -178,7 +178,8 @@ export default new Vuex.Store({
     waitingForLogin: false,
     waitingForRegister: false,
     waitForSubmitaComment: false,
-    commentsList: ''
+    commentsList: '',
+    postData: ''
     // commentToSend: ''
 
   },
@@ -286,6 +287,9 @@ export default new Vuex.Store({
     write_commentsList (state, data) {
       state.commentsList = data
       state.waitingForRegister = false
+    },
+    writePorfileData (state, data) {
+      state.postData = data
     }
 
     // write_otherUser_profile_data (state, data) {
@@ -366,6 +370,9 @@ export default new Vuex.Store({
     },
     actChange_my_postsList ({ commit, state }, data) {
       commit('write_my_postList', data)
+    },
+    actSetPostData ({ commit, state }, data) {
+      commit('writePorfileData', data)
     },
     // actOtherUser_profile_data ({ commit, state }, data) {
     //   commit('write_otherUser_profile_data', data)
@@ -743,6 +750,15 @@ export default new Vuex.Store({
           SubCategory: params.sCat
 
         })
+      } catch (error) {
+
+      }
+    },
+    async fetchPostData ({ commit, state }, params) {
+      let response = ''
+      try {
+        response = await Axios.get(baseUrl + '/getPostByUrl/' + params.uniqeUrl)
+        commit('writePorfileData', response.data)
       } catch (error) {
 
       }
