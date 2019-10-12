@@ -58,7 +58,7 @@ export default new Router({
       component: AddPost
     },
     {
-      path: '/3',
+      path: '/post/:uniqueUrl',
       name: 'postPage',
       component: P2_3,
       props: true

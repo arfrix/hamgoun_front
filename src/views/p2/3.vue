@@ -16,19 +16,19 @@
         <div  class="row top-section">
 
             <div class="col-m-6-7 gap"></div>
-            <h4 class="col-m-2 usename" @click="gotoProfile">{{postData.publisherUsername}}</h4>
+            <h4 class="col-m-2 usename" @click="gotoProfile">{{this.$store.state.postData.publisherUsername}}</h4>
 
             <div class="col-m-1-5 circle-img-div" @click="gotoProfile">
-                <img :src="'http://45.82.136.106:8080/images/'+ postData.publisherProfileImg" alt="" class="img profile-img">
+                <img :src="'http://45.82.136.106:8080/images/'+ this.$store.state.postData.publisherProfileImg" alt="" class="img profile-img">
             </div>
         </div>
         <div class="col-m-10 title-container">
-            <h2 class="title">{{postData.title}}</h2>
+            <h2 class="title">{{this.$store.state.postData.title}}</h2>
         </div>
 
         <div class="row middel-section">
             <div class="ql-editor">
-              <div class="ttt" v-html="postData.body"></div>
+              <div class="ttt" v-html="this.$store.state.postData.body"></div>
 
             </div>
         </div>
@@ -48,7 +48,7 @@
                </div>
 
                <div class="col-m-4-5 rate-number-container" @click="showRatingPopUp">
-                  <h3 class="rateNumber">{{postData.postRate}}</h3>
+                  <h3 class="rateNumber">{{this.$store.state.postData.postRate}}</h3>
                   <img :src="mizounImgUrl(submitRate)" class="rateImg">
                </div>
 
@@ -67,7 +67,7 @@
                 <img :src="mizounImgUrl(isRating[1])" @click="rating(2)" class="miz4">
                 <img :src="mizounImgUrl(isRating[0])" @click="rating(1)" class="miz5">
 
-                <h2 class="votesCount">{{postData.judgesCount}}</h2>
+                <h2 class="votesCount">{{this.$store.state.postData.judgesCount}}</h2>
                 <h2 class="voteLable">رای</h2>
               </div>
           </transition>
@@ -101,14 +101,27 @@ import coment from './../../components/p2/coment'
 
 export default {
   name: '3',
-  props: ['postData', 'isFetch'],
+  props: {
+    isFetch: {
+      type: Boolean,
+      default: true
+    },
+
+    uniqueUrl: {
+      type: String
+    }
+  },
+
   beforeMount () {
-    // !------------------------------------
-    this.$store.dispatch('fetchPostData')
+    if (this.isFetch) {
+      this.$store.dispatch('fetchPostData', this.uniqueUrl).then(() => {
+        this.$store.dispatch('fetchComments', this.$store.state.postData.id)
+      })
+    }
   },
   mounted () {
+    console.log('enter mounted')
     window.addEventListener('scroll', this.onScroll)
-    this.$store.dispatch('fetchComments', this.postData.id)
   },
   beforeDestroy () {
     window.removeEventListener('scroll', this.onScroll)
@@ -124,7 +137,8 @@ export default {
       parentCommentId: '',
       isRating: [false, false, false, false, false],
       submitRate: false,
-      isShowRatingPopUp: false
+      isShowRatingPopUp: false,
+      isFetchComment: false
     }
   },
   components: {
@@ -167,10 +181,10 @@ export default {
       }
     },
     submitComment () {
-      console.log(this.postData)
+      console.log(this.$store.state.postData)
       console.log(this.commentText)
-      if (this.isComment) { this.$store.dispatch('submitComment', { PostId: this.postData.id, CommentText: this.commentText }) }
-      if (this.isReply) { this.$store.dispatch('submitCommentReply', { PostId: this.postData.id, CommentText: this.commentText, parentCommentId: this.parentCommentId }) }
+      if (this.isComment) { this.$store.dispatch('submitComment', { PostId: this.$store.state.postData.id, CommentText: this.commentText }) }
+      if (this.isReply) { this.$store.dispatch('submitCommentReply', { PostId: this.$store.state.postData.id, CommentText: this.commentText, parentCommentId: this.parentCommentId }) }
     },
     toReply (val) {
       this.showCommentInput = true
@@ -181,7 +195,7 @@ export default {
       if (isClicked) { return require('../../assets/icons/selectedMizoun.png') } else { return require('../../assets/icons/unSelectedMizoun.png') }
     },
     rating (index) {
-      this.$store.dispatch('submitRating', { PostId: this.postData.id, rate: index }).then(() => {
+      this.$store.dispatch('submitRating', { PostId: this.$store.state.postData.id, rate: index }).then(() => {
         this.submitRate = true
         setTimeout(() => {
           this.isShowRatingPopUp = false
@@ -200,7 +214,7 @@ export default {
       this.isShowRatingPopUp = true
     },
     gotoProfile () {
-      this.$router.push({ name: 'profile', params: { is_other_user_profile: true, fetch_other_user_data: true, other_user_id: this.postData.publisherId } })
+      this.$router.push({ name: 'profile', params: { is_other_user_profile: true, fetch_other_user_data: true, other_user_id: this.$store.state.postData.publisherId } })
     }
 
   }

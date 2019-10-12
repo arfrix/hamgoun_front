@@ -56,6 +56,13 @@ export default {
   beforeMount () {
     // this.$store.dispatch('fetch_home_page_cards',{'FollowerId':1,'MainCategory':1,'SubCategory':1})
     this.$store.dispatch('fetch_jilizViliz_cards')
+  },
+  methods: {
+    goto_postPage (data) {
+      this.$store.dispatch('actSetPostData', data).then(() => {
+        this.$router.push({ name: 'postPage', params: { uniqueUrl: data.uniqueUrl, isFetch: false } })
+      })
+    }
   }
 }
 </script>

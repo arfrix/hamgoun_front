@@ -8,13 +8,19 @@
     </div>
     <div id="tt" class="row bottomRow">
 
-      <!-- <div class="private-mode">
+      <div class="private-or-public-btn-container" @click="changeMode()">
+        <img :src="getImgUrl(witchModeImg)" alt="" class="mode-Img">
+
+        <h3 class="mode-lable">{{modeLable}}</h3>
+      </div>
+
+      <div v-if="isPrivate" class="private-mode">
           <div  class="card-container">
 
           </div>
-      </div> -->
+      </div>
 
-      <div class="public-mode">
+      <div v-if="!isPrivate" class="public-mode">
           <div class="campain-section">
             <div class="section-lable-container">
                 <h3 class="section-lable">کمپین ها</h3>
@@ -102,7 +108,11 @@ export default {
     return {
       cardkind: [1, 2],
       currentWindowBottomPosition: '',
-      cardsSeenSituation: []
+      cardsSeenSituation: [],
+      isPrivate: false,
+      modeLable: 'نمایش پست های پیگیری شده ',
+      witchModeLable: 0,
+      witchModeImg: 'icons/chain.png'
     }
   },
   destroyed () {
@@ -137,11 +147,24 @@ export default {
       this.$store.dispatch('fetch_home_page_cards')
     },
     goto_postPage (data) {
-      this.$router.push({ name: 'postPage', params: { postData: data } })
+      this.$store.dispatch('actSetPostData', data).then(() => {
+        this.$router.push({ name: 'postPage', params: { uniqueUrl: data.uniqueUrl, isFetch: false } })
+      })
     },
     gotoCampainPage () {
       console.log('****')
       this.$router.push('/campainPage')
+    },
+    changeMode () {
+      if (this.isPrivate) {
+        this.isPrivate = false
+
+        this.witchModeImg = 'icons/chain.png'
+      } else {
+        this.isPrivate = true
+
+        this.witchModeImg = 'icons/yellowChain.png'
+      }
     }
 
   }

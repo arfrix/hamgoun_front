@@ -754,10 +754,11 @@ export default new Vuex.Store({
 
       }
     },
-    async fetchPostData ({ commit, state }, params) {
+    async fetchPostData ({ commit, state }, uniqeUrl) {
       let response = ''
+
       try {
-        response = await Axios.get(baseUrl + '/getPostByUrl/' + params.uniqeUrl)
+        response = await Axios.get(baseUrl + '/Posts/getPostByUrl/' + uniqeUrl)
         commit('writePorfileData', response.data)
       } catch (error) {
 

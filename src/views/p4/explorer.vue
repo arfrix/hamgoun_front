@@ -174,7 +174,9 @@ export default {
       this.$router.push({ name: 'profile', params: { profile: profile, is_other_user_profile: true } })
     },
     goto_postPage (data) {
-      this.$router.push({ name: 'postPage', params: { postData: data } })
+      this.$store.dispatch('actSetPostData', data).then(() => {
+        this.$router.push({ name: 'postPage', params: { uniqueUrl: data.uniqueUrl, isFetch: false } })
+      })
     }
 
   }

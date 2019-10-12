@@ -102,7 +102,7 @@
 }
 .campain-section{
     margin-bottom: 7vw;
-    margin-top: 7vw;
+    margin-top: 3vw;
     
 }
 .fullDiscusion-section{
@@ -169,4 +169,21 @@
 }
 .waitin-lable-container{
     margin-right: 20%;
+}
+.mode-Img{
+    width: 6vw;
+}
+.mode-lable{
+    font-family: IranSans_Light;
+    color: rgb(206, 206, 206);
+    font-size: 3vw;
+    margin-left: 2vw;
+}
+.private-or-public-btn-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 3.5vw;
+    padding-left: 2.5vw;;
 }
