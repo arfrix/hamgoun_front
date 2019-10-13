@@ -9,9 +9,12 @@
         <div class="col-m-10 searchBar-container" @click="serachInputonClick()">
             <img v-if="!writting" src="../../assets/icons/magnifying-glass.png" alt="" class="search-icon">
             <h3 v-if="!writting" class="input-placeHolder">کاوش</h3>
-            <form v-on:submit="search">
+            <form v-on:submit="search" class="col-m-7-7">
                 <input type="text" v-model="searchKeyword"  id="search" class="col-m-9-5 search-input">
             </form>
+            <div v-if="writting" class="search-btn" @click="search">
+                کاوش
+            </div>
         </div>
 
         <div class="col-m-10 switch-container">
@@ -167,7 +170,10 @@ export default {
     },
     serachInputonClick () {
       this.writting = true
-      document.getElementById('search').focus()
+      // tip chon ta render kamel anjam nashe focuse neshon dadae nemishe
+      this.$nextTick(() => {
+        document.getElementById('search').focus()
+      })
     },
     visit_other_user_profile (profile) {
       console.log('profile')
