@@ -17,7 +17,8 @@
     box-shadow:0px 3px 6px #00000028 ;
     width: 39vw;
     margin-right: 4vw;
-    margin-top: 2vw;;
+    margin-top: 2vw;
+    overflow: hidden;
 }
 .card-lable-container{
     position: absolute;
@@ -32,6 +33,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
 .lable{
     font-size: 2.5vw;
@@ -65,6 +67,7 @@
     color: #fdfdfd;
     margin-top: 1vw;
     margin-bottom: 1vw;
+    white-space: nowrap;
 }
 .body{
     font-size: 3.2vw;
