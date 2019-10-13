@@ -52,23 +52,44 @@
 .mc0{
     width: 77%;
 }
+.selectedmc0{
+    width: 97%; 
+}
 .mc1{
     width: 69%;
+}
+.selectedmc1{
+    width: 89%;
 }
 .mc2{
     width: 59%;
 }
+.selectedmc2{
+    width: 79%;
+}
 .mc3{
-    width: 80%;
+    width: 61%;
+}
+.selectedmc3{
+    width: 78%;
 }
 .mc4{
-    width: 58%;
+    width: 79%;
+}
+.selectedmc4{
+    width: 97%;
 }
 .mc5{
     width: 62%;
 }
+.selectedmc5{
+    width: 82%;
+}
 .mc6{
     width: 62%;
+}
+.selectedmc6{
+    width: 79%;
 }
 
 .mcc0{

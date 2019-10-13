@@ -1,32 +1,28 @@
 <template>
-    <div class="col-m-10 write-body-main">
-        <div id="editor" class="test" v-on:keydown.enter="enterKeyPressed()">
+  <div class="col-m-10 write-body-main">
+    <div id="editor" class="test" v-on:keydown.enter="enterKeyPressed()"></div>
 
-        </div>
+    <transition name="totil">
+      <div v-show="iSshowToolTip" id="toolbar" class="totil">
+        <select class="ql-size">
+          <option value="small"></option>
+          <!-- Note a missing, thus falsy value, is used to reset to default -->
+          <option selected></option>
+          <option value="large"></option>
+          <option value="huge"></option>
+        </select>
+        <!-- Add a bold button -->
+        <button class="ql-bold"></button>
+        <button class="ql-image"></button>
+      </div>
+    </transition>
 
-        <transition name="totil">
-          <div v-show="iSshowToolTip" id="toolbar" class="totil" >
-            <select class="ql-size">
-              <option value="small"></option>
-              <!-- Note a missing, thus falsy value, is used to reset to default -->
-              <option selected></option>
-              <option value="large"></option>
-              <option value="huge"></option>
-            </select>
-            <!-- Add a bold button -->
-            <button class="ql-bold"></button>
-            <button class="ql-image"></button>
-          </div>
-        </transition>
-
-        <div id="bottom" class="col-m-10 bottom-space">
-
-          <div class="tooltip-button" @click="showToolTip">
-              <img src="../../assets/icons/pencil-case.png" alt="" class="showTotilimg">
-          </div>
-
-        </div>
+    <div id="bottom" class="col-m-10 bottom-space">
+      <div class="tooltip-button" @click="showToolTip">
+        <img src="../../assets/icons/pencil-case.png" alt class="showTotilimg" />
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -45,7 +41,6 @@ export default {
     return {
       editor: null,
       iSshowToolTip: false
-
     }
   },
   mounted () {
@@ -54,10 +49,8 @@ export default {
     Quill.register(Image, true)
 
     this.editor = new Quill('#editor', {
-
       modules: {
         toolbar: {
-
           //   container: [ ['bold', 'italic', 'underline'], [{ 'color': [] }, { 'background': [] }], // toggled buttons
           //     [ 'code-block', 'link'], [{ 'list': 'ordered' }, { 'list': 'bullet' }], ['image']],
           container: '#toolbar',
@@ -88,7 +81,11 @@ export default {
         const range = this.quill.getSelection(true)
 
         // Insert temporary loading placeholder image
-        this.quill.insertEmbed(range.index, 'image', 'http://45.82.136.106:8080/images/giphy.gif')
+        this.quill.insertEmbed(
+          range.index,
+          'image',
+          'http://45.82.136.106:8080/images/giphy.gif'
+        )
 
         // Move cursor to right side of image (easier to continue typing)
         this.quill.setSelection(range.index + 1)
@@ -99,17 +96,18 @@ export default {
         let response = ''
         try {
           console.log('55555')
-          response = await Axios.post('http://45.82.136.106:8080/Images/upload', formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data'
+          response = await Axios.post(
+            'http://45.82.136.106:8080/Images/upload',
+            formData,
+            {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+              }
             }
-
-          })
+          )
           console.log('img response')
           console.log(response)
-        } catch (error) {
-
-        }
+        } catch (error) {}
 
         console.log('await check')
         console.log(response.data.substring(87))
@@ -119,7 +117,11 @@ export default {
         this.quill.deleteText(range.index, 1)
 
         // Insert uploaded image
-        this.quill.insertEmbed(range.index, 'image', 'http://45.82.136.106:8080/images/' + response.data)
+        this.quill.insertEmbed(
+          range.index,
+          'image',
+          'http://45.82.136.106:8080/images/' + response.data
+        )
         // this.quill.insertEmbed(range.index + 1, 'code-block','djfhvba');
         this.quill.setSelection(range.index + 5)
       }
@@ -132,7 +134,10 @@ export default {
 
   methods: {
     update () {
-      this.$emit('input', this.editor.getText() ? this.editor.root.innerHTML : '')
+      this.$emit(
+        'input',
+        this.editor.getText() ? this.editor.root.innerHTML : ''
+      )
     },
     enterKeyPressed () {
       console.log('***')
@@ -146,8 +151,8 @@ export default {
       this.iSshowToolTip = !this.iSshowToolTip
       this.editor.theme.tooltip.show()
       // this.editor.theme.tooltip.edit()
+      console.log(this.iSshowToolTip)
     }
-
   }
 }
 </script>

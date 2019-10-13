@@ -196,6 +196,7 @@ textarea:focus {
  }
 
  .rating-container{
+     
      width: 18vw;
      background-color: rgb(26, 41, 73);
      border-top-right-radius:10px; 
@@ -207,12 +208,25 @@ textarea:focus {
      flex-direction: column;
      align-items: center;
      justify-content: space-evenly;
-     overflow: hidden;
+     /* overflow: hidden; */
      z-index: 5;
      box-shadow:5px 3px 6px #00000015 ;
      border-top: 1px solid #FFD615;
      border-bottom: 1px solid #FFD615;
      border-right: 1px solid #FFD615;
+ }
+ .close-btn{
+     position: absolute;
+     left: 18.5vw;
+     top: -3vw;
+     width: 5vw;
+     height: 5vw;
+     border-radius: 50%;   
+     z-index: 100;
+     background-color: #14213D;
+ }
+ .close-btn-img{
+     width: 100%
  }
  .votesCount{
      margin-top: 10vw;

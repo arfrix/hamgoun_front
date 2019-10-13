@@ -1,58 +1,69 @@
 <template>
-
-    <div class="col-m-10 categoryList-main-div">
-        <div :class="this.mainCategory_container()">
-            <div class="mainCategory-horizantal-list list">
-                <div class="col-m-2 mainCategory-card card " @click="mainCatOnClick(0)">
-                    <img src="../../assets/icons/edu1.png" class="mainCategory-img mc0">
-                </div>
-                <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(1)">
-                    <img src="../../assets/icons/origami4.png" class="mainCategory-img mc1">
-                </div>
-                <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(2)">
-                    <img src="../../assets/icons/suitcase2.png" class="mainCategory-img mc2">
-                </div>
-                <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(3)">
-                    <img src="../../assets/icons/sprout2.png" class="mainCategory-img mc4">
-                </div>
-                <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(4)">
-                    <img src="../../assets/icons/tech1.png" class="mainCategory-img mc3">
-                </div>
-                <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(5)">
-                    <img src="../../assets/icons/society1.png" class="mainCategory-img mc5">
-                </div>
-                <div class="col-m-2 mainCategory-card card mcc6" @click="mainCatOnClick(6)">
-                    <img src="../../assets/icons/sience1.png" class="mainCategory-img mc6">
-                </div>
-            </div>
+  <div class="col-m-10 categoryList-main-div">
+    <div :class="this.mainCategory_container()">
+      <div class="mainCategory-horizantal-list list">
+        <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(0)">
+          <img src="../../assets/icons/edu1.png" :class="eduCatStyle(witchMainCatSelected[0])" />
         </div>
-        <div class="subCategory-container">
-
-            <div v-if="this.mainCatDefined" class="subCategory-horizantal-list list">
-                <div  v-for="(item, index) in this.catList.sub" :key="item.name" :class="subCatCardStyle(item.isClicked)" @click="subCatOnClick(index)">
-                        <h3  class="subCategory-name">{{item.name}}</h3>
-                </div>
-                <div class="gap">"""</div>
-            </div>
-
-            <h3 v-if="!this.mainCatDefined" class="message">هنوز گروهی رو انتخاب نکردی</h3>
+        <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(1)">
+          <img
+            src="../../assets/icons/origami4.png"
+            :class="artAndFunCatStyle(witchMainCatSelected[1])"
+          />
         </div>
-
+        <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(2)">
+          <img
+            src="../../assets/icons/suitcase2.png"
+            :class="bussinesCatStyle(witchMainCatSelected[2])"
+          />
+        </div>
+        <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(3)">
+          <img src="../../assets/icons/sprout2.png" :class="lifeCatStyle(witchMainCatSelected[3])" />
+        </div>
+        <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(4)">
+          <img src="../../assets/icons/tech1.png" :class="techCatStyle(witchMainCatSelected[4])" />
+        </div>
+        <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(5)">
+          <img
+            src="../../assets/icons/society1.png"
+            :class="societyCatStyle(witchMainCatSelected[5])"
+          />
+        </div>
+        <div class="col-m-2 mainCategory-card card mcc6" @click="mainCatOnClick(6)">
+          <img
+            src="../../assets/icons/sience1.png"
+            :class="sienceCatStyle(witchMainCatSelected[6])"
+          />
+        </div>
+      </div>
     </div>
+    <div class="subCategory-container">
+      <div v-if="this.mainCatDefined" class="subCategory-horizantal-list list">
+        <div
+          v-for="(item, index) in this.catList.sub"
+          :key="item.name"
+          :class="subCatCardStyle(item.isClicked)"
+          @click="subCatOnClick(index)"
+        >
+          <h3 class="subCategory-name">{{item.name}}</h3>
+        </div>
+        <div class="gap">"""</div>
+      </div>
 
+      <h3 v-if="!this.mainCatDefined" class="message">هنوز گروهی رو انتخاب نکردی</h3>
+    </div>
+  </div>
 </template>
 
 <script>
-
 export default {
   name: 'categoryList',
-  props: { isTopRound: Boolean
-
-  },
+  props: { isTopRound: Boolean },
   data () {
     return {
       mainCatDefined: false,
-      catList: { sub: '' }
+      catList: { sub: '' },
+      witchMainCatSelected: [false, false, false, false, false, false, false]
     }
   },
 
@@ -60,8 +71,12 @@ export default {
     mainCatOnClick (index) {
       this.$emit('mainCatDefine', index)
       this.mainCatDefined = true
-      this.$store.dispatch('actChangeMainCategory', index)
+      this.$store.dispatch('actChangeMainCategory', index).then(() => {
+        this.witchMainCatSelected.fill(false)
+      })
+      this.$set(this.witchMainCatSelected, index, true)
       this.$set(this.catList, 'sub', this.$store.state.subCategoryList[index])
+      console.log(this.witchMainCatSelected)
     },
     subCatOnClick (index) {
       this.$emit('subCatDefine', index)
@@ -101,12 +116,86 @@ export default {
           card: true
         }
       }
+    },
+    eduCatStyle (isSelected) {
+      if (isSelected) {
+        return {
+          selectedmc0: true
+        }
+      } else {
+        return {
+          mc0: true
+        }
+      }
+    },
+    artAndFunCatStyle (isSelected) {
+      if (isSelected) {
+        return {
+          selectedmc1: true
+        }
+      } else {
+        return {
+          mc1: true
+        }
+      }
+    },
+    bussinesCatStyle (isSelected) {
+      if (isSelected) {
+        return {
+          selectedmc2: true
+        }
+      } else {
+        return {
+          mc2: true
+        }
+      }
+    },
+    lifeCatStyle (isSelected) {
+      if (isSelected) {
+        return {
+          selectedmc3: true
+        }
+      } else {
+        return {
+          mc3: true
+        }
+      }
+    },
+    techCatStyle (isSelected) {
+      if (isSelected) {
+        return {
+          selectedmc4: true
+        }
+      } else {
+        return {
+          mc4: true
+        }
+      }
+    },
+    societyCatStyle (isSelected) {
+      if (isSelected) {
+        return {
+          selectedmc5: true
+        }
+      } else {
+        return {
+          mc5: true
+        }
+      }
+    },
+    sienceCatStyle (isSelected) {
+      if (isSelected) {
+        return {
+          selectedmc6: true
+        }
+      } else {
+        return {
+          mc6: true
+        }
+      }
     }
-
   },
-  computed: {
-
-  }
+  computed: {}
 }
 </script>
 <style scoped src='../../assets/styles/categoryListStyle.css'>
