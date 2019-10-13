@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style>
-* {
+*:not(input.field) {
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: -moz-none;
