@@ -11,7 +11,25 @@
       </div>
 
       <div v-if="isPrivate" class="private-mode">
-        <div class="card-container"></div>
+        <div class="card-container">
+          <div
+            v-for="item in this.$store.state.cards.data"
+            :key="item.id"
+            @click="goto_postPage(item)"
+          >
+            <bigCard
+              class="col-m-9"
+              :kind="item.kind"
+              :imgUrl="item.coverImgUrl"
+              :title="item.title"
+              :subCategory="item.subCategory"
+              :mainCategory="item.mainCategory"
+              :username="item.publisherUsername"
+              duration
+              :text="item.postSummary"
+            ></bigCard>
+          </div>
+        </div>
       </div>
 
       <div v-if="!isPrivate" class="public-mode">
@@ -103,13 +121,15 @@
 import campainCard from '../../components/global/campainCard'
 import miniCard from '../../components/global/miniCard'
 import list from '../../components/global/categoryList'
+import bigCard from '../../components/global/card'
 
 export default {
   name: '1',
   components: {
     list,
     miniCard,
-    campainCard
+    campainCard,
+    bigCard
   },
   beforeMount () {
     // this.$store.dispatch('fetch_home_page_cards',{'FollowerId':1,'MainCategory':1,'SubCategory':1})
