@@ -13,10 +13,11 @@
     bottom: -1px;
     box-shadow:0px -3px 6px #00000049 ;
     background-color: rgb(26, 41, 73);
-    padding-top: 2vw;
-    padding-bottom:2vw;
+    padding-top: 2.5vw;
+    padding-bottom:2.5vw;
     color: #fff;
     font-family: IranSans_Medium;
+    font-size: 4.6vw;
     z-index: 3;
 }
 .one{

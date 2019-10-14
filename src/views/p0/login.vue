@@ -21,6 +21,7 @@
               <h5 :class="placeHolderStyle(input2_isSelected)">رمز عبور</h5>
               <input  type="text" v-model="passInput" id="passInputId" class="input" autocomplete="off" >
               <div :class="line(input2_isSelected)"></div>
+              <img v-if="input2_isSelected" src="../../assets/icons/view.png" alt="" class="passEye" @click="changePassVisiblity()">
           </div>
         </div>
         <div class="col-m-7 nav-container">
@@ -118,6 +119,14 @@ export default {
     },
     gotoRegister () {
       this.$router.push('/register')
+    },
+    changePassVisiblity () {
+      var x = document.getElementById('passInputId')
+      if (x.type === 'password') {
+        x.type = 'text'
+      } else {
+        x.type = 'password'
+      }
     }
 
   },

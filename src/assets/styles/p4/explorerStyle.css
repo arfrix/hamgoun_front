@@ -112,3 +112,16 @@ input:focus {
     align-items: center;
     justify-content: center;
 }
+.search-btn{
+    position: absolute;
+    top: 2.5vw;
+    left: 3vw;
+    width: 17vw;
+    border:1px solid #FFD615;
+    border-radius: 6px;
+    color: #FFD615;
+    padding-top: 0.5vw;
+    padding-bottom: 0.5vw;
+    font-family: IranSans_Light;
+    font-size: 3.8vw;
+}

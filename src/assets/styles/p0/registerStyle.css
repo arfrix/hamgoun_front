@@ -84,7 +84,7 @@ input:focus {
  }
  
  .selected-placeHolder{
-    bottom: 3vh
+    bottom: 3.5vh
  }
  
 
@@ -160,4 +160,10 @@ input:focus {
    /* height: 10vh; */
    font-family: IranSans_Light;
    color: rgb(253, 0, 0);
+}
+.passEye{
+   width: 4vw;
+   position: absolute;
+   right: 0;
+   
 }
