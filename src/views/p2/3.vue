@@ -145,6 +145,7 @@ export default {
     }
   },
   mounted () {
+    this.$store.dispatch('addHamegyry', { postId: this.$store.state.postData.id })
     console.log('enter mounted')
     window.addEventListener('scroll', this.onScroll)
   },
