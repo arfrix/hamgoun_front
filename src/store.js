@@ -754,6 +754,15 @@ export default new Vuex.Store({
 
       }
     },
+    async addHamegyry ({ commit, state }, params) {
+      try {
+        await Axios.post(baseUrl + '/Posts/hamegyry', {
+          PostId: params.postId
+        })
+      } catch (error) {
+
+      }
+    },
     async fetchPostData ({ commit, state }, uniqeUrl) {
       let response = ''
 
