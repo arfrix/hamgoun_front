@@ -170,7 +170,9 @@ export default {
     },
     serachInputonClick () {
       this.writting = true
-      // tip chon ta render kamel anjam nashe focuse neshon dadae nemishe
+
+      // tip chon ta rendere hazf shodan placeholder o oun chiza kamel anjam nashe focuse neshon dadae nemishe
+      // tip ehtamalan focus mishe amma belafasele badesh be chize dige focus mishe
       this.$nextTick(() => {
         document.getElementById('search').focus()
       })

@@ -18,12 +18,12 @@
                     </div>
                     <div class="col-m-4 data-container">
                         <div class="follower-section">
-                            <h3 class="number">1</h3>
-                            <h3 class="follower-section-lable">دنبال کننده</h3>
+                            <h3 class="number">{{this.profileData.hamegyry}}</h3>
+                            <h3 class="follower-section-lable">همه گیری</h3>
                         </div>
                         <div class="viewed-section">
-                            <h3 class="number">1</h3>
-                            <h3 class="viewed-section-lable">بازدید</h3>
+                            <h3 class="number">0</h3>
+                            <h3 class="viewed-section-lable">همراهی</h3>
                         </div>
                     </div>
                 </div>
