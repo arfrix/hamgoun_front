@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <div class="subCategory-container">
+    <!-- <div class="subCategory-container">
       <div v-if="this.mainCatDefined" class="subCategory-horizantal-list list">
         <div
           v-for="(item, index) in this.catList.sub"
@@ -52,7 +52,8 @@
       </div>
 
       <h3 v-if="!this.mainCatDefined" class="message">هنوز گروهی رو انتخاب نکردی</h3>
-    </div>
+    </div> -->
+
   </div>
 </template>
 
