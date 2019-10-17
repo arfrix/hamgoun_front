@@ -1,5 +1,5 @@
 .categoryList-main-div{
-    background-color: #FFD615;
+    /* background-color: #FFD615; */
 }
 .list{
     /* width: 100vw; */
@@ -22,14 +22,15 @@
 
 
 .mainCategory-container{
-    background-color: #14213D;
+    background: linear-gradient(180deg, rgba(20,33,61,1) 0%, rgba(26,41,73,1) 100%);
     padding-top: 3vw;
     padding-bottom: 4.5vw;
     padding-right: 4.5vw;
     box-shadow:0px 3px 6px #00000028 ;
 }
 .mainCategory-container-bordered{
-    background-color: #14213D;
+    background: linear-gradient(180deg, rgba(20,33,61,1) 0%, rgba(26,41,73,1) 100%);
+    border-bottom:1px solid #FFD615;
     padding-top: 2.5vw;
     padding-bottom: 0.5vw;
     border-radius: 0px 0px 19px 19px;

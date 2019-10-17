@@ -4,6 +4,7 @@
     position: relative;
     min-height: 100vh;
     overflow-x: hidden;
+    margin-top: 2.5vw;
 }
 
 .topRow{
@@ -37,6 +38,7 @@
     font-family: IranSans;
     font-size: 7vw;
     color: rgb(164, 169, 182);
+   
 }
 .waiting-lable{
     font-family: IranSans;

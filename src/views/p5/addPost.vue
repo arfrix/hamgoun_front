@@ -3,7 +3,7 @@
 
     <div class="row topRow">
 
-      <list :isTopRound=false @subCatDefine="defineSubCat" @mainCatDefine="defineMainCat"></list>
+      <list :isTopRound=true @subCatDefine="defineSubCat" @mainCatDefine="defineMainCat"></list>
 
     </div>
     <div id="tt" class="row bottomRow">
