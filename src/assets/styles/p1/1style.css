@@ -18,27 +18,6 @@
 }
 
 
-.topRow_sec1{
-    background-color: #3C425E;
-    position: relative;
-   padding-top: 10vw;
-   background-image: url(./../../images/backGround/art.png);
-   background-size: cover;
-   /* padding-bottom: 10vw; */
-}
-.semi-oval{
-    position: absolute;
-    
-    background-color: #3C425E;
-    width: 100%;
-    height: 8vw;
-    border-radius: 50% / 100%;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    border-top-right-radius: 0;
-    background-image: url(./../../images/backGround/art.png);
-   background-size: cover;
-}
 .topRow_sec2{
     position: relative;
     display: flex;

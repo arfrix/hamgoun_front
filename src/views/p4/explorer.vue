@@ -179,7 +179,7 @@ export default {
     },
     visit_other_user_profile (profile) {
       console.log('profile')
-      this.$router.push({ name: 'profile', params: { profile: profile, is_other_user_profile: true } })
+      this.$router.push({ name: 'otherUserProfile', params: { profile: profile, ou: true, id: profile.id } })
     },
     goto_postPage (data) {
       this.$store.dispatch('actSetPostData', data).then(() => {

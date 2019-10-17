@@ -37,6 +37,7 @@
         </div>
       </div>
     </div>
+
     <div class="subCategory-container">
       <div v-if="this.mainCatDefined" class="subCategory-horizantal-list list">
         <div

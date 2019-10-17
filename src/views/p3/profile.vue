@@ -49,8 +49,8 @@
             </div>
 
             <div class="bottom-section">
-              <bio v-if="witchTab[0]" :is_other_user_bio="is_other_user_profile" :profile="profileData"></bio>
-              <myContent v-if="witchTab[1]" :is_other_user_content="is_other_user_profile" :other_user_Id="other_user_id"></myContent>
+              <bio v-if="witchTab[0]" :is_other_user_bio="ou" :profile="profileData"></bio>
+              <myContent v-if="witchTab[1]" :is_other_user_content="ou" :Id="id"></myContent>
             </div>
       </div>
         <navigation></navigation>
@@ -69,9 +69,21 @@ export default {
   components: {
     bio, myContent
   },
-  props: [
-    'profile', 'is_other_user_profile', 'fetch_other_user_data', 'other_user_id'
-  ],
+  props: {
+    profile: {
+      default: undefined
+    },
+    ou: {
+      default: false
+    },
+    me: {
+      default: false
+    },
+    id: {
+      type: Number,
+      default: -1
+    }
+  },
   data () {
     return {
       witchTab: [true, false],
@@ -83,18 +95,12 @@ export default {
 
   beforeMount () {
     this.height = window.innerHeight
-    if (this.fetch_other_user_data) {
-      this.$store.dispatch('fetch_user_profile_data', this.other_user_id).then(() => {
+    if (this.profile === undefined) {
+      this.$store.dispatch('fetch_user_profile_data', this.id).then(() => {
         this.profileData = this.$store.state.user_profile_data
       })
     } else {
-      if (this.is_other_user_profile) {
-        this.profileData = this.profile
-      } else {
-        this.$store.dispatch('fetch_user_profile_data', this.$store.state.userId).then(() => {
-          this.profileData = this.$store.state.user_profile_data
-        })
-      }
+      this.profileData = this.profile
     }
 
     this.$store.dispatch('actSetWitch_route_we_are', 12)

@@ -42,10 +42,17 @@ export default new Router({
     },
 
     {
-      path: '/profile',
-      name: 'profile',
+      path: '/profile/:ou/:id',
+      name: 'otherUserProfile',
       component: Profile,
       props: true
+    },
+    {
+      path: '/profile/:me/:id',
+      name: 'myProfile',
+      component: Profile,
+      props: true
+
     },
     {
       path: '/explorer',

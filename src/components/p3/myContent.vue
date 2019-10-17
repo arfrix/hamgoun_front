@@ -47,7 +47,7 @@ import list from '../../components/global/categoryList'
 export default {
   name: 'myContent',
   props: [
-    'is_other_user_content', 'other_user_Id'
+    'is_other_user_content', 'Id'
   ],
   components: {
     card,
@@ -103,7 +103,8 @@ export default {
     },
     defineSubCat (val) {
       this.subCat = val
-      this.$store.dispatch('fetch_my_postList', { publisherId: this.$store.state.userId, mainCategory: this.mainCat, subCategory: val }).then(() => {
+      //! buuuuuug publisherId may be for other users
+      this.$store.dispatch('fetch_my_postList', { publisherId: this.Id, mainCategory: this.mainCat, subCategory: val }).then(() => {
         this.showPostList = true
       })
     },
@@ -113,7 +114,7 @@ export default {
       })
     },
     follow () {
-      this.$store.dispatch('follow', { followedId: this.other_user_Id, mCat: this.mainCat, sCat: this.subCat }).then(() => {
+      this.$store.dispatch('follow', { followedId: this.Id, mCat: this.mainCat, sCat: this.subCat }).then(() => {
         alert('followed')
       })
     }
