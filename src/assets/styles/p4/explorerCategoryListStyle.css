@@ -50,26 +50,46 @@
 
 
 .mc0{
-    width: 75%;
-}
-.mc1{
-    
-    width: 55%;
-}
-.mc2{
-    width: 57%;
-}
-.mc3{
     width: 77%;
 }
-.mc4{
+.selectedmc0{
+    width: 97%; 
+}
+.mc1{
     width: 58%;
+}
+.selectedmc1{
+    width: 75%;
+}
+.mc2{
+    width: 59%;
+}
+.selectedmc2{
+    width: 79%;
+}
+.mc3{
+    width: 61%;
+}
+.selectedmc3{
+    width: 78%;
+}
+.mc4{
+    width: 79%;
+}
+.selectedmc4{
+    width: 97%;
 }
 .mc5{
     width: 62%;
 }
+.selectedmc5{
+    width: 82%;
+}
 .mc6{
-    width: 48%;
+    width: 49%;
+}
+.selectedmc6{
+    width: 62%;
 }
 
 .mcc0{
@@ -78,18 +98,34 @@
 .mcc6{
 
 }
+
+
 .bmc0{
     width: 85%;
 }
+.selectedbmc0{
+    width: 99%;
+}
 .bmc1{
     width: 61%;
+}
+.selectedbmc1{
+    width: 75%;
 }
 .bmc2{
     width: 54%;
     margin-right: 2vw;
 }
+.selectedbmc2{
+    width: 70%;
+    margin-right: 2vw;
+}
 .bmc3{
     width: 55%;
+    margin-left: 4vw;
+}
+.selectedbmc3{
+    width: 70%;
     margin-left: 4vw;
 }
 

@@ -5,44 +5,45 @@
 
             <div v-if="!bioMode" class="mainCategory-horizantal-list list">
                 <div class="col-m-2 mainCategory-card card mcc0" @click="mainCatOnClick(0)">
-                    <img src="../../assets/icons/edu2.png" class="mainCategory-img mc0">
+                    <img src="../../assets/icons/edu2.png" :class="eduCatStyle(witchMainCatSelected[0])">
                 </div>
                 <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(1)">
-                    <img src="../../assets/icons/origami3.png" class="mainCategory-img mc1">
+                    <img src="../../assets/icons/origami3.png" :class="artAndFunCatStyle(witchMainCatSelected[1])">
                 </div>
                 <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(2)">
-                    <img src="../../assets/icons/suitcase1.png" class="mainCategory-img mc2">
+                    <img src="../../assets/icons/suitcase1.png" :class="bussinesCatStyle(witchMainCatSelected[2])">
                 </div>
                 <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(3)">
-                    <img src="../../assets/icons/sprout3.png" class="mainCategory-img mc4">
+                    <img src="../../assets/icons/sprout3.png" :class="lifeCatStyle(witchMainCatSelected[3])">
                 </div>
                 <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(4)">
-                    <img src="../../assets/icons/tech2.png" class="mainCategory-img mc3">
+                    <img src="../../assets/icons/tech2.png" :class="techCatStyle(witchMainCatSelected[4])">
                 </div>
                 <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(5)">
-                    <img src="../../assets/icons/society2.png" class="mainCategory-img mc5">
+                    <img src="../../assets/icons/society2.png" :class="societyCatStyle(witchMainCatSelected[5])">
                 </div>
                 <div class="col-m-2 mainCategory-card card mcc6" @click="mainCatOnClick(6)">
-                    <img src="../../assets/icons/sience2.png" class="mainCategory-img mc6">
+                    <img src="../../assets/icons/sience2.png" :class="sienceCatStyle(witchMainCatSelected[6])">
                 </div>
             </div>
             <div v-if="bioMode" class="mainCategory-horizantal-list list">
                 <div class="col-m-2 mainCategory-card card" @click="bioOnClick(0)">
-                    <img src="../../assets/icons/edu2.png" class="mainCategory-img bmc0">
+                    <img src="../../assets/icons/edu2.png" :class="bioEduCatStyle(witchBioCatSelected[0])">
                 </div>
                 <div class="col-m-2 mainCategory-card card" @click="bioOnClick(1)">
-                    <img src="../../assets/icons/suitcase1.png" class="mainCategory-img bmc1">
+                    <img src="../../assets/icons/suitcase1.png" :class="bioWorkCatStyle(witchBioCatSelected[1])">
                 </div>
                 <div class="col-m-2 mainCategory-card card" @click="bioOnClick(2)">
-                    <img src="../../assets/icons/translation1.png" class="mainCategory-img bmc2">
+                    <img src="../../assets/icons/translation1.png" :class="bioLanguageCatStyle(witchBioCatSelected[2])">
                 </div>
                 <div class="col-m-2 mainCategory-card card" @click="bioOnClick(3)">
-                    <img src="../../assets/icons/maps-and-flags.png" class="mainCategory-img bmc3">
+                    <img src="../../assets/icons/maps-and-flags.png" :class="bioLocationCatStyle(witchBioCatSelected[3])">
                 </div>
 
             </div>
         </div>
-        <div v-if="!bioMode" class="subCategory-container">
+
+        <!-- <div v-if="!bioMode" class="subCategory-container">
 
             <div v-if="this.mainCatDefined" class="subCategory-horizantal-list list">
                 <div  v-for="(item, index) in this.catList.sub" :key="item.name" :class="subCatCardStyle(item.isClicked)" @click="subCatOnClick(index)">
@@ -52,7 +53,7 @@
             </div>
 
             <h3 v-if="!this.mainCatDefined" class="message">هنوز گروهی رو انتخاب نکردی</h3>
-        </div>
+        </div> -->
 
     </div>
 
@@ -68,7 +69,9 @@ export default {
   data () {
     return {
       mainCatDefined: false,
-      catList: { sub: '' }
+      catList: { sub: '' },
+      witchMainCatSelected: [false, false, false, false, false, false, false],
+      witchBioCatSelected: [false, false, false, false]
     }
   },
 
@@ -76,7 +79,10 @@ export default {
     mainCatOnClick (index) {
       this.$emit('mainCatDefine', index)
       this.mainCatDefined = true
-      //   this.$store.dispatch('actChangeMainCategory', index)
+      this.$store.dispatch('actChangeMainCategory', index).then(() => {
+        this.witchMainCatSelected.fill(false)
+      })
+      this.$set(this.witchMainCatSelected, index, true)
       this.$set(this.catList, 'sub', this.$store.state.subCategoryList[index])
     },
     subCatOnClick (index) {
@@ -90,6 +96,8 @@ export default {
     },
     bioOnClick (index) {
       this.$emit('bioDefine', index)
+      this.witchBioCatSelected.fill(false)
+      this.$set(this.witchBioCatSelected, index, true)
     },
 
     // tip src binding!!!!
@@ -118,6 +126,128 @@ export default {
         return {
           'subCategory-card': true,
           card: true
+        }
+      }
+    },
+    eduCatStyle (isSelected) {
+      if (isSelected) {
+        return {
+          selectedmc0: true
+        }
+      } else {
+        return {
+          mc0: true
+        }
+      }
+    },
+    artAndFunCatStyle (isSelected) {
+      if (isSelected) {
+        return {
+          selectedmc1: true
+        }
+      } else {
+        return {
+          mc1: true
+        }
+      }
+    },
+    bussinesCatStyle (isSelected) {
+      if (isSelected) {
+        return {
+          selectedmc2: true
+        }
+      } else {
+        return {
+          mc2: true
+        }
+      }
+    },
+    lifeCatStyle (isSelected) {
+      if (isSelected) {
+        return {
+          selectedmc3: true
+        }
+      } else {
+        return {
+          mc3: true
+        }
+      }
+    },
+    techCatStyle (isSelected) {
+      if (isSelected) {
+        return {
+          selectedmc4: true
+        }
+      } else {
+        return {
+          mc4: true
+        }
+      }
+    },
+    societyCatStyle (isSelected) {
+      if (isSelected) {
+        return {
+          selectedmc5: true
+        }
+      } else {
+        return {
+          mc5: true
+        }
+      }
+    },
+    sienceCatStyle (isSelected) {
+      if (isSelected) {
+        return {
+          selectedmc6: true
+        }
+      } else {
+        return {
+          mc6: true
+        }
+      }
+    },
+
+    bioEduCatStyle (isSelected) {
+      if (isSelected) {
+        return {
+          selectedbmc0: true
+        }
+      } else {
+        return {
+          bmc0: true
+        }
+      }
+    },
+    bioWorkCatStyle (isSelected) {
+      if (isSelected) {
+        return {
+          selectedbmc1: true
+        }
+      } else {
+        return {
+          bmc1: true
+        }
+      }
+    },
+    bioLanguageCatStyle (isSelected) {
+      if (isSelected) {
+        return {
+          selectedbmc2: true
+        }
+      } else {
+        return {
+          bmc2: true
+        }
+      }
+    },
+    bioLocationCatStyle (isSelected) {
+      if (isSelected) {
+        return {
+          selectedbmc3: true
+        }
+      } else {
+        return {
+          bmc3: true
         }
       }
     }
