@@ -9,17 +9,17 @@
     <div id="tt" class="row bottomRow">
         <div class="header">
             <div class="round-bc">
-                <h3 class="header-lable">قالب</h3>
+                <h3 class="header-lable">قالب ها</h3>
             </div>
         </div>
         <div  class="card-container">
-            <div v-if="mainCat !=null && subCat != null " class="card-container">
+            <div v-if="mainCat !=null" class="card-container">
 
-                <div v-for="(card,name) in templates[mainCat][subCat]" :key="card" @click="goToEdither(card)" class="col-m-3 template-card">
+                <div v-for="(card,name) in templates[mainCat][0]" :key="card" @click="goToEdither(card)" class="col-m-3 template-card">
                     <h3 class="card-lable">{{name}}</h3>
                 </div>
             </div>
-            <div v-if="mainCat ==null || subCat == null " class="card-container">
+            <div v-if="mainCat ==null" class="card-container">
 
                     <h3 class="warning-lable">هنوز دسته بندی ای رو انتخاب نکردی ! </h3>
 
@@ -68,27 +68,11 @@ export default {
             'تو مصاحبه ها چی گذشت': 'ttt',
             'سرکار چه خبره': 'ttt'
 
-          },
-          {
-            'خالی': '! با خودت باش'
-
-          },
-          {
-            'خالی': '! با خودت باش'
-
           }
 
         ],
         // art
         [
-          {
-            'خالی': '! با خودت باش'
-
-          },
-          {
-            'خالی': '! با خودت باش'
-
-          },
           {
             'خالی': '! با خودت باش'
 
@@ -100,40 +84,11 @@ export default {
           {
             'خالی': '! با خودت باش'
 
-          },
-          {
-            'خالی': '! با خودت باش'
-
-          },
-          {
-
-            'خالی': 'ttt',
-            'چطوری علاقه ام رو پیدا کردم': 'ttt',
-            'چطوری کار پیدا کنم': 'ttt',
-            'تو رزومم چیا نوشتم': 'ttt',
-            'تو مصاحبه ها چی گذشت': 'ttt',
-            'سرکار چه خبره': 'ttt'
-
-          },
-          {
-            'خالی': '! با خودت باش'
-
-          },
-          {
-            'خالی': '! با خودت باش'
-
           }
+
         ],
         // tech
         [
-          {
-            'خالی': '! با خودت باش'
-
-          },
-          {
-            'خالی': '! با خودت باش'
-
-          },
           {
             'خالی': '! با خودت باش'
 
@@ -145,14 +100,6 @@ export default {
           {
             'خالی': '! با خودت باش'
 
-          },
-          {
-            'خالی': '! با خودت باش'
-
-          },
-          {
-            'خالی': '! با خودت باش'
-
           }
 
         ],
@@ -161,27 +108,11 @@ export default {
           {
             'خالی': '! با خودت باش'
 
-          },
-          {
-            'خالی': '! با خودت باش'
-
-          },
-          {
-            'خالی': '! با خودت باش'
-
           }
 
         ],
         // sience
         [
-          {
-            'خالی': '! با خودت باش'
-
-          },
-          {
-            'خالی': '! با خودت باش'
-
-          },
           {
             'خالی': '! با خودت باش'
 

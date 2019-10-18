@@ -618,7 +618,7 @@ export default new Vuex.Store({
 
         commit('write_userPassRegister', response.data.status)
         if (response.data.status) {
-          //! fech konam do khat bady cherte va mishe to writeUser_profile_data gonjondeshon !!!!
+          //! feck konam do khat bady cherte va mishe to writeUser_profile_data gonjondeshon !!!!
           localStorage.userId = response.data.data.value.id
           commit('write_userId', response.data.data.value.id)
           commit('writeUser_profile_data', response.data.data.value)

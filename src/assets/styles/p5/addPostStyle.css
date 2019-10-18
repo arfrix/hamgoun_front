@@ -7,7 +7,7 @@
 
 
 .bottomRow{
-
+    
 }
 
 .header{
@@ -15,12 +15,14 @@
 }
 .round-bc{
     background-color: #14213D;
-    box-shadow:0px -4px 6px #00000028 ;
-    border-radius: 29px 29px 0px 0px;
+    /* box-shadow:0px -4px 6px #00000028 ; */
+    /* border-radius: 29px 29px 0px 0px; */
     height: 13vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 5vw;
+    margin-bottom: 3vw;
 }
 .header-lable{
     font-size: 5vw;
