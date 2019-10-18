@@ -382,7 +382,7 @@ export default new Vuex.Store({
 
       let response = ''
       try {
-        response = await Axios.post(baseUrl + '/Posts/followingNewPosts', {
+        response = await Axios.post(baseUrl + '/Posts/followedNewPosts', {
           followerId: localStorage.userId,
           mainCategory: state.mainCategory,
           Layer: params.layer

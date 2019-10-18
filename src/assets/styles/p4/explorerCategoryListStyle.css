@@ -24,7 +24,7 @@
 .mainCategory-container{
     background-color: #EFC500;
     padding-top: 2.5vw;
-    padding-bottom: 4vw;
+    padding-bottom: 1vw;
     padding-right: 1.5vw;
     box-shadow:0px 3px 6px #00000028 ;
 }
@@ -37,7 +37,7 @@
 }
 
 .mainCategory-horizantal-list{
-    
+    padding-bottom: 4vw;
 }
 
 .mainCategory-card{
@@ -176,4 +176,16 @@
 }
 .gap{
     color: #FFD615
+}
+.selected-line{
+    width: 6vw;
+    border: 1.5px solid #F95959;
+    border-radius: 15px;
+    margin-top: 1.5vw;
+}
+.ml{
+    margin-left: 4vw;
+}
+.mr{
+    margin-right: 2vw;
 }

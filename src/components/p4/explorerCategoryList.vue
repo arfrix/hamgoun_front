@@ -5,39 +5,50 @@
 
             <div v-if="!bioMode" class="mainCategory-horizantal-list list">
                 <div class="col-m-2 mainCategory-card card mcc0" @click="mainCatOnClick(0)">
-                    <img src="../../assets/icons/edu2.png" :class="eduCatStyle(witchMainCatSelected[0])">
+                    <img src="../../assets/icons/edu2.png" :class="eduCatStyle(false)">
+                    <div v-if="witchMainCatSelected[0]" class="selected-line"></div>
                 </div>
                 <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(1)">
-                    <img src="../../assets/icons/origami3.png" :class="artAndFunCatStyle(witchMainCatSelected[1])">
+                    <img src="../../assets/icons/origami3.png" :class="artAndFunCatStyle(false)">
+                    <div v-if="witchMainCatSelected[1]" class="selected-line"></div>
                 </div>
                 <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(2)">
-                    <img src="../../assets/icons/suitcase1.png" :class="bussinesCatStyle(witchMainCatSelected[2])">
+                    <img src="../../assets/icons/suitcase1.png" :class="bussinesCatStyle(false)">
+                    <div v-if="witchMainCatSelected[2]" class="selected-line"></div>
                 </div>
                 <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(3)">
-                    <img src="../../assets/icons/sprout3.png" :class="lifeCatStyle(witchMainCatSelected[3])">
+                    <img src="../../assets/icons/sprout3.png" :class="lifeCatStyle(false)">
+                    <div v-if="witchMainCatSelected[3]" class="selected-line"></div>
                 </div>
                 <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(4)">
-                    <img src="../../assets/icons/tech2.png" :class="techCatStyle(witchMainCatSelected[4])">
+                    <img src="../../assets/icons/tech2.png" :class="techCatStyle(false)">
+                    <div v-if="witchMainCatSelected[4]" class="selected-line"></div>
                 </div>
                 <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(5)">
-                    <img src="../../assets/icons/society2.png" :class="societyCatStyle(witchMainCatSelected[5])">
+                    <img src="../../assets/icons/society2.png" :class="societyCatStyle(false)">
+                    <div v-if="witchMainCatSelected[5]" class="selected-line"></div>
                 </div>
                 <div class="col-m-2 mainCategory-card card mcc6" @click="mainCatOnClick(6)">
-                    <img src="../../assets/icons/sience2.png" :class="sienceCatStyle(witchMainCatSelected[6])">
+                    <img src="../../assets/icons/sience2.png" :class="sienceCatStyle(false)">
+                    <div v-if="witchMainCatSelected[6]" class="selected-line"></div>
                 </div>
             </div>
             <div v-if="bioMode" class="mainCategory-horizantal-list list">
                 <div class="col-m-2 mainCategory-card card" @click="bioOnClick(0)">
-                    <img src="../../assets/icons/edu2.png" :class="bioEduCatStyle(witchBioCatSelected[0])">
+                    <img src="../../assets/icons/edu2.png" :class="bioEduCatStyle(false)">
+                    <div v-if="witchBioCatSelected[0]" class="selected-line"></div>
                 </div>
                 <div class="col-m-2 mainCategory-card card" @click="bioOnClick(1)">
-                    <img src="../../assets/icons/suitcase1.png" :class="bioWorkCatStyle(witchBioCatSelected[1])">
+                    <img src="../../assets/icons/suitcase1.png" :class="bioWorkCatStyle(false)">
+                    <div v-if="witchBioCatSelected[1]" class="selected-line"></div>
                 </div>
                 <div class="col-m-2 mainCategory-card card" @click="bioOnClick(2)">
-                    <img src="../../assets/icons/translation1.png" :class="bioLanguageCatStyle(witchBioCatSelected[2])">
+                    <img src="../../assets/icons/translation1.png" :class="bioLanguageCatStyle(false)">
+                    <div v-if="witchBioCatSelected[2]" class="selected-line mr"></div>
                 </div>
                 <div class="col-m-2 mainCategory-card card" @click="bioOnClick(3)">
-                    <img src="../../assets/icons/maps-and-flags.png" :class="bioLocationCatStyle(witchBioCatSelected[3])">
+                    <img src="../../assets/icons/maps-and-flags.png" :class="bioLocationCatStyle(false)">
+                    <div v-if="witchBioCatSelected[3]" class="selected-line ml"></div>
                 </div>
 
             </div>
