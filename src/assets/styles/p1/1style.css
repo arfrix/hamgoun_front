@@ -173,3 +173,17 @@
     justify-content: center;
     align-items: center;
 }
+.waiting-lable-container{
+    margin-top: 30vw;
+    font-size: 6.5vw;
+}
+.not-selected-cat-warn{
+    margin-top: 30vw;
+    font-size: 4.5vw;
+    font-family: IranSans_Light;
+}
+.show-server-msg-container{
+    margin-top: 30vw;
+    font-size: 5vw;
+    font-family: IranSans;
+}

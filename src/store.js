@@ -179,7 +179,8 @@ export default new Vuex.Store({
     waitingForRegister: false,
     waitForSubmitaComment: false,
     commentsList: '',
-    postData: ''
+    postData: '',
+    wait_for_fetch_home_page_private_mode_cards: false
     // commentToSend: ''
 
   },
@@ -223,6 +224,7 @@ export default new Vuex.Store({
     // ! api section
     writeCardsData (state, data) {
       state.cards = data
+      state.wait_for_fetch_home_page_private_mode_cards = false
     },
     writeUser_profile_data (state, data) {
       state.user_profile_data = data
@@ -379,12 +381,12 @@ export default new Vuex.Store({
     // },
     async fetch_home_page_private_mode_cards ({ commit, state }, params) {
       state.inProgress = true
-
+      state.wait_for_fetch_home_page_private_mode_cards = true
       let response = ''
       try {
         response = await Axios.post(baseUrl + '/Posts/followedNewPosts', {
           followerId: localStorage.userId,
-          mainCategory: state.mainCategory,
+          mainCategory: params.mainCategory,
           Layer: params.layer
         })
         console.log(response.data)

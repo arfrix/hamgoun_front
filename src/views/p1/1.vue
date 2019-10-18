@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <div class="row topRow">
-      <list :isTopRound="true"></list>
+      <list :isTopRound="true" @mainCatDefine="defineMainCat"></list>
     </div>
     <div id="tt" class="row bottomRow">
       <div class="private-or-public-btn-container" @click="changeMode(1)">
@@ -11,7 +11,10 @@
       </div>
 
       <div v-if="isPrivate" class="private-mode">
-        <div class="bigCard-container">
+        <div v-if="!isCatSelected" class="not-selected-cat-warn">
+            <h3 class="warn-lable"> ): هیچ دسته بندی ای رو انتخاب نکردی </h3>
+        </div>
+        <div v-if="!this.$store.state.wait_for_fetch_home_page_private_mode_cards && isCatSelected" class="bigCard-container">
           <div
             v-for="item in this.$store.state.cards.data"
             :key="item.id"
@@ -29,6 +32,12 @@
               :text="item.postSummary"
             ></bigCard>
           </div>
+          <div v-if="!this.$store.state.cards.status" class="show-server-msg-container">
+              <h3 class="server-msg">{{this.$store.state.cards.massage}}</h3>
+          </div>
+        </div>
+        <div v-if="this.$store.state.wait_for_fetch_home_page_private_mode_cards && isCatSelected" class="waiting-lable-container">
+            <h3 class="waiting-lable">... پستا تو راهن</h3>
         </div>
       </div>
 
@@ -154,7 +163,9 @@ export default {
       isPrivate: false,
       modeLable: 'نمایش پست های پیگیری شده ',
       witchModeLable: 0,
-      witchModeImg: 'icons/chain.png'
+      witchModeImg: 'icons/chain.png',
+      isCatSelected: false,
+      mainCat: -1
     }
   },
   destroyed () {
@@ -165,6 +176,11 @@ export default {
     // tip src binding!!!!
     getImgUrl (path) {
       return require('../../assets/' + path)
+    },
+    defineMainCat (val) {
+      this.mainCat = val
+      this.isCatSelected = true
+      this.$store.dispatch('fetch_home_page_private_mode_cards', { layer: 1, mainCategory: this.mainCat })
     },
     clicked () {
       this.$store.dispatch('actChangeMainCategory', -1)
@@ -212,7 +228,7 @@ export default {
         this.isPrivate = true
         this.witchModeImg = 'icons/yellowChain.png'
         //! begin value of depth is one !
-        this.$store.dispatch('fetch_home_page_private_mode_cards', { layer: depth })
+        this.$store.dispatch('fetch_home_page_private_mode_cards', { layer: depth, mainCategory: this.mainCat })
       }
     }
   }
