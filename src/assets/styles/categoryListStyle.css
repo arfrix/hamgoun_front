@@ -148,3 +148,10 @@
 .gap{
     color: #FFD615
 }
+
+.selected-line{
+    width: 6vw;
+    border: 1.5px solid #F95959;
+    border-radius: 15px;
+    margin-top: 1.5vw;
+}

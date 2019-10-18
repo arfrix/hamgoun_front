@@ -4,14 +4,14 @@
       <list :isTopRound="true"></list>
     </div>
     <div id="tt" class="row bottomRow">
-      <div class="private-or-public-btn-container" @click="changeMode()">
+      <div class="private-or-public-btn-container" @click="changeMode(1)">
         <img :src="getImgUrl(witchModeImg)" alt class="mode-Img" />
 
         <h3 class="mode-lable">{{modeLable}}</h3>
       </div>
 
       <div v-if="isPrivate" class="private-mode">
-        <div class="card-container">
+        <div class="bigCard-container">
           <div
             v-for="item in this.$store.state.cards.data"
             :key="item.id"
@@ -203,7 +203,7 @@ export default {
       console.log('****')
       this.$router.push('/campainPage')
     },
-    changeMode () {
+    changeMode (depth) {
       if (this.isPrivate) {
         this.isPrivate = false
 
@@ -211,8 +211,8 @@ export default {
       } else {
         this.isPrivate = true
         this.witchModeImg = 'icons/yellowChain.png'
-        //! -----------------------------------
-        this.$store.dispatch('fetch_home_page_cards')
+        //! begin value of depth is one !
+        this.$store.dispatch('fetch_home_page_private_mode_cards', { layer: depth })
       }
     }
   }

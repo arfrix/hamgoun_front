@@ -3,37 +3,53 @@
     <div :class="this.mainCategory_container()">
       <div class="mainCategory-horizantal-list list">
         <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(0)">
-          <img src="../../assets/icons/edu1.png" :class="eduCatStyle(witchMainCatSelected[0])" />
+          <img
+          src="../../assets/icons/edu1.png"
+          :class="eduCatStyle(false)"
+          />
+          <div v-if="witchMainCatSelected[0]" class="selected-line"></div>
         </div>
         <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(1)">
           <img
             src="../../assets/icons/origami4.png"
-            :class="artAndFunCatStyle(witchMainCatSelected[1])"
+            :class="artAndFunCatStyle(false)"
           />
+          <div v-if="witchMainCatSelected[1]" class="selected-line"></div>
         </div>
         <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(2)">
           <img
             src="../../assets/icons/suitcase2.png"
-            :class="bussinesCatStyle(witchMainCatSelected[2])"
+            :class="bussinesCatStyle(false)"
           />
+          <div v-if="witchMainCatSelected[2]" class="selected-line"></div>
         </div>
         <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(3)">
-          <img src="../../assets/icons/sprout2.png" :class="lifeCatStyle(witchMainCatSelected[3])" />
+          <img
+          src="../../assets/icons/sprout2.png"
+          :class="lifeCatStyle(false)"
+          />
+          <div v-if="witchMainCatSelected[3]" class="selected-line"></div>
         </div>
         <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(4)">
-          <img src="../../assets/icons/tech1.png" :class="techCatStyle(witchMainCatSelected[4])" />
+          <img
+          src="../../assets/icons/tech1.png"
+          :class="techCatStyle(false)"
+          />
+          <div v-if="witchMainCatSelected[4]" class="selected-line"></div>
         </div>
         <div class="col-m-2 mainCategory-card card" @click="mainCatOnClick(5)">
           <img
             src="../../assets/icons/society1.png"
-            :class="societyCatStyle(witchMainCatSelected[5])"
+            :class="societyCatStyle(false)"
           />
+          <div v-if="witchMainCatSelected[5]" class="selected-line"></div>
         </div>
         <div class="col-m-2 mainCategory-card card mcc6" @click="mainCatOnClick(6)">
           <img
             src="../../assets/icons/sience1.png"
-            :class="sienceCatStyle(witchMainCatSelected[6])"
+            :class="sienceCatStyle(false)"
           />
+          <div v-if="witchMainCatSelected[6]" class="selected-line"></div>
         </div>
       </div>
     </div>

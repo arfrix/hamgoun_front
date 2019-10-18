@@ -4,8 +4,8 @@ import Axios from 'axios'
 
 Vue.use(Vuex)
 
-const baseUrl = 'http://45.82.136.106:8080'
-// const baseUrl = 'https://localhost:5001'
+// const baseUrl = 'http://45.82.136.106:8080'
+const baseUrl = 'https://localhost:5001'
 
 export default new Vuex.Store({
   state: {
@@ -377,15 +377,15 @@ export default new Vuex.Store({
     // actOtherUser_profile_data ({ commit, state }, data) {
     //   commit('write_otherUser_profile_data', data)
     // },
-    async fetch_home_page_cards ({ commit, state }) {
+    async fetch_home_page_private_mode_cards ({ commit, state }, params) {
       state.inProgress = true
 
       let response = ''
       try {
-        response = await Axios.post(baseUrl + '/Posts/notSeenPostList', {
-          followerId: state.userId,
+        response = await Axios.post(baseUrl + '/Posts/followingNewPosts', {
+          followerId: localStorage.userId,
           mainCategory: state.mainCategory,
-          subCategory: state.subCategory
+          Layer: params.layer
         })
         console.log(response.data)
 
