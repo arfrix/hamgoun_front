@@ -19,9 +19,6 @@
                 <h3 class="hint"></h3>
             </div>
         </div>
-        <div class="publish-btn" @click="publish">
-            <h3 class="publish-btn-lable">انتشار</h3>
-        </div>
 
       </div>
      <div class="add-post-top-section">
@@ -30,13 +27,12 @@
           <img  :src="getImgUrl(this.$store.state.mainCategoryList[mainCategory].img)" alt="" class="main-group-img">
         </div>
 
-        <div class="col-m-5-5 sub-group-section">
-          <h5  class="sub-group-lable">{{this.$store.state.subCategoryList[mainCategory][subCategory].name}}</h5>
+        -->
+
+        <div class="draft-btn" @click="draftList">
+            <h3 class="draft-btn-lable">پیش نویس ها</h3>
         </div>
 
-        <div class="col-m-1 publish-button" @click="gotoPublishDetail()">
-            <h5 class="publish-btn-lable">انتشار</h5>
-        </div>
     </div>
 
     <div class="col-m-9-5 devider"></div>
@@ -50,6 +46,9 @@
       <div class="post-body-section" @click="body()" >
         <h5 v-if="!this.writingBody" class="body-placeholder" >قلم به فرمان توست</h5>
         <editor v-model="post_body" ></editor>
+        <div class="publish-btn" @click="publish">
+            <h3 class="publish-btn-lable">انتشار</h3>
+        </div>
       </div>
     </div>
   <!-- </div> -->

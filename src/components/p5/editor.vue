@@ -3,17 +3,17 @@
     <div id="editor" class="test" v-on:keydown.enter="enterKeyPressed()"></div>
 
     <transition name="totil">
-      <div v-show="iSshowToolTip" id="toolbar" class="totil">
-        <select class="ql-size">
-          <option value="small"></option>
-          <!-- Note a missing, thus falsy value, is used to reset to default -->
-          <option selected></option>
-          <option value="large"></option>
-          <option value="huge"></option>
-        </select>
-        <!-- Add a bold button -->
-        <button class="ql-bold"></button>
-        <button class="ql-image"></button>
+      <div v-show="iSshowToolTip" id="toolbar" class="custom-toobar-style" >
+          <select class="ql-size custom-select">
+            <option value="small"></option>
+            <!-- Note a missing, thus falsy value, is used to reset to default -->
+            <option selected></option>
+            <option value="large"></option>
+            <option value="huge"></option>
+          </select>
+          <!-- Add a bold button -->
+          <button class="ql-bold"></button>
+          <button class="ql-image"></button>
       </div>
     </transition>
 
@@ -22,6 +22,7 @@
         <img src="../../assets/icons/pencil-case.png" alt class="showTotilimg" />
       </div>
     </div>
+
   </div>
 </template>
 
@@ -51,8 +52,7 @@ export default {
     this.editor = new Quill('#editor', {
       modules: {
         toolbar: {
-          //   container: [ ['bold', 'italic', 'underline'], [{ 'color': [] }, { 'background': [] }], // toggled buttons
-          //     [ 'code-block', 'link'], [{ 'list': 'ordered' }, { 'list': 'bullet' }], ['image']],
+
           container: '#toolbar',
           handlers: {
             image: imageHandler
@@ -60,7 +60,7 @@ export default {
         }
       },
       // placeholder: 'هان ؟؟؟؟؟؟؟؟',
-      theme: 'bubble' // or 'bubble'
+      theme: 'snow' // or 'bubble'
     })
 
     function imageHandler () {
@@ -143,13 +143,13 @@ export default {
       console.log('***')
       // this.iSshowToolTip = false
       //! to forbis of hiding tooltip comment --- display: none; --- on quill.bubble.css on  ---  .ql-bubble .ql-hidden {} ---
-      this.editor.theme.tooltip.show()
+      // this.editor.theme.tooltip.show()
 
       window.scrollBy(0, window.innerHeight)
     },
     showToolTip () {
       this.iSshowToolTip = !this.iSshowToolTip
-      this.editor.theme.tooltip.show()
+      // this.editor.theme.tooltip.show()
       // this.editor.theme.tooltip.edit()
       console.log(this.iSshowToolTip)
     }

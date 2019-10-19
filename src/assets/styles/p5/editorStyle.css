@@ -32,7 +32,7 @@
 
 .write-body-main{
     position: relative;
-    min-height: 79vh;
+    min-height: 75vh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -68,9 +68,9 @@
 .totil{
     height: 25px;
     width: 180px;
-    position: fixed;
+    position: absolute;
     left: -90vw;
-    bottom: -58px;
+    bottom: 0px;
     z-index: 15;
     background-color: rgba(255, 255, 255, 00);
     
@@ -81,18 +81,7 @@
     height:5vh;
     
 }
-.tooltip-button{
-    position: absolute;
-    left: 0vw;
-    
-    bottom: 7vh;
-    z-index: 100;
-    background-color: #191f26;
-    height: 10vw;
-    width: 11vw;
-    display: flex;
-    justify-content: flex-end;
-}
+
 
 .showTotilimg{
     width: 85%;
@@ -117,10 +106,36 @@
   }
 
   @keyframes totil-rise {
-    from {left: -120vw;opacity: 0;}
-    to {left: -90vw;opacity: 1;}
+    from {left: -70vw;opacity: 0;}
+    to {left: 0vw;opacity: 1;}
 }
   @keyframes totil-fall {
-    from {left: -90vw;}
-    to {left: -120vw;opacity: 0;}
+    from {left: 0vw;}
+    to {left: -70vw;opacity: 0;}
+}
+
+
+
+.custom-toobar-style{
+    position: fixed;
+    bottom: 0;
+    z-index: 120;
+    width: 100vw;
+    color: #fff;
+}
+.tooltip-button{
+    position: fixed;
+    left: 0vw;
+    
+    bottom: 16vw;
+    z-index: 1;
+    background-color: #191f26;
+    height: 10vw;
+    width: 11vw;
+    display: flex;
+    justify-content: flex-end;
+}
+.custom-select{
+    top:auto;
+    bottom: 100%;
 }

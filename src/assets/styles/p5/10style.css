@@ -48,6 +48,7 @@
     padding-top: 0.5vw;
     padding-bottom: 0.5vw;
     margin-left: 3vw;
+    width: 15vw;
 }
 .publish-btn-lable{
     color: #fff;
@@ -162,6 +163,8 @@ input:focus {
       padding-bottom: 0.5vw;
       box-shadow:0px 3px 6px #00000031 ;
       margin-bottom: 15vw;
+      width: 12vw;
+      margin-left: 73vw;
   }
   .publish-btn-lable{
       font-family: IranSans_Light;
@@ -230,4 +233,20 @@ input:focus {
   .coverImg{
     height: 28vw;
   }
-  
+  .draft-btn{
+    border:1px solid #FFD615;
+    border-radius: 10px;
+    padding-right: 5.5vw;
+    padding-left: 5.5vw;
+    padding-top: 0.65vw;
+    padding-bottom: 0.75vw;
+    box-shadow:0px 3px 6px #00000031 ;
+    margin-left: 2.5vw;
+    /* width: 19vw; */
+    color: #fff;
+  }
+  .draft-btn-lable{
+      font-size: 4vw;
+      font-family: IranSans_Light;
+      white-space: nowrap;
+  }
