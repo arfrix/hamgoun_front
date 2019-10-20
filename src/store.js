@@ -532,8 +532,8 @@ export default new Vuex.Store({
       let response = ''
       try {
         response = await Axios.post(baseUrl + '/Posts/search', {
-          keyWord: data.keyword
-
+          keyWord: data.keyword,
+          MainCat: data.mainCat
         })
         console.log(response)
 

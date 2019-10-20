@@ -130,7 +130,7 @@ export default {
       }
       // POST
       if (this.isSwitchClicked[1]) {
-        this.$store.dispatch('fetch_contentSearch', { keyword: this.searchKeyword, mainCat: this.mainCat, subCat: this.subCat })
+        this.$store.dispatch('fetch_contentSearch', { keyword: this.searchKeyword, mainCat: this.mainCat })
       }
     },
     fetchPost () {
