@@ -484,17 +484,16 @@ export default new Vuex.Store({
     },
     async get_drafted_list ({ commit, state }, params) {
       console.log('param')
-      console.log(params.MainCategory)
-      console.log(params.SubCategory)
-      console.log(state.userId)
+      console.log(params)
+
       state.inProgress = true
 
       let response = ''
       try {
         response = await Axios.post(baseUrl + '/Posts/draftList', {
           publisherId: state.userId,
-          mainCategory: params.MainCategory,
-          subCategory: params.SubCategory
+          mainCategory: params.MainCategory
+
         })
         console.log(response)
 

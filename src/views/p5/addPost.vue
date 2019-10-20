@@ -149,7 +149,7 @@ export default {
     },
     goToEdither (temp) {
       this.$store.dispatch('create_post', { MainCategory: this.mainCat, SubCategory: this.subCat }).then(() => {
-        this.$router.push({ name: 'edither', params: { template: temp } })
+        this.$router.push({ name: 'edither', params: { template: temp, MainCategory: this.mainCat } })
       })
     },
     defineMainCat (val) {

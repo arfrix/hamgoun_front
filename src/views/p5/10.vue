@@ -1,5 +1,19 @@
 <template>
 <div class="add-post-main">
+      <transition name="sidebar-transition">
+        <div v-if="isShowSidebar" class="draft-side-bar">
+          <div class="sidebar-lable-container">
+            <h3 class="sidebar-lable">پیش نویس ها</h3>
+          </div>
+
+          <div  class="list-looper">
+            <div v-for="item in this.$store.state.drafted_post_list" :key="item.id" class="deraft-card">
+              <h3 class="draft-card-title">{{draftCardTitle(item.title)}}</h3>
+              <h5 class="draft-card-summery" v-html="draftCardSummery(item.body)"></h5>
+            </div>
+          </div>
+        </div>
+      </transition>
 
       <div v-if="show_publish_detail" class="col-m-10 publish-detail-container">
         <div class="col-m-6-5 upload-img-container center" @click="profileImg()">
@@ -29,7 +43,7 @@
 
         -->
 
-        <div class="draft-btn" @click="draftList">
+        <div class="draft-btn" @click="showDraftList()">
             <h3 class="draft-btn-lable">پیش نویس ها</h3>
         </div>
 
@@ -71,7 +85,7 @@ export default {
 
   },
   props: [
-    'template'
+    'template', 'MainCategory'
   ],
   data () {
     return {
@@ -89,7 +103,8 @@ export default {
       coverImg: '',
       showUploadedCoveImg: false,
       post_summery: '',
-      tag: ''
+      tag: '',
+      isShowSidebar: false
 
     }
   },
@@ -116,6 +131,22 @@ export default {
   },
 
   methods: {
+    draftCardTitle (title) {
+      if (title === null) { return 'بدون عنوان' } else { return title }
+    },
+    draftCardSummery (body) {
+      if (body === null) { return 'بدون متن' } else {
+        return body.substring(
+          3,
+          30
+        )
+      }
+    },
+    showDraftList () {
+      console.log('value')
+      this.isShowSidebar = !this.isShowSidebar
+      this.$store.dispatch('get_drafted_list', { publisherId: localStorage.userId, MainCategory: this.MainCategory })
+    },
     title () {
       this.getTitle = true
 
