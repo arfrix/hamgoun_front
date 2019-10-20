@@ -544,12 +544,12 @@ export default new Vuex.Store({
     },
     async fetch_UserSearch ({ commit, state }, data) {
       state.waitForSearchResult = true
-      // console.log(data)
+      console.log(data)
       let response = ''
       try {
         response = await Axios.post(baseUrl + '/Users/search', {
-          keyWord: data.keyword
-
+          keyWord: data.keyword,
+          Bio: data.bio
         })
         console.log(response)
 
