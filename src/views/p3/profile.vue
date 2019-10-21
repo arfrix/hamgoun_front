@@ -7,7 +7,8 @@
                 <img src="../../assets/images/backGround/profile4.png" class="top-section-bc-img">
                 <div class="col-m-10 two-icon-container">
                     <img src="../../assets/icons/settings.png" alt="" class="two-icon-img1">
-                    <img src="../../assets/icons/paper-plane.png" alt="" class="two-icon-img2">
+                    <!-- <img src="../../assets/icons/paper-plane.png" alt="" class="two-icon-img2"> -->
+                    <img src="../../assets/icons/alarm.png" alt="" class="two-icon-img2">
                 </div>
                 <div class="col-m-10 top-section-text">
                     <div class="profile-img-container" @click="profileImg()">
