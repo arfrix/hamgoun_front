@@ -293,7 +293,7 @@ export default new Vuex.Store({
       state.commentsList = data
       state.waitingForRegister = false
     },
-    writePorfileData (state, data) {
+    writePostData (state, data) {
       state.postData = data
     }
 
@@ -377,7 +377,7 @@ export default new Vuex.Store({
       commit('write_my_postList', data)
     },
     actSetPostData ({ commit, state }, data) {
-      commit('writePorfileData', data)
+      commit('writePostData', data)
     },
     // actOtherUser_profile_data ({ commit, state }, data) {
     //   commit('write_otherUser_profile_data', data)
@@ -482,6 +482,18 @@ export default new Vuex.Store({
         response = await Axios.post(baseUrl + '/Posts/Update', state.the_post_is_being_written
         )
         console.log(response)
+      } catch (error) {
+
+      }
+    },
+    async fetch_the_post_is_being_written ({ commit, state }, id) {
+      let response = ''
+      try {
+        response = await Axios.get(baseUrl + '/Posts/' + id)
+        console.log('fetch_the_post_is_being_written')
+        console.log(response.data)
+
+        commit('write_init_the_post_is_being_written', response.data)
       } catch (error) {
 
       }
@@ -773,7 +785,7 @@ export default new Vuex.Store({
 
       try {
         response = await Axios.get(baseUrl + '/Posts/getPostByUrl/' + uniqeUrl)
-        commit('writePorfileData', response.data)
+        commit('writePostData', response.data)
       } catch (error) {
 
       }

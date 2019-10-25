@@ -151,7 +151,7 @@ export default {
       console.log('temp')
       console.log(temp)
       this.$store.dispatch('create_post', { MainCategory: this.mainCat, SubCategory: this.subCat }).then(() => {
-        this.$router.push({ name: 'edither', params: { template: temp, MainCategory: this.mainCat, isDraft: false, skipPostFetch: false } })
+        this.$router.push({ name: 'edither', params: { template: temp, MainCategory: this.mainCat, isDraft: false, skipPostFetch: true } })
       })
     },
     defineMainCat (val) {

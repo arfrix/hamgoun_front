@@ -98,7 +98,7 @@ export default {
     },
     skipPostFetch: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
   data () {
@@ -125,7 +125,9 @@ export default {
   },
   beforeMount () {
     if (!this.skipPostFetch) {
-
+      this.$store.dispatch('fetch_the_post_is_being_written', localStorage.the_post_is_being_written_Id).then(() => {
+        this.editherKey += 1
+      })
     }
 
     if (this.isDraft) {
@@ -174,7 +176,7 @@ export default {
     },
     draftClicked (index) {
       this.$store.dispatch('act_update_draft', index).then(() => {
-        this.$router.push({ name: 'edither', params: { template: 'reddddddddddddddi', MainCategory: this.mainCat, isDraft: true, skipPostFetch: false } })
+        this.$router.push({ name: 'edither', params: { template: 'reddddddddddddddi', MainCategory: this.mainCat, isDraft: true, skipPostFetch: true } })
         this.editherKey += 1
       })
 
