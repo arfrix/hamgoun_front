@@ -7,7 +7,7 @@
           </div>
 
           <div  class="list-looper">
-            <div v-for="item in this.$store.state.drafted_post_list" :key="item.id" class="deraft-card">
+            <div v-for="(item,index) in this.$store.state.drafted_post_list" :key="item.id" class="deraft-card" @click="draftClicked(index)">
               <h3 class="draft-card-title">{{draftCardTitle(item.title)}}</h3>
               <h5 class="draft-card-summery" v-html="draftCardSummery(item.body)"></h5>
             </div>
@@ -53,13 +53,13 @@
 
     <div class="post-creation-section">
       <div class="title-sectoin" @click="title()">
-        <h3 v-if="!this.getTitle && !this.titleAvailble" class="title-placeholder">اگه دوست داری یه عنوان بنویس</h3>
-        <h3 v-if="!this.getTitle && this.titleAvailble" class="title-placeholder">{{this.$store.state.the_post_is_being_written.title}}</h3>
+        <h3 v-if="!this.getTitle && !isDraft" class="title-placeholder">اگه دوست داری یه عنوان بنویس</h3>
+        <h3 v-if="!this.getTitle && isDraft" class="title-placeholder">{{this.$store.state.the_post_is_being_written.title}}</h3>
         <input class="title-input" v-model="titleValue" type="text" name="title" id="title_input">
       </div>
       <div class="post-body-section" @click="body()" >
-        <h5 v-if="!this.writingBody" class="body-placeholder" >قلم به فرمان توست</h5>
-        <editor v-model="post_body" ></editor>
+        <!-- <h5 v-if="!this.writingBody" class="body-placeholder" >قلم به فرمان توست</h5> -->
+        <editor v-model="post_body" :key="editherKey"></editor>
         <div class="publish-btn" @click="publish">
             <h3 class="publish-btn-lable">انتشار</h3>
         </div>
@@ -84,9 +84,23 @@ export default {
     editor
 
   },
-  props: [
-    'template', 'MainCategory'
-  ],
+  props: {
+    template: {
+      type: String,
+      default: ''
+    },
+    MainCategory: {
+      type: Number
+    },
+    isDraft: {
+      type: Boolean,
+      default: false
+    },
+    skipPostFetch: {
+      type: Boolean,
+      default: true
+    }
+  },
   data () {
     return {
       getTitle: false,
@@ -104,22 +118,33 @@ export default {
       showUploadedCoveImg: false,
       post_summery: '',
       tag: '',
-      isShowSidebar: false
+      isShowSidebar: false,
+      editherKey: 0
 
     }
   },
   beforeMount () {
-    this.post_body = this.template
+    if (!this.skipPostFetch) {
+
+    }
+
+    if (this.isDraft) {
+      console.log('beforeMount')
+      this.post_body = this.$store.state.the_post_is_being_written.body
+    } else {
+      console.log('!!beforeMount')
+      this.post_body = this.template
+    }
   },
   mounted () {
 
   },
   updated () {
-    // console.log(this.post_body)
+    console.log('updated')
+    this.post_body = this.$store.state.the_post_is_being_written.body
   },
   watch: {
     post_body: async function (value) {
-      console.log(value)
       this.$store.dispatch('update_post', { propName: 'body', value: value })
       // this.$store.dispatch('update_the_post_is_being_written' , value).then(()=>{
       //   this.$store.dispatch('update_post')
@@ -146,6 +171,14 @@ export default {
       console.log('value')
       this.isShowSidebar = !this.isShowSidebar
       this.$store.dispatch('get_drafted_list', { publisherId: localStorage.userId, MainCategory: this.MainCategory })
+    },
+    draftClicked (index) {
+      this.$store.dispatch('act_update_draft', index).then(() => {
+        this.$router.push({ name: 'edither', params: { template: 'reddddddddddddddi', MainCategory: this.mainCat, isDraft: true, skipPostFetch: false } })
+        this.editherKey += 1
+      })
+
+      this.isShowSidebar = false
     },
     title () {
       this.getTitle = true

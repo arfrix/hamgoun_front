@@ -44,6 +44,14 @@ export default {
       iSshowToolTip: false
     }
   },
+  beforeMount () {
+    console.log('val5555555555555555555')
+    console.log(this.value)
+  },
+  updated () {
+    console.log('val5555555555555555555')
+    console.log(this.value)
+  },
   mounted () {
     var Image = Quill.import('formats/image')
     Image.className = 'img-body'
@@ -58,9 +66,9 @@ export default {
             image: imageHandler
           }
         }
-      },
+      }
       // placeholder: 'هان ؟؟؟؟؟؟؟؟',
-      theme: 'snow' // or 'bubble'
+      // theme: 'snow' // or 'bubble'
     })
 
     function imageHandler () {
@@ -126,7 +134,8 @@ export default {
         this.quill.setSelection(range.index + 5)
       }
     }
-
+    console.log('val5555555555555555555')
+    console.log(this.value)
     this.editor.root.innerHTML = this.value
 
     this.editor.on('text-change', () => this.update())

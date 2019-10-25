@@ -72,7 +72,7 @@ export default new Router({
     },
 
     {
-      path: '/edither',
+      path: '/edither/:isDraft',
       name: 'edither',
       component: P5_10,
       props: true

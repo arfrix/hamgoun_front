@@ -148,8 +148,10 @@ export default {
       this.$store.dispatch('fetch_home_page_cards')
     },
     goToEdither (temp) {
+      console.log('temp')
+      console.log(temp)
       this.$store.dispatch('create_post', { MainCategory: this.mainCat, SubCategory: this.subCat }).then(() => {
-        this.$router.push({ name: 'edither', params: { template: temp, MainCategory: this.mainCat } })
+        this.$router.push({ name: 'edither', params: { template: temp, MainCategory: this.mainCat, isDraft: false, skipPostFetch: false } })
       })
     },
     defineMainCat (val) {

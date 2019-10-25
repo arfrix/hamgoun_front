@@ -160,6 +160,7 @@ export default new Vuex.Store({
     is_other_user_profile: false,
     // otherUser_profile_data: '',
     the_post_is_being_written: '',
+    the_post_is_being_written_Id: localStorage.the_post_is_being_written_Id,
     drafted_post_list: '',
     my_postsList: '',
     contentSearch_result: '',
@@ -240,6 +241,8 @@ export default new Vuex.Store({
     write_init_the_post_is_being_written (state, data) {
       Vue.set(state, 'the_post_is_being_written', data)
       // state.the_post_is_being_written = data
+
+      localStorage.the_post_is_being_written_Id = data.id
     },
     write_the_post_is_being_written (state, data) {
       state.the_post_is_being_written[data.propName] = data.value
@@ -447,21 +450,22 @@ export default new Vuex.Store({
     //! add post cycle
     async create_post ({ commit, state }, params) {
       state.inProgress = true
-
+      console.log(params)
       let response = ''
       try {
         response = await Axios.post(baseUrl + '/Posts', {
           publisherId: state.userId,
           mainCategory: params.MainCategory,
-          subCategory: params.SubCategory,
+          // subCategory: params.SubCategory,
           isDrafted: true
         }
         )
+        console.log('create_post')
         console.log(response)
 
         commit('write_init_the_post_is_being_written', response.data)
       } catch (error) {
-
+        console.log(error)
       }
     },
     async update_the_post_is_being_written ({ commit, state }, data) {
@@ -503,7 +507,7 @@ export default new Vuex.Store({
       }
     },
 
-    act_update_draft ({ commit, state }, index) {
+    async act_update_draft ({ commit, state }, index) {
       commit('write_init_the_post_is_being_written', state.drafted_post_list[index])
     },
 
