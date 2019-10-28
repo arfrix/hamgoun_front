@@ -15,6 +15,11 @@
         </div>
       </transition>
 
+        <div v-if="isShowGoToLoginBox" class="go-to-login-container">
+            <h3 class="go-to-login-msg">نیازه یبار وارد حسابت بشی ، بعد از وارد شدن میتونی پستت تو از قسمت پیش نویس ها پیدا کنی و بعد منتشرش کنی </h3>
+            <div class="go-to-login-btn">باشه</div>
+        </div>
+
       <div v-if="show_publish_detail" class="col-m-10 publish-detail-container">
         <div class="col-m-6-5 upload-img-container center" @click="profileImg()">
             <h3 v-if="!showUploadedCoveImg" class="upload-lable">آپلود عکس کاور</h3>
@@ -23,15 +28,36 @@
         <div class="col-m-10 inputs-container center">
             <div class="col-m-8 summery-container center" @click="upload_detail_input_onClick(1)">
                 <h3 v-if="show_ph1" class="placeHolder">توضیحات</h3>
-                <input type="text" v-model="post_summery" class="col-m-10 publish-detail-input" id="pd_input1">
+                <input type="text" v-model="post_summery" class="col-m-10 publish-detail-input"  id="pd_input1">
                 <div class="bottom-line"></div>
             </div>
-            <div class="col-m-8 tag-container center" @click="upload_detail_input_onClick(2)">
-                <h3 v-if="show_ph2" class="placeHolder">برچسب ها</h3>
-                <input type="text" v-model="tag" class="col-m-10 publish-detail-input" id="pd_input2">
-                <div class="bottom-line"></div>
-                <h3 class="hint"></h3>
+            <div class="col-m-8 tags-container">
+              <div class="col-m-3 tag-container center" @click="upload_detail_input_onClick(2)">
+                  <h3 v-if="show_ph2" class="placeHolder">برچسب اول</h3>
+                  <input type="text" v-model="first_tag" class="col-m-10 publish-detail-input"  id="pd_input2">
+                  <div class="bottom-line"></div>
+                  <h3 class="hint"></h3>
+              </div>
+              <div class="col-m-3 tag-container center" @click="upload_detail_input_onClick(3)">
+                  <h3 v-if="show_ph3" class="placeHolder">برچسب دوم</h3>
+                  <input type="text" v-model="second_tag" class="col-m-10 publish-detail-input"  id="pd_input3">
+                  <div class="bottom-line"></div>
+                  <h3 class="hint"></h3>
+              </div>
+              <div class="type-container">
+                  <div class="type-lable-container" @click="showTypeList()">
+                      <h3 class="type-lable">{{typeLable}}</h3>
+                  </div>
+                  <div v-if="isShowTypeList" class="type-list-container">
+                      <div v-for="(type,index) in types" :key="type" class="type-card" @click="typeCardOnClick(index)">
+                          <h3 class="type-card-lable">{{type}}</h3>
+                      </div>
+                  </div>
+              </div>
             </div>
+        </div>
+        <div class="publish-detail-publish-btn" @click="publish">
+            <h3 class="publish-btn-lable">انتشار</h3>
         </div>
 
       </div>
@@ -60,7 +86,7 @@
       <div class="post-body-section" @click="body()" >
         <!-- <h5 v-if="!this.writingBody" class="body-placeholder" >قلم به فرمان توست</h5> -->
         <editor v-model="post_body" :key="editherKey"></editor>
-        <div class="publish-btn" @click="publish">
+        <div class="publish-btn" @click="gotoPublishDetail()">
             <h3 class="publish-btn-lable">انتشار</h3>
         </div>
       </div>
@@ -114,12 +140,19 @@ export default {
       show_publish_detail: false,
       show_ph1: true,
       show_ph2: true,
+      show_ph3: true,
       coverImg: '',
       showUploadedCoveImg: false,
       post_summery: '',
       tag: '',
       isShowSidebar: false,
-      editherKey: 0
+      editherKey: 0,
+      types: ['اموزشی', 'تجربه', 'خاطره', 'معرفی', 'علاقه', 'هیچکدوم'],
+      typeLable: 'نوع',
+      isShowTypeList: false,
+      first_tag: '',
+      second_tag: '',
+      isShowGoToLoginBox: false
 
     }
   },
@@ -159,6 +192,7 @@ export default {
   },
 
   methods: {
+
     draftCardTitle (title) {
       if (title === null) { return 'بدون عنوان' } else { return title }
     },
@@ -215,18 +249,25 @@ export default {
     //   console.log('nOrr' + this.titleAvailble)
     // },
     publish () {
-      this.$store.dispatch('update_post', { propName: 'PostSummary', value: this.post_summery }).then(() => {
+      this.$store.dispatch('update_post', { propName: 'postSummary', value: this.post_summery }).then(() => {
         this.$store.dispatch('update_post', { propName: 'publisherUsername', value: this.$store.state.user_profile_data.userName }).then(() => {
           this.$store.dispatch('update_post', { propName: 'publisherProfileImg', value: this.$store.state.user_profile_data.profileImgUrl }).then(() => {
-            this.$store.dispatch('update_post', { propName: 'FirstTag', value: this.tag }).then(() => {
-              this.$store.dispatch('publish_post')
+            this.$store.dispatch('update_post', { propName: 'firstTag', value: this.first_tag }).then(() => {
+              this.$store.dispatch('update_post', { propName: 'secondTag', value: this.second_tag }).then(() => {
+                this.$store.dispatch('publish_post')
+              })
             })
           })
         })
       })
     },
     gotoPublishDetail () {
-      this.show_publish_detail = true
+      if (localStorage.userId === undefined || localStorage.userName === undefined) {
+        this.isShowGoToLoginBox = true
+      } else {
+        this.isShowGoToLoginBox = true
+        // this.show_publish_detail = true
+      }
     },
     getImgUrl (path) {
       return require('../../assets/' + path)
@@ -247,11 +288,27 @@ export default {
         this.show_ph1 = false
         document.getElementById('pd_input1').focus()
         document.getElementById('pd_input2').blur()
+        document.getElementById('pd_input3').blur()
       } else {
-        this.show_ph2 = false
-        document.getElementById('pd_input2').focus()
-        document.getElementById('pd_input1').blur()
+        if (index === 2) {
+          this.show_ph2 = false
+          document.getElementById('pd_input2').focus()
+          document.getElementById('pd_input1').blur()
+          document.getElementById('pd_input3').blur()
+        } else {
+          this.show_ph3 = false
+          document.getElementById('pd_input3').focus()
+          document.getElementById('pd_input1').blur()
+          document.getElementById('pd_input2').blur()
+        }
       }
+    },
+    showTypeList () {
+      this.isShowTypeList = !this.isShowTypeList
+    },
+    typeCardOnClick (index) {
+      this.typeLable = this.types[index]
+      this.isShowTypeList = false
     },
 
     profileImg () {
