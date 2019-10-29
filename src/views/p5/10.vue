@@ -15,10 +15,7 @@
         </div>
       </transition>
 
-        <div v-if="isShowGoToLoginBox" class="go-to-login-container">
-            <h3 class="go-to-login-msg">نیازه یبار وارد حسابت بشی ، بعد از وارد شدن میتونی پستت تو از قسمت پیش نویس ها پیدا کنی و بعد منتشرش کنی </h3>
-            <div class="go-to-login-btn">باشه</div>
-        </div>
+      <popup v-if="isShowGoToLoginBox" @btn_clicked="goToLogin_onClicked()" msg="نیازه یبار وارد حسابت بشی ، بعد از وارد شدن میتونی پستت تو از قسمت پیش نویس ها پیدا کنی و بعد منتشرش کنی"></popup>
 
       <div v-if="show_publish_detail" class="col-m-10 publish-detail-container">
         <div class="col-m-6-5 upload-img-container center" @click="profileImg()">
@@ -48,13 +45,20 @@
                   <div class="type-lable-container" @click="showTypeList()">
                       <h3 class="type-lable">{{typeLable}}</h3>
                   </div>
-                  <div v-if="isShowTypeList" class="type-list-container">
-                      <div v-for="(type,index) in types" :key="type" class="type-card" @click="typeCardOnClick(index)">
-                          <h3 class="type-card-lable">{{type}}</h3>
-                      </div>
-                  </div>
               </div>
             </div>
+          <div v-if="isShowTypeList" class="type-list-container">
+              <div v-for="(type,index) in types" :key="type" class="type-card" @click="typeCardOnClick(index)">
+                  <h3 class="type-card-lable">{{type}}</h3>
+              </div>
+              <div class="col-m-6 type-input-tag-container center" @click="type_input_onClick()">
+                  <h3 v-if="show_ph4" class="type-input-tag-placeHolder">نوع دلخواهت بنویس </h3>
+                  <input type="text" v-model="type_input_value" class="col-m-10 publish-detail-input" maxlength="12" id="pd_input4">
+                  <div class="bottom-line"></div>
+                  <h3 class="hint"></h3>
+                  <div class="type-input-btn" @click="type_input_submit_onClick()">تایید</div>
+              </div>
+          </div>
         </div>
         <div class="publish-detail-publish-btn" @click="publish">
             <h3 class="publish-btn-lable">انتشار</h3>
@@ -101,13 +105,15 @@
 
 <script>
 import Axios from 'axios'
+import popup from '../../components/global/msgPopup'
 import editor from '../../components/p5/editor'
 
 // import { async } from 'q'
 export default {
   name: '10',
   components: {
-    editor
+    editor,
+    popup
 
   },
   props: {
@@ -141,18 +147,20 @@ export default {
       show_ph1: true,
       show_ph2: true,
       show_ph3: true,
+      show_ph4: true,
       coverImg: '',
       showUploadedCoveImg: false,
       post_summery: '',
       tag: '',
       isShowSidebar: false,
       editherKey: 0,
-      types: ['اموزشی', 'تجربه', 'خاطره', 'معرفی', 'علاقه', 'هیچکدوم'],
+      types: ['اموزشی', 'تجربه', 'خاطره', 'معرفی', 'علاقه'],
       typeLable: 'نوع',
       isShowTypeList: false,
       first_tag: '',
       second_tag: '',
-      isShowGoToLoginBox: false
+      isShowGoToLoginBox: false,
+      type_input_valueL: ''
 
     }
   },
@@ -265,9 +273,11 @@ export default {
       if (localStorage.userId === undefined || localStorage.userName === undefined) {
         this.isShowGoToLoginBox = true
       } else {
-        this.isShowGoToLoginBox = true
-        // this.show_publish_detail = true
+        this.show_publish_detail = true
       }
+    },
+    goToLogin_onClicked () {
+
     },
     getImgUrl (path) {
       return require('../../assets/' + path)
@@ -302,6 +312,17 @@ export default {
           document.getElementById('pd_input2').blur()
         }
       }
+    },
+    type_input_onClick () {
+      this.show_ph4 = false
+      document.getElementById('pd_input4').focus()
+      document.getElementById('pd_input1').blur()
+      document.getElementById('pd_input2').blur()
+      document.getElementById('pd_input3').blur()
+    },
+    type_input_submit_onClick () {
+      this.typeLable = this.type_input_value
+      this.isShowTypeList = false
     },
     showTypeList () {
       this.isShowTypeList = !this.isShowTypeList
