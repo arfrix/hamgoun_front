@@ -1,7 +1,7 @@
 <template>
 <div class="main">
 
-    <popup  @btn_clicked="goToLogin_onClicked()" msg="نیازه یبار وارد حسابت بشی ، چون الان نمیدونیم تو کی هستی "></popup>
+    <popup v-if="isShowLoginPopup" @btn_clicked="goToLogin_onClicked()" msg="نیازه یبار وارد حسابت بشی ، چون الان نمیدونیم تو کی هستی "></popup>
     <div class="row topRow">
 
       <list :isTopRound=true @subCatDefine="defineSubCat" @mainCatDefine="defineMainCat"></list>
@@ -14,7 +14,7 @@
             </div>
         </div>
         <div  class="card-container">
-            <div v-if="mainCat !=null" class="card-container">
+            <div v-if="mainCat != null && !isShowLoginPopup" class="card-container">
 
                 <div v-for="(card,name) in templates[mainCat][0]" :key="card" @click="goToEdither(card)" class="col-m-3 template-card">
                     <h3 class="card-lable">{{name}}</h3>
@@ -47,12 +47,12 @@ export default {
   },
   beforeMount () {
     this.$store.dispatch('actSetWitch_route_we_are', 10)
-    if (localStorage.userId === undefined || localStorage.userName === undefined) {
-      this.isShowLoginPopup = true
-    }
   },
 
   mounted () {
+    if (localStorage.userId === undefined || localStorage.userName === undefined) {
+      this.isShowLoginPopup = true
+    }
     // console.log(this.templates[this.mainCat][this.subCat])
   },
   beforeDestroy () {

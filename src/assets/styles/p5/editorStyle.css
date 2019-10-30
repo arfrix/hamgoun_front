@@ -121,7 +121,10 @@
     bottom: 0;
     z-index: 120;
     width: 100vw;
-    
+    background-color: #fff;
+    min-height: 8vw;
+    padding-top: 2.5vw;
+    padding-bottom: 2.5;
 }
 .tooltip-button{
     position: fixed;

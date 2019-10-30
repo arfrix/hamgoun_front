@@ -4,7 +4,7 @@
 
     <transition name="totil">
       <div v-show="iSshowToolTip" id="toolbar" class="custom-toobar-style" >
-          <select class="ql-size custom-select">
+          <select class="ql-size">
             <option value="small"></option>
             <!-- Note a missing, thus falsy value, is used to reset to default -->
             <option selected></option>
@@ -13,7 +13,10 @@
           </select>
           <!-- Add a bold button -->
           <button class="ql-bold"></button>
-          <button class="ql-image"></button>
+          <button class="ql-italic"></button>
+
+          <!-- But you can also add your own -->
+          <button id="custom-button"></button>
       </div>
     </transition>
 
@@ -66,9 +69,9 @@ export default {
             image: imageHandler
           }
         }
-      }
+      },
       // placeholder: 'هان ؟؟؟؟؟؟؟؟',
-      // theme: 'snow' // or 'bubble'
+      theme: 'snow' // or 'bubble'
     })
 
     function imageHandler () {
@@ -118,7 +121,7 @@ export default {
         } catch (error) {}
 
         console.log('await check')
-        console.log(response.data.substring(87))
+        console.log(response.data)
 
         // Remove placeholder image
 

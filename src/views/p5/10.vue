@@ -279,8 +279,9 @@ export default {
         if (this.titleValue === '') {
           this.errorMsg = 'عنوانی برای پستت ننوشتی'
           this.isShowErrorMsg = true
+        } else {
+          this.show_publish_detail = true
         }
-        this.show_publish_detail = true
       }
     },
     goToLogin_onClicked () {
