@@ -419,42 +419,4 @@ input:focus {
     margin-top: 2vw;
   }
   
-  .go-to-login-container{
-    position: fixed;
-    top: 30vh;
-    right: 5vw;
-    width: 86vw;
-    z-index: 20;
-    font-family: IranSans_Light;
-    font-size: 3.4vw;
-    background-color: #2c3742;
-    padding-bottom: 4vw;
-    padding-top: 4vw;
-    padding-right: 2vw;
-    padding-left: 2vw;
-    border-radius: 12px;
-    color: #fff;
-    box-shadow:0px 3px 6px #00000031 ;
-    animation-name: showMsgBox;
-    animation-duration: 0.5s;  
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards;
-  }
-  .go-to-login-btn{
-    margin: auto;
-    width: 15vw;
-    font-family: IranSans;
-    font-size: 4vw;
-    border-radius: 7px;
-    border: 1px solid #FFD615;
-    margin-top: 5vw;
-    box-shadow:0px 3px 6px #00000031 ;
-    
-  }
-
   
-  
-  @keyframes showMsgBox {
-    from {right: -90vw;}
-    to {right: 5vw; }
-  }

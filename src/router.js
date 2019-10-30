@@ -17,6 +17,16 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'P1_1',
+      component: P1_1
+    },
+    {
+      path: '/home',
+      name: 'P1_1',
+      component: P1_1
+    },
+    {
+      path: '/landing',
       name: 'landing',
       component: Landing
     },
@@ -29,11 +39,6 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: Register
-    },
-    {
-      path: '/home',
-      name: 'P1_1',
-      component: P1_1
     },
     {
       path: '/campainPage',

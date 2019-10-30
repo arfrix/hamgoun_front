@@ -1,6 +1,7 @@
 <template>
 <div class="main">
 
+    <popup  @btn_clicked="goToLogin_onClicked()" msg="نیازه یبار وارد حسابت بشی ، چون الان نمیدونیم تو کی هستی "></popup>
     <div class="row topRow">
 
       <list :isTopRound=true @subCatDefine="defineSubCat" @mainCatDefine="defineMainCat"></list>
@@ -36,15 +37,19 @@
 <script>
 
 import list from '../../components/global/categoryList'
+import popup from '../../components/global/msgPopup'
 
 export default {
   name: 'addPost',
   components: {
-
+    popup,
     list
   },
   beforeMount () {
     this.$store.dispatch('actSetWitch_route_we_are', 10)
+    if (localStorage.userId === undefined || localStorage.userName === undefined) {
+      this.isShowLoginPopup = true
+    }
   },
 
   mounted () {
@@ -122,7 +127,8 @@ export default {
 
       ],
       mainCat: null,
-      subCat: null
+      subCat: null,
+      isShowLoginPopup: false
 
     }
   },
@@ -162,6 +168,9 @@ export default {
       this.subCat = val
       console.log(val)
       console.log(this.templates[this.mainCat][this.subCat])
+    },
+    goToLogin_onClicked () {
+      this.$router.push('/landing')
     }
 
   }

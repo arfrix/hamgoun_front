@@ -15,7 +15,7 @@
         </div>
       </transition>
 
-      <popup v-if="isShowGoToLoginBox" @btn_clicked="goToLogin_onClicked()" msg="نیازه یبار وارد حسابت بشی ، بعد از وارد شدن میتونی پستت تو از قسمت پیش نویس ها پیدا کنی و بعد منتشرش کنی"></popup>
+      <popup v-if="isShowErrorMsg" @btn_clicked="goToLogin_onClicked()" :msg="errorMsg"></popup>
 
       <div v-if="show_publish_detail" class="col-m-10 publish-detail-container">
         <div class="col-m-6-5 upload-img-container center" @click="profileImg()">
@@ -159,8 +159,9 @@ export default {
       isShowTypeList: false,
       first_tag: '',
       second_tag: '',
-      isShowGoToLoginBox: false,
-      type_input_valueL: ''
+      isShowErrorMsg: false,
+      type_input_valueL: '',
+      errorMsg: ''
 
     }
   },
@@ -260,6 +261,7 @@ export default {
       this.$store.dispatch('update_post', { propName: 'postSummary', value: this.post_summery }).then(() => {
         this.$store.dispatch('update_post', { propName: 'publisherUsername', value: this.$store.state.user_profile_data.userName }).then(() => {
           this.$store.dispatch('update_post', { propName: 'publisherProfileImg', value: this.$store.state.user_profile_data.profileImgUrl }).then(() => {
+            // this.$store.dispatch('update_post', { propName: 'firstTag', value: this.first_tag }).then
             this.$store.dispatch('update_post', { propName: 'firstTag', value: this.first_tag }).then(() => {
               this.$store.dispatch('update_post', { propName: 'secondTag', value: this.second_tag }).then(() => {
                 this.$store.dispatch('publish_post')
@@ -271,13 +273,18 @@ export default {
     },
     gotoPublishDetail () {
       if (localStorage.userId === undefined || localStorage.userName === undefined) {
-        this.isShowGoToLoginBox = true
+        this.errorMsg = 'نیازه یبار وارد حسابت بشی ، بعد از وارد شدن میتونی پستت تو از قسمت پیش نویس ها پیدا کنی و بعد منتشرش کنی'
+        this.isShowErrorMsg = true
       } else {
+        if (this.titleValue === '') {
+          this.errorMsg = 'عنوانی برای پستت ننوشتی'
+          this.isShowErrorMsg = true
+        }
         this.show_publish_detail = true
       }
     },
     goToLogin_onClicked () {
-
+      this.$router.push('/landing')
     },
     getImgUrl (path) {
       return require('../../assets/' + path)

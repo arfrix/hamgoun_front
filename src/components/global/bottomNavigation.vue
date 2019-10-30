@@ -35,12 +35,16 @@ export default {
       this.$store.dispatch('actSetWitch_route_we_are', 10)
     },
     gotoProfile () {
-      this.$store.dispatch('actSetWitch_route_we_are', 12)
-      this.$router.push({ name: 'myProfile', params: { me: true, id: localStorage.userId } })
-      // this.$router.push({ name: 'profile', params: { profile: undefined, is_other_user_profile: false } })
-      this.$store.dispatch('actChangeSubCategoryList', false)
-      this.$store.dispatch('actChangeMainCategory', -1)
-      this.$store.dispatch('actChangeSubCategory', -1)
+      if (localStorage.userId === undefined) {
+        this.$router.push('/landing')
+      } else {
+        this.$store.dispatch('actSetWitch_route_we_are', 12)
+        this.$router.push({ name: 'myProfile', params: { me: true, id: localStorage.userId } })
+        // this.$router.push({ name: 'profile', params: { profile: undefined, is_other_user_profile: false } })
+        this.$store.dispatch('actChangeSubCategoryList', false)
+        this.$store.dispatch('actChangeMainCategory', -1)
+        this.$store.dispatch('actChangeSubCategory', -1)
+      }
     },
 
     tab1Style (route) {
