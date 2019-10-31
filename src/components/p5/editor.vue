@@ -14,7 +14,7 @@
           <!-- Add a bold button -->
           <button class="ql-bold"></button>
           <button class="ql-italic"></button>
-
+          <button class="ql-image"></button>
           <!-- But you can also add your own -->
           <button id="custom-button"></button>
       </div>
@@ -134,11 +134,11 @@ export default {
           'http://45.82.136.106:8080/images/' + response.data
         )
         // this.quill.insertEmbed(range.index + 1, 'code-block','djfhvba');
-        this.quill.setSelection(range.index + 5)
+
+        this.quill.setSelection(range.index + 1)
       }
     }
-    console.log('val5555555555555555555')
-    console.log(this.value)
+
     this.editor.root.innerHTML = this.value
 
     this.editor.on('text-change', () => this.update())
