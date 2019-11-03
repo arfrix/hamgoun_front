@@ -160,7 +160,7 @@ input:focus {
   }
   .publish-btn{
     position: fixed;
-    bottom: 9vh;
+    bottom: 16vw;
       border:1px solid #FFD615;
       border-radius: 7px;
       padding-right: 5.5vw;

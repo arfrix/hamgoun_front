@@ -46,12 +46,12 @@ export default new Router({
       component: CampainPage
     },
 
-    {
-      path: '/profile/:ou/:id',
-      name: 'otherUserProfile',
-      component: Profile,
-      props: true
-    },
+    // {
+    //   path: '/profile/:ou/:id',
+    //   name: 'otherUserProfile',
+    //   component: Profile,
+    //   props: true
+    // },
     {
       path: '/profile/:me/:id',
       name: 'myProfile',

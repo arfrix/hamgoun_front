@@ -51,7 +51,7 @@
 
             <div class="bottom-section">
               <bio v-if="witchTab[0]" :is_other_user_bio="ou" :profile="profileData"></bio>
-              <myContent v-if="witchTab[1]" :is_other_user_content="ou" :Id="id"></myContent>
+              <myContent v-if="witchTab[1]" :is_other_user_content="isOtherUser()" :Id="id"></myContent>
             </div>
       </div>
         <navigation></navigation>
@@ -73,9 +73,6 @@ export default {
   props: {
     profile: {
       default: undefined
-    },
-    ou: {
-      default: false
     },
     me: {
       default: false
@@ -108,6 +105,21 @@ export default {
   },
 
   methods: {
+
+    isOtherUser () {
+      if (!this.me) {
+        if (this.id === parseInt(localStorage.userId)) {
+          console.log('11')
+          return false
+        } else {
+          console.log('22')
+          return true
+        }
+      } else {
+        console.log('33')
+        return false
+      }
+    },
     getImgUrl (path) {
       return 'http://45.82.136.106:8080/images/' + path
     },

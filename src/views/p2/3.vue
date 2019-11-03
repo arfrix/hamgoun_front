@@ -142,6 +142,8 @@ export default {
       this.$store.dispatch('fetchPostData', this.uniqueUrl).then(() => {
         this.$store.dispatch('fetchComments', this.$store.state.postData.id)
       })
+    } else {
+      this.$store.dispatch('fetchComments', this.$store.state.postData.id)
     }
   },
   mounted () {
@@ -270,11 +272,10 @@ export default {
     },
     gotoProfile () {
       this.$router.push({
-        name: 'profile',
+        name: 'myProfile',
         params: {
-          is_other_user_profile: true,
-          fetch_other_user_data: true,
-          other_user_id: this.$store.state.postData.publisherId
+          me: false,
+          id: this.$store.state.postData.publisherId
         }
       })
     }

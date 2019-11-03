@@ -28,7 +28,7 @@
         </div>
 
         <div v-if="tab !== '' && !is_other_user_bio" @click="update()" class="col-m-1-7 submit-btn">
-            <h4 class="btn-lable">تایید</h4>
+            <h4 class="btn-lable">ثبت</h4>
         </div>
 
     </div>

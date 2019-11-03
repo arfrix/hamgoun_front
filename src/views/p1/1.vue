@@ -180,7 +180,7 @@ export default {
     defineMainCat (val) {
       this.mainCat = val
       this.isCatSelected = true
-      this.$store.dispatch('fetch_home_page_private_mode_cards', { layer: 1, mainCategory: this.mainCat })
+      this.$store.dispatch('fetch_home_page_private_mode_cards', { layer: 125, mainCategory: this.mainCat })
     },
     clicked () {
       this.$store.dispatch('actChangeMainCategory', -1)

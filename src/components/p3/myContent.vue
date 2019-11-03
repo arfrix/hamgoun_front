@@ -3,7 +3,7 @@
 
     <div class="col-m-10 row topRow">
 
-      <list :isTopRound=true @subCatDefine="defineSubCat" @mainCatDefine="defineMainCat" ></list>
+      <list :isTopRound=true  @mainCatDefine="defineMainCat" ></list>
 
     </div>
     <div id="tt" class="col-m-10 row bottomRow">
@@ -15,13 +15,13 @@
       <div  class="col-m-9-5 card-container">
         <div v-if="showPostList && this.$store.state.my_postsList.status && !this.$store.state.waitFor_fetch_my_postList" class="column-direction">
             <div v-for="item in this.$store.state.my_postsList.data" :key="item.id" @click="goto_postPage(item)" class="column-direction">
-                <card :key="item.id" class="col-m-9"  :kind="item.kind" :imgUrl="item.coverImgUrl" :title="item.title" :subCategory="item.subCategory" :mainCategory="item.mainCategory" :username="item.publisherUsername" duration="" :text="item.postSummary" ></card>
+                <card :key="item.id" class="col-m-9"  :kind="item.kind" :imgUrl="item.coverImgUrl" :title="item.title" :mainCategory="item.mainCategory" :username="item.publisherUsername" duration="" :text="item.postSummary" ></card>
             </div>
         </div>
         <div v-else>
             <div v-if="!this.$store.state.my_postsList.status && !this.$store.state.waitFor_fetch_my_postList" class="error-container">
-                <h3 v-if="subCat != -1" class="error-lable">): هنوز چیزی اینجا نذاشته </h3>
-                <h3 v-if="subCat == -1" class="error-lable">هنوز دسته ای رو انتخاب نکردی</h3>
+                <h3 v-if="mainCat != -1" class="error-lable">): هنوز چیزی اینجا نذاشته </h3>
+                <h3 v-if="mainCat == -1" class="error-lable">هنوز دسته ای رو انتخاب نکردی</h3>
             </div>
 
         </div>
@@ -79,7 +79,7 @@ export default {
   },
   destroyed () {
     this.$store.dispatch('actChangeMainCategory', -1)
-    this.$store.dispatch('actChangeSubCategory', -1)
+    // this.$store.dispatch('actChangeSubCategory', -1)
   },
   methods: {
     // tip src binding!!!!
@@ -100,13 +100,13 @@ export default {
     },
     defineMainCat (val) {
       this.mainCat = val
+      this.$store.dispatch('fetch_my_postList', { publisherId: this.Id, mainCategory: this.mainCat }).then(() => {
+        this.showPostList = true
+      })
     },
     defineSubCat (val) {
       this.subCat = val
       //! buuuuuug publisherId may be for other users
-      this.$store.dispatch('fetch_my_postList', { publisherId: this.Id, mainCategory: this.mainCat, subCategory: val }).then(() => {
-        this.showPostList = true
-      })
     },
     goto_postPage (data) {
       this.$store.dispatch('actSetPostData', data).then(() => {

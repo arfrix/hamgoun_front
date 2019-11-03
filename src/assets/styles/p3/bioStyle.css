@@ -101,6 +101,9 @@ input:focus {
     outline:none;
  }
  .submit-btn{
+     position: fixed;
+     bottom: 16vw;
+     left: 0;
      border: 1px solid #FFD615;
      color: #FFD615;
      border-radius: 5px;

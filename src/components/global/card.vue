@@ -2,7 +2,7 @@
 
 <div class="col-m-9-3 card-main-div">
   <div class="card-lable-container">
-    <h5 class="lable">{{this.$store.state.subCategoryList[mainCategory][subCategory].name}}</h5>
+    <h5 class="lable">lable</h5>
   </div>
 
   <!-- <div class="col-m-5 card-sections-container"> -->

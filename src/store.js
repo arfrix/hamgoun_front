@@ -389,8 +389,8 @@ export default new Vuex.Store({
       try {
         response = await Axios.post(baseUrl + '/Posts/followedNewPosts', {
           followerId: localStorage.userId,
-          mainCategory: params.mainCategory,
-          Layer: params.layer
+          mainCategory: params.mainCategory
+          // Layer: params.layer
         })
         console.log(response.data)
 
@@ -529,8 +529,8 @@ export default new Vuex.Store({
       try {
         response = await Axios.post(baseUrl + '/Posts/myPostsList', {
           publisherId: data.publisherId,
-          mainCategory: data.mainCategory,
-          subCategory: data.subCategory
+          mainCategory: data.mainCategory
+
         })
 
         console.log(response.data)
@@ -681,6 +681,7 @@ export default new Vuex.Store({
       let response = ''
       try {
         response = await Axios.get(baseUrl + '/Comments/GetCommentofPosts/' + postId)
+        console.log('fetch comments')
         console.log(response.data)
         commit('write_commentsList', response.data)
       } catch (error) {
@@ -763,8 +764,7 @@ export default new Vuex.Store({
         await Axios.post(baseUrl + '/Relations', {
           FollowerId: state.userId,
           FollowedId: params.followedId,
-          MainCategory: params.mCat,
-          SubCategory: params.sCat
+          MainCategory: params.mCat
 
         })
       } catch (error) {
