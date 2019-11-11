@@ -1,91 +1,104 @@
 
 <template>
+  <div class="profile-main-div" :style="{height:height + 'px'}">
+    <transition name="notif-transition">
+      <div v-if="isShowNotifSidebar" class="notif-side-bar">
+        <div class="notif-lable-container">
+          <h3 class="notif-lable">رخداد ها</h3>
+        </div>
 
-    <div class="profile-main-div" :style="{height:height + 'px'}">
-
-        <transition name="notif-transition">
-          <div v-if="isShowNotifSidebar" class="notif-side-bar">
-            <div class="notif-lable-container">
-              <h3 class="notif-lable">رخداد ها</h3>
+        <div class="notif-list-looper">
+          <div v-for="item in this.$store.state.notifications" :key="item.id" class="notif-card">
+            <div class="notif-profile-img-container">
+              <img :src="getImgUrl(item.actorImgUrl)" alt class="img" />
             </div>
-
-            <div  class="notif-list-looper">
-              <div v-for="item in this.$store.state.notifications" :key="item.id" class="notif-card" >
-                <div class="notif-profile-img-container">
-                    <img :src="getImgUrl(item.actorImgUrl)"  alt="" class="img">
-                </div>
-                <div class="notif-card-text">
-                    <h3 class="notif-card-title">{{(item.actorUsername)}}</h3>
-                    <h3 v-if="item.isComment" class="notif-action">برا پستت کامنت گذاشت</h3>
-                    <h3 v-if="item.isCommentReply" class="notif-action">به کامنتت جواب داد</h3>
-                    <h3 v-if="item.isMizoun" class="notif-action">به کامنتت میزون داد</h3>
-                    <h3 v-if="item.isNamizoun" class="notif-action">به کامنتت نامیزون داد</h3>
-                    <h3 v-if="item.isPostRating" class="notif-action">به پستت امتیاز داد</h3>
-                </div>
-              </div>
+            <div class="notif-card-text">
+              <h3 class="notif-card-title">{{(item.actorUsername)}}</h3>
+              <h3 v-if="item.isComment" class="notif-action">برا پستت کامنت گذاشت</h3>
+              <h3 v-if="item.isCommentReply" class="notif-action">به کامنتت جواب داد</h3>
+              <h3 v-if="item.isMizoun" class="notif-action">به کامنتت میزون داد</h3>
+              <h3 v-if="item.isNamizoun" class="notif-action">به کامنتت نامیزون داد</h3>
+              <h3 v-if="item.isPostRating" class="notif-action">به پستت امتیاز داد</h3>
             </div>
           </div>
-        </transition>
-
-        <transition name="fade">
-            <div v-if="!witchTab[1]" class="top-section">
-                <img src="../../assets/images/backGround/profile4.png" class="top-section-bc-img">
-                <div class="col-m-10 two-icon-container">
-                    <img src="../../assets/icons/settings.png" alt="" class="two-icon-img1">
-                    <!-- <img src="../../assets/icons/paper-plane.png" alt="" class="two-icon-img2"> -->
-                    <img src="../../assets/icons/alarm.png" alt="" class="two-icon-img2" @click="showNotif()">
-                </div>
-                <div class="col-m-10 top-section-text">
-                    <div class="profile-img-container" @click="profileImg()">
-                        <img :src="getImgUrl(this.profileData.profileImgUrl)"  alt="" class="img">
-                    </div>
-                    <div class="username-container">
-                        <h4 class="username">{{this.profileData.userName}}</h4>
-                    </div>
-                    <div class="col-m-4 data-container">
-                        <div class="follower-section">
-                            <h3 class="number">{{this.profileData.hamegyry}}</h3>
-                            <h3 class="follower-section-lable">همه گیری</h3>
-                        </div>
-                        <div class="viewed-section">
-                            <h3 class="number">0</h3>
-                            <h3 class="viewed-section-lable">همراهی</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </transition>
-
-        <div :class="animateContainer()">
-            <div class="middle-section">
-              <div class="row tab-section">
-                <div class="col-m-9 devider-line"></div>
-                <div class="tabs-div">
-                    <div class="tab1-div" @click="tabNavigate(0)">
-                        <img  src="../../assets/icons/user.png" alt="" class="tap-icon">
-                        <div v-if="this.witchTab[0]" class="colored-line"></div>
-                    </div>
-                    <div class="tab2-div"  @click="tabNavigate(1)">
-                        <img  src="../../assets/icons/posts.png" alt="" class="tap-icon">
-                        <div v-if="this.witchTab[1]" class="colored-line"></div>
-                    </div>
-                </div>
-
-              </div>
-            </div>
-
-            <div class="bottom-section">
-              <bio v-if="witchTab[0]" :is_other_user_bio="ou" :profile="profileData"></bio>
-              <myContent v-if="witchTab[1]" :is_other_user_content="isOtherUser()" :Id="id"></myContent>
-            </div>
+        </div>
       </div>
-        <navigation></navigation>
-    </div>
+    </transition>
 
+    <transition name="fade">
+      <div v-if="!witchTab[1]" class="top-section">
+        <img src="../../assets/images/backGround/profile4.png" class="top-section-bc-img" />
+        <div class="col-m-10 two-icon-container">
+          <img
+            v-if="!this.isOtherUser()"
+            src="../../assets/icons/settings.png"
+            alt
+            class="two-icon-img1"
+          />
+          <!-- <img src="../../assets/icons/paper-plane.png" alt="" class="two-icon-img2"> -->
+          <img
+            v-if="!this.isOtherUser()"
+            src="../../assets/icons/alarm.png"
+            alt
+            class="two-icon-img2"
+            @click="showNotif()"
+          />
+        </div>
+        <div class="col-m-10 top-section-text">
+          <div class="profile-img-container">
+            <img :src="getImgUrl(this.profileData.profileImgUrl)" alt class="profile-img" />
+            <img
+              v-if="!this.isOtherUser()"
+              src="../../assets/icons/plus.png"
+              alt
+              class="profile-img-add-btn"
+              @click="profileImg()"
+            />
+          </div>
+          <div class="username-container">
+            <h4 class="username">{{this.profileData.userName}}</h4>
+          </div>
+          <div class="col-m-4 data-container">
+            <div class="follower-section">
+              <h3 class="number">{{this.profileData.hamegyry}}</h3>
+              <h3 class="follower-section-lable">همه گیری</h3>
+            </div>
+            <div class="viewed-section">
+              <h3 class="number">0</h3>
+              <h3 class="viewed-section-lable">همراهی</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </transition>
+
+    <div :class="animateContainer()">
+      <div class="middle-section">
+        <div class="row tab-section">
+          <div class="col-m-9 devider-line"></div>
+          <div class="tabs-div">
+            <div class="tab1-div" @click="tabNavigate(0)">
+              <img src="../../assets/icons/user.png" alt class="tap-icon" />
+              <div v-if="this.witchTab[0]" class="colored-line"></div>
+            </div>
+            <div class="tab2-div" @click="tabNavigate(1)">
+              <img src="../../assets/icons/posts.png" alt class="tap-icon" />
+              <div v-if="this.witchTab[1]" class="colored-line"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-section">
+        <bio v-if="witchTab[0]" :is_other_user_bio="ou" :profile="profileData"></bio>
+        <myContent v-if="witchTab[1]" :is_other_user_content="isOtherUser()" :Id="id"></myContent>
+      </div>
+    </div>
+    <navigation></navigation>
+  </div>
 </template>
 
 <script>
-
 import bio from '../../components/p3/bio'
 import myContent from '../../components/p3/myContent'
 import Axios from 'axios'
@@ -93,7 +106,8 @@ import Axios from 'axios'
 export default {
   name: 'profile',
   components: {
-    bio, myContent
+    bio,
+    myContent
   },
   props: {
     profile: {
@@ -113,7 +127,6 @@ export default {
       show_topSection: true,
       profileData: '',
       isShowNotifSidebar: false
-
     }
   },
 
@@ -131,7 +144,6 @@ export default {
   },
 
   methods: {
-
     isOtherUser () {
       if (!this.me) {
         if (this.id === parseInt(localStorage.userId)) {
@@ -190,24 +202,24 @@ export default {
           let response = ''
           try {
             console.log('55555')
-            response = await Axios.post('http://45.82.136.106:8080/Images/upload', formData, {
-              headers: {
-                'Content-Type': 'multipart/form-data'
+            response = await Axios.post(
+              'http://45.82.136.106:8080/Images/upload',
+              formData,
+              {
+                headers: {
+                  'Content-Type': 'multipart/form-data'
+                }
               }
-
-            })
+            )
             console.log('img response')
             console.log('http://45.82.136.106:8080/images/' + response.data)
-          } catch (error) {
-
-          }
+          } catch (error) {}
 
           this.profileData.profileImgUrl = response.data
           this.$store.dispatch('update_user_profile', this.profileData)
         }
       }
     }
-
   }
 }
 </script>

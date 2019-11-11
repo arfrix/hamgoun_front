@@ -17,13 +17,12 @@
     
 }
 .profile-img-container{
-    /* position: absolute;
-    top: 6vw;
-    right: 39vw; */
+     position: relative;
+    
     width: 18vw;
     height: 18vw;
     border-radius: 50%;
-    overflow: hidden;
+    /* overflow: hidden; */
     box-shadow:0px 3px 6px #00000028 ;
     background-image: url(../../icons/user.png);
     background-size: cover;
@@ -273,4 +272,16 @@
     flex-direction: column;
     align-items: flex-start;
     margin-right: 3.5vw;
+}
+.profile-img-add-btn{
+  position: absolute;
+  bottom: -2.5vw;
+  left: -2.5vw;
+  width: 5vw;
+  z-index: 5;
+}
+.profile-img{
+  width: 18vw;
+  height: 18vw;
+  border-radius: 50%;
 }
