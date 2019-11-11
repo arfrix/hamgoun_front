@@ -25,17 +25,23 @@
 
 export default {
   name: 'comment',
-  props: ['isBig', 'comment', 'username', 'imgUrl', 'id', 'parentCommentId', 'mizoun', 'namizoun'],
+  props: ['isBig', 'comment', 'username', 'imgUrl', 'id', 'parentCommentId', 'mizoun', 'namizoun', 'publisherId'],
   data () {
     return {
       isSelectedMizoun: false,
-      isSelectedNamizoun: false
+      isSelectedNamizoun: false,
+      replyData: {
+        parentCommentId: '',
+        ParentCommentPublisherId: ''
+      }
     }
   },
 
   methods: {
     reply () {
-      if (this.isBig) { this.$emit('isReply', this.id) } else { this.$emit('isReply', this.parentCommentId) }
+      this.replyData.parentCommentId = this.parentCommentId
+      this.replyData.ParentCommentPublisherId = this.publisherId
+      if (this.isBig) { this.$emit('isReply', this.replyData) } else { this.$emit('isReply', this.replyData) }
     },
     mizounImgUrl (isClicked) {
       if (isClicked) { return require('../../assets/icons/selectedMizoun.png') } else { return require('../../assets/icons/unSelectedMizoun.png') }
@@ -44,13 +50,15 @@ export default {
       if (isClicked) { return require('../../assets//icons/selected-naMizoun.png') } else { return require('../../assets/icons/unSelected-namizoun.png') }
     },
     mizounOnClick () {
-      this.$store.dispatch('submitMizoun', { commentId: this.id }).then(() => {
+      this.mizoun += 1
+      this.$store.dispatch('submitMizoun', { commentId: this.id, publisherId: this.publisherId }).then(() => {
         this.isSelectedMizoun = !this.isSelectedMizoun
         if (this.isSelectedNamizoun) { this.isSelectedNamizoun = false }
       })
     },
     namizounOnClick () {
-      this.$store.dispatch('submitNamizoun', { commentId: this.id }).then(() => {
+      this.namizoun += 1
+      this.$store.dispatch('submitNamizoun', { commentId: this.id, publisherId: this.publisherId }).then(() => {
         this.isSelectedNamizoun = !this.isSelectedNamizoun
         if (this.isSelectedMizoun) { this.isSelectedMizoun = false }
       })

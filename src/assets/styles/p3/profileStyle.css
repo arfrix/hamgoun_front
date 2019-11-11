@@ -36,6 +36,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    z-index: 1;
 }
 .username-container{
     font-family: IranSans;
@@ -171,7 +172,7 @@
       align-items: center;
       padding-right: 2vw;
       padding-left: 2vw;
-      
+      z-index: 4;
   }
   .two-icon-img1{
       width: 6vw;
@@ -180,3 +181,96 @@
   .two-icon-img2{
       width: 7vw;
   }
+
+
+
+  .notif-transition-enter{
+    right: -60vw;
+  }
+  .notif-transition-enter-to{
+    
+    animation-name: come;
+    animation-duration: 0.5s;  
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+  }
+  .notif-transition-leave-to{
+    animation-name: go;
+    animation-duration: 0.5s;  
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+  }
+  @keyframes come {
+    from {right: -60vw;}
+    to {right: 0px; opacity: 1;}
+  }
+  @keyframes go {
+    from {right: 0px;}
+    to {right: -60vw;}
+  }
+
+ .notif-side-bar{
+    height: 100vh;
+    width: 60vw;
+    position: fixed;
+    bottom: 0;
+    right: 0vw;
+    background-color: rgb(26, 41, 73);
+    z-index: 100;
+    opacity: 1;
+    overflow-y: scroll;
+    /* border-left: 1px solid #FFD615; */
+    box-shadow:-5px 0px 6px #0000005e ;
+  }
+  .notif-lable-container{
+    margin-top: 9.5vh;
+  }
+  .notif-lable{
+    color: #fff;
+    font-family: IranSans;
+    font-size: 5vw;
+  }
+  .notif-list-looper{
+      margin-top: 5vw;
+      border-top: 1px solid #FFD615;
+  }
+  .notif-card{
+      width: 55vw;
+      display: flex;
+      flex-direction:row;
+      align-items: center;
+      direction: rtl;
+      margin: auto;
+      margin-top: 5vw;
+        padding-bottom: 3vw;
+      border-bottom: 1px solid #FFD615;
+  }
+  .notif-card-title{
+    font-family: IranSans;
+    font-size: 3.9vw;
+    color: #fff;
+    
+  }
+  .notif-action{
+    font-family: IranSans_UltraLight;
+    font-size: 3.7vw;
+    color: rgb(230, 230, 230);
+  }
+  .notif-profile-img-container{
+    /* position: absolute;
+    top: 6vw;
+    right: 39vw; */
+    width: 10vw;
+    height: 10vw;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow:0px 3px 6px #00000028 ;
+    background-image: url(../../icons/user.png);
+    background-size: cover;
+}
+.notif-card-text{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 3.5vw;
+}

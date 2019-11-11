@@ -2,13 +2,38 @@
 <template>
 
     <div class="profile-main-div" :style="{height:height + 'px'}">
+
+        <transition name="notif-transition">
+          <div v-if="isShowNotifSidebar" class="notif-side-bar">
+            <div class="notif-lable-container">
+              <h3 class="notif-lable">رخداد ها</h3>
+            </div>
+
+            <div  class="notif-list-looper">
+              <div v-for="item in this.$store.state.notifications" :key="item.id" class="notif-card" >
+                <div class="notif-profile-img-container">
+                    <img :src="getImgUrl(item.actorImgUrl)"  alt="" class="img">
+                </div>
+                <div class="notif-card-text">
+                    <h3 class="notif-card-title">{{(item.actorUsername)}}</h3>
+                    <h3 v-if="item.isComment" class="notif-action">برا پستت کامنت گذاشت</h3>
+                    <h3 v-if="item.isCommentReply" class="notif-action">به کامنتت جواب داد</h3>
+                    <h3 v-if="item.isMizoun" class="notif-action">به کامنتت میزون داد</h3>
+                    <h3 v-if="item.isNamizoun" class="notif-action">به کامنتت نامیزون داد</h3>
+                    <h3 v-if="item.isPostRating" class="notif-action">به پستت امتیاز داد</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </transition>
+
         <transition name="fade">
             <div v-if="!witchTab[1]" class="top-section">
                 <img src="../../assets/images/backGround/profile4.png" class="top-section-bc-img">
                 <div class="col-m-10 two-icon-container">
                     <img src="../../assets/icons/settings.png" alt="" class="two-icon-img1">
                     <!-- <img src="../../assets/icons/paper-plane.png" alt="" class="two-icon-img2"> -->
-                    <img src="../../assets/icons/alarm.png" alt="" class="two-icon-img2">
+                    <img src="../../assets/icons/alarm.png" alt="" class="two-icon-img2" @click="showNotif()">
                 </div>
                 <div class="col-m-10 top-section-text">
                     <div class="profile-img-container" @click="profileImg()">
@@ -86,7 +111,8 @@ export default {
     return {
       witchTab: [true, false],
       show_topSection: true,
-      profileData: ''
+      profileData: '',
+      isShowNotifSidebar: false
 
     }
   },
@@ -143,6 +169,10 @@ export default {
           'animat-container-to-down': true
         }
       }
+    },
+    showNotif () {
+      this.isShowNotifSidebar = true
+      this.$store.dispatch('fetchNotif')
     },
     profileImg () {
       if (!this.is_other_user_profile) {

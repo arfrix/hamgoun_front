@@ -181,7 +181,8 @@ export default new Vuex.Store({
     waitForSubmitaComment: false,
     commentsList: '',
     postData: '',
-    wait_for_fetch_home_page_private_mode_cards: false
+    wait_for_fetch_home_page_private_mode_cards: false,
+    notifications: ''
     // commentToSend: ''
 
   },
@@ -295,8 +296,20 @@ export default new Vuex.Store({
     },
     writePostData (state, data) {
       state.postData = data
-    }
+    },
+    writeNotif (state, data) {
+      state.notifications = data
+    },
+    writeTotalPostRateAndJudgesCount (state, data) {
+      // if (!localStorage.getItem(data.url)) {
 
+      // }
+      console.log('localStorage')
+      console.log(localStorage.getItem(data.url))
+      localStorage.setItem(data.url, true)
+      state.postData.postRate = data.rate
+      state.postData.judgesCount += 1
+    }
     // write_otherUser_profile_data (state, data) {
     //   state.otherUser_profile_data = data
     // }
@@ -379,6 +392,7 @@ export default new Vuex.Store({
     actSetPostData ({ commit, state }, data) {
       commit('writePostData', data)
     },
+
     // actOtherUser_profile_data ({ commit, state }, data) {
     //   commit('write_otherUser_profile_data', data)
     // },
@@ -692,29 +706,36 @@ export default new Vuex.Store({
       state.waitForSubmitaComment = true
       try {
         await Axios.post(baseUrl + '/Comments', {
-          PublisherId: state.userId,
-          PostId: params.PostId,
-          CommentText: params.CommentText,
-          PublisherUsername: localStorage.userName,
-          publisherImg: localStorage.profileImgUrl
+          comment: {
+            PublisherId: state.userId,
+            PostId: params.PostId,
+            CommentText: params.CommentText,
+            PublisherUsername: localStorage.userName,
+            publisherImg: localStorage.profileImgUrl
+          },
+          PostPublisherId: params.postPublisherId
+
         })
       } catch (error) {
 
       }
     },
     async submitCommentReply ({ commit, state }, params) {
-      console.log(params.isReply)
+      console.log(params)
       state.waitForSubmitaComment = true
       try {
         Axios.post(baseUrl + '/Comments', {
-          PublisherId: state.userId,
-          PostId: params.PostId,
-          CommentText: params.CommentText,
-          PublisherUsername: localStorage.userName,
-          ParentCommentId: params.parentCommentId,
-          publisherImg: localStorage.profileImgUrl,
-          IsReply: true
-
+          comment: {
+            PublisherId: state.userId,
+            PostId: params.PostId,
+            CommentText: params.CommentText,
+            PublisherUsername: localStorage.userName,
+            ParentCommentId: params.parentCommentId,
+            publisherImg: localStorage.profileImgUrl,
+            IsReply: true
+          },
+          PostPublisherId: params.postPublisherId,
+          ParentCommentPublisherId: params.ParentCommentPublisherId
         })
       } catch (error) {
 
@@ -723,12 +744,14 @@ export default new Vuex.Store({
 
     async submitRating ({ commit, state }, params) {
       try {
-        await Axios.post(baseUrl + '/RatingEvents/PostRating', {
-          JudgeId: state.userId,
+        await Axios.post(baseUrl + '/Events/PostRating', {
+          ActorId: state.userId,
+          ActorUsername: localStorage.userName,
+          ActorImgUrl: localStorage.profileImgUrl,
+          ReactorId: params.publisherId,
           PostId: params.PostId,
           IsPostRating: true,
           PostRate: params.rate
-
         })
       } catch (error) {
 
@@ -738,8 +761,11 @@ export default new Vuex.Store({
       console.log(params)
 
       try {
-        await Axios.post(baseUrl + '/RatingEvents/Mizoun', {
-          JudgeId: state.userId,
+        await Axios.post(baseUrl + '/Events/Mizoun', {
+          ActorId: state.userId,
+          ActorUsername: localStorage.userName,
+          ActorImgUrl: localStorage.profileImgUrl,
+          ReactorId: params.publisherId,
           CommentId: params.commentId,
           IsMizoun: true
         })
@@ -749,8 +775,11 @@ export default new Vuex.Store({
     },
     async submitNamizoun ({ commit, state }, params) {
       try {
-        await Axios.post(baseUrl + '/RatingEvents/Namizoun', {
-          JudgeId: state.userId,
+        await Axios.post(baseUrl + '/Events/Namizoun', {
+          ActorId: state.userId,
+          ActorUsername: localStorage.userName,
+          ActorImgUrl: localStorage.profileImgUrl,
+          ReactorId: params.publisherId,
           CommentId: params.commentId,
           IsNamizoun: true
 
@@ -789,6 +818,25 @@ export default new Vuex.Store({
       } catch (error) {
 
       }
+    },
+    async fetchNotif ({ commit, state }) {
+      let response = ''
+
+      try {
+        response = await Axios.get(baseUrl + '/Events/notif/' + localStorage.userId)
+        commit('writeNotif', response.data.data)
+        console.log('notif')
+        console.log(response.data.data)
+      } catch (error) {
+
+      }
+    },
+    updatePostRateOffline ({ commit, state }, data) {
+      if (localStorage.getItem(data.url) === null) {
+        var rate = ((state.postData.judgesCount * state.postData.postRate) + data.submitedRate) / (state.postData.judgesCount + 1)
+        commit('writeTotalPostRateAndJudgesCount', { rate: rate, url: data.url })
+      }
+      alert('قبلا به این پست امتیاز دادی')
     }
 
   }

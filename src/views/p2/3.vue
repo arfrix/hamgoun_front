@@ -27,7 +27,7 @@
         @click="gotoProfile"
       >{{this.$store.state.postData.publisherUsername}}</h4>
 
-      <div class="col-m-1-5 circle-img-div" @click="gotoProfile">
+      <div id="top_section" class="col-m-1-5 circle-img-div" @click="gotoProfile">
         <img
           :src="'http://45.82.136.106:8080/images/'+ this.$store.state.postData.publisherProfileImg"
           alt
@@ -39,7 +39,7 @@
       <h2 class="title">{{this.$store.state.postData.title}}</h2>
     </div>
 
-    <div class="row middel-section">
+    <div id="middel_section" class="row middel-section">
       <div class="ql-editor">
         <div class="ttt" v-html="this.$store.state.postData.body"></div>
       </div>
@@ -51,8 +51,8 @@
                     <infinite-loading force-use-infinite-wrapper="true" @infinite="infiniteHandler"></infinite-loading>
                 </div>
       </div>-->
-      <div class="row bottom-section-top-section">
-        <div id="test" class="col-m-4-5">
+      <div id="topOfBottomSection" class="row bottom-section-top-section">
+        <div  class="col-m-4-5">
           <!-- <div class="custom-gap"></div>  -->
           <div v-if="this.show" class="col-m-3-5 hoy-bia-benevis" @click="writeComment()">
             <h4 class="hoy-bia-benevis-text">نظرت چیه ؟</h4>
@@ -60,7 +60,7 @@
         </div>
 
         <div class="col-m-4-5 rate-number-container" @click="showRatingPopUp">
-          <h3 class="rateNumber">{{this.$store.state.postData.postRate}}</h3>
+          <h3 class="rateNumber">{{this.fillterRateNumber(this.$store.state.postData.postRate)}}</h3>
           <img :src="mizounImgUrl(submitRate)" class="rateImg" />
         </div>
 
@@ -85,7 +85,7 @@
           </div>
         </div>
       </transition>
-      <div class="col-m-8-5 devider-line"></div>
+      <div id="bottom_section_devider" class="col-m-8-5 devider-line"></div>
       <!--//tip agar bind nakony miad props ro be sorat string mifreste   -->
       <div class="col-m-10 comments-container">
         <div
@@ -95,6 +95,7 @@
         >
           <coment
             v-bind:id="comment.id"
+            :publisherId="comment.publisherId"
             :parentCommentId="comment.parentCommentId"
             :isBig="!comment.isReply"
             :username="comment.publisherUsername"
@@ -111,7 +112,7 @@
       </div>
     </div>
 
-    <navigation></navigation>
+    <navigation id="navigation_bar"></navigation>
   </div>
   <!-- </div> -->
 </template>
@@ -140,6 +141,8 @@ export default {
   beforeMount () {
     if (this.isFetch) {
       this.$store.dispatch('fetchPostData', this.uniqueUrl).then(() => {
+        if (document.getElementById('bottom_section_devider').offsetTop < (window.innerHeight - document.getElementById('navigation_bar').scrollHeight)) { this.show = true }
+
         this.$store.dispatch('fetchComments', this.$store.state.postData.id)
       })
     } else {
@@ -166,7 +169,9 @@ export default {
       isRating: [false, false, false, false, false],
       submitRate: false,
       isShowRatingPopUp: false,
-      isFetchComment: false
+      isFetchComment: false,
+      ParentCommentPublisherId: '',
+      postRate: this.$store.state.postData.postRate
     }
   },
   components: {
@@ -184,12 +189,10 @@ export default {
       // tip console.log("WINDOW HEIGHT => " + window.innerHeight)
       // tip console.log("body HEIGHT => " + document.body.offsetHeight)
       // tip console.log("test HEIGHT => " + document.getElementById('test').offsetTop)
-      console.log(currentScrollPosition)
-      console.log(window.innerHeight)
-      console.log(document.getElementById('test').offsetTop)
+
       if (
         currentScrollPosition + window.innerHeight >=
-        document.getElementById('test').offsetTop
+        document.getElementById('topOfBottomSection').offsetTop
       ) {
         this.show = true
       } else {
@@ -220,21 +223,27 @@ export default {
       if (this.isComment) {
         this.$store.dispatch('submitComment', {
           PostId: this.$store.state.postData.id,
-          CommentText: this.commentText
+          CommentText: this.commentText,
+          postPublisherId: this.$store.state.postData.publisherId
         })
       }
       if (this.isReply) {
         this.$store.dispatch('submitCommentReply', {
           PostId: this.$store.state.postData.id,
           CommentText: this.commentText,
-          parentCommentId: this.parentCommentId
+          parentCommentId: this.parentCommentId,
+          postPublisherId: this.$store.state.postData.publisherId,
+          ParentCommentPublisherId: this.ParentCommentPublisherId
         })
       }
     },
     toReply (val) {
+      console.log('555555555555555555')
+      console.log(val)
       this.showCommentInput = true
       this.isReply = true
-      this.parentCommentId = val
+      this.parentCommentId = val.parentCommentId
+      this.ParentCommentPublisherId = val.ParentCommentPublisherId
     },
     mizounImgUrl (isClicked) {
       if (isClicked) {
@@ -244,10 +253,12 @@ export default {
       }
     },
     rating (index) {
+      this.$store.dispatch('updatePostRateOffline', { submitedRate: index, url: this.uniqueUrl })
       this.$store
         .dispatch('submitRating', {
           PostId: this.$store.state.postData.id,
-          rate: index
+          rate: index,
+          publisherId: this.$store.state.postData.publisherId
         })
         .then(() => {
           this.submitRate = true
@@ -263,6 +274,9 @@ export default {
         console.log('--')
         this.$set(this.isRating, i, false)
       }
+    },
+    fillterRateNumber (num) {
+      return num.toFixed(2)
     },
     showRatingPopUp () {
       this.isShowRatingPopUp = true
