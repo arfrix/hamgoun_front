@@ -305,3 +305,13 @@ textarea:focus {
     from {left: 0vw;opacity: 1;}
     to {left: -20vw;opacity: 0;}
 }
+
+.waiting-msg-container{
+    margin-top: 10vw;
+    margin-bottom: 19vw;
+}
+.waiting-msg{
+    font-size: 6vw;
+    font-family: IranSans;
+   color: rgb(112, 129, 167);
+}

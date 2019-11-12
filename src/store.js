@@ -182,7 +182,8 @@ export default new Vuex.Store({
     commentsList: '',
     postData: '',
     wait_for_fetch_home_page_private_mode_cards: false,
-    notifications: ''
+    notifications: '',
+    waitingForComments: false
     // commentToSend: ''
 
   },
@@ -291,6 +292,7 @@ export default new Vuex.Store({
       state.waitFor_fullDiscusion_cards = false
     },
     write_commentsList (state, data) {
+      state.waitingForComments = false
       state.commentsList = data
       state.waitingForRegister = false
     },
@@ -301,12 +303,6 @@ export default new Vuex.Store({
       state.notifications = data
     },
     writeTotalPostRateAndJudgesCount (state, data) {
-      // if (!localStorage.getItem(data.url)) {
-
-      // }
-      console.log('localStorage')
-      console.log(localStorage.getItem(data.url))
-      localStorage.setItem(data.url, true)
       state.postData.postRate = data.rate
       state.postData.judgesCount += 1
     }
@@ -692,6 +688,7 @@ export default new Vuex.Store({
     },
 
     async fetchComments ({ commit, state }, postId) {
+      state.waitingForComments = true
       let response = ''
       try {
         response = await Axios.get(baseUrl + '/Comments/GetCommentofPosts/' + postId)

@@ -88,23 +88,28 @@
       <div id="bottom_section_devider" class="col-m-8-5 devider-line"></div>
       <!--//tip agar bind nakony miad props ro be sorat string mifreste   -->
       <div class="col-m-10 comments-container">
-        <div
-          v-for="comment in this.$store.state.commentsList"
-          :key="comment.id"
-          class="col-m-10 looper"
-        >
-          <coment
-            v-bind:id="comment.id"
-            :publisherId="comment.publisherId"
-            :parentCommentId="comment.parentCommentId"
-            :isBig="!comment.isReply"
-            :username="comment.publisherUsername"
-            :imgUrl="comment.publisherImg"
-            :comment="comment.commentText"
-            @isReply="toReply"
-            :namizoun="comment.namizoun"
-            :mizoun="comment.mizoun"
-          ></coment>
+        <div v-if="this.$store.state.waitingForComments" class="col-m-10 waiting-msg-container">
+          <h3 class="waiting-msg"> ... کامنتا دارن میان</h3>
+        </div>
+        <div v-if="!this.$store.state.waitingForComments">
+          <div
+            v-for="comment in this.$store.state.commentsList"
+            :key="comment.id"
+            class="col-m-10 looper"
+          >
+            <coment
+              v-bind:id="comment.id"
+              :publisherId="comment.publisherId"
+              :parentCommentId="comment.parentCommentId"
+              :isBig="!comment.isReply"
+              :username="comment.publisherUsername"
+              :imgUrl="comment.publisherImg"
+              :comment="comment.commentText"
+              @isReply="toReply"
+              :namizoun="comment.namizoun"
+              :mizoun="comment.mizoun"
+            ></coment>
+          </div>
         </div>
         <!-- <coment :isBig="true"  username="hajji" imgUrl="" comment="سلام این ازمایش متنایتی برای کامنت می باشد که فلان است و بیسار که در جریان ان" ></coment>
                 <coment :isBig="false" username="sosora" imgUrl="" comment="سلام این ازمایش متنایتی برای کامنت می باشد که فلان است و بیسار که در جریان ان" ></coment>
