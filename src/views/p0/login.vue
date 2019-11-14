@@ -62,6 +62,7 @@ export default {
   beforeMount () {
     this.height = window.innerHeight
     console.log(window.innerHeight)
+    localStorage.removeItem('the_post_is_being_written_Id')
   },
 
   methods: {

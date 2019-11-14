@@ -23,6 +23,7 @@
             <bigCard
               class="col-m-9"
               :kind="item.kind"
+              :type="item.postType"
               :imgUrl="item.coverImgUrl"
               :title="item.title"
               :subCategory="item.subCategory"
@@ -70,6 +71,7 @@
               >
                 <miniCard
                   :kind="item.kind"
+                  :type="getTypeLable(item.postType , item.mainCategory)"
                   :imgUrl="item.coverImgUrl"
                   :title="item.title"
                   :subCategory="item.subCategory"
@@ -103,6 +105,7 @@
               >
                 <miniCard
                   :kind="item.kind"
+                  :type="getTypeLable(item.postType , item.mainCategory)"
                   :imgUrl="item.coverImgUrl"
                   :title="item.title"
                   :subCategory="item.subCategory"
@@ -142,7 +145,7 @@ export default {
   },
   beforeMount () {
     // this.$store.dispatch('fetch_home_page_cards',{'FollowerId':1,'MainCategory':1,'SubCategory':1})
-    this.$store.dispatch('fetch_jilizViliz_cards')
+    this.$store.dispatch('fetch_jilizViliz_cards', this.mainCat)
   },
 
   mounted () {
@@ -172,6 +175,9 @@ export default {
     this.$store.dispatch('actChangeMainCategory', -1)
     this.$store.dispatch('actChangeSubCategory', -1)
   },
+  computed: {
+
+  },
   methods: {
     // tip src binding!!!!
     getImgUrl (path) {
@@ -180,7 +186,11 @@ export default {
     defineMainCat (val) {
       this.mainCat = val
       this.isCatSelected = true
-      this.$store.dispatch('fetch_home_page_private_mode_cards', { layer: 125, mainCategory: this.mainCat })
+      if (this.isPrivate) {
+        this.$store.dispatch('fetch_home_page_private_mode_cards', { layer: 125, mainCategory: this.mainCat })
+      } else {
+        this.$store.dispatch('fetch_jilizViliz_cards', this.mainCat)
+      }
     },
     clicked () {
       this.$store.dispatch('actChangeMainCategory', -1)
@@ -230,7 +240,15 @@ export default {
         //! begin value of depth is one !
         this.$store.dispatch('fetch_home_page_private_mode_cards', { layer: depth, mainCategory: this.mainCat })
       }
+    },
+    getTypeLable (type, mainCategory) {
+      if (this.mainCat === -1) {
+        return this.$store.state.mainCategoryList[mainCategory].name
+      } else {
+        return type
+      }
     }
+
   }
 }
 </script>

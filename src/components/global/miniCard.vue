@@ -3,7 +3,8 @@
 
 <div class="col-m-1 card-main-div">
   <div class="card-lable-container">
-    <h5 class="lable">{{this.$store.state.subCategoryList[mainCategory][subCategory].name}}</h5>
+    <!-- <h5 class="lable">{{this.$store.state.subCategoryList[mainCategory][subCategory].name}}</h5> -->
+    <h5 class="lable">{{this.type}}</h5>
   </div>
 
   <!-- <div class="col-m-5 card-sections-container"> -->
@@ -40,7 +41,7 @@
 export default {
   name: 'miniCard',
   props: [
-    'kind', 'text', 'imgUrl', 'iconUrl', 'title', 'username', 'duration', 'mainCategory', 'subCategory'
+    'kind', 'text', 'imgUrl', 'iconUrl', 'title', 'username', 'duration', 'mainCategory', 'subCategory', 'type'
   ],
   data () {
     return {

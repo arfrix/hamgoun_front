@@ -4,8 +4,8 @@ import Axios from 'axios'
 
 Vue.use(Vuex)
 
-const baseUrl = 'http://45.82.136.106:8080'
-// const baseUrl = 'https://localhost:5001'
+// const baseUrl = 'http://45.82.136.106:8080'
+const baseUrl = 'https://localhost:5001'
 
 export default new Vuex.Store({
   state: {
@@ -303,8 +303,13 @@ export default new Vuex.Store({
       state.notifications = data
     },
     writeTotalPostRateAndJudgesCount (state, data) {
+      localStorage.setItem(data.url, true)
+
       state.postData.postRate = data.rate
       state.postData.judgesCount += 1
+    },
+    writeWaitingForComments (state, data) {
+      state.waitingForComments = data
     }
     // write_otherUser_profile_data (state, data) {
     //   state.otherUser_profile_data = data
@@ -387,6 +392,9 @@ export default new Vuex.Store({
     },
     actSetPostData ({ commit, state }, data) {
       commit('writePostData', data)
+    },
+    actSetWaitingForComments ({ commit, state }, data) {
+      commit('writeWaitingForComments', data)
     },
 
     // actOtherUser_profile_data ({ commit, state }, data) {
@@ -666,11 +674,12 @@ export default new Vuex.Store({
     //   }
     // },
 
-    async fetch_jilizViliz_cards ({ commit, state }) {
+    async fetch_jilizViliz_cards ({ commit, state }, mainCat) {
       state.waiteFor_fetch_jilizViliz_cards = true
       let response = ''
       try {
-        response = await Axios.get(baseUrl + '/Posts/newestPosts')
+        response = await Axios.get(baseUrl + '/Posts/newestPosts/' + mainCat)
+        console.log(response.data)
         commit('write_jilizViliz_cards', response.data)
       } catch (error) {
 
@@ -700,9 +709,10 @@ export default new Vuex.Store({
       }
     },
     async submitComment ({ commit, state }, params) {
+      let response = ''
       state.waitForSubmitaComment = true
       try {
-        await Axios.post(baseUrl + '/Comments', {
+        response = await Axios.post(baseUrl + '/Comments', {
           comment: {
             PublisherId: state.userId,
             PostId: params.PostId,
@@ -713,15 +723,18 @@ export default new Vuex.Store({
           PostPublisherId: params.postPublisherId
 
         })
+        console.log('submit comments')
+        console.log(response.data)
       } catch (error) {
 
       }
     },
     async submitCommentReply ({ commit, state }, params) {
+      console.log('replay params')
       console.log(params)
       state.waitForSubmitaComment = true
       try {
-        Axios.post(baseUrl + '/Comments', {
+        await Axios.post(baseUrl + '/Comments', {
           comment: {
             PublisherId: state.userId,
             PostId: params.PostId,
@@ -832,8 +845,9 @@ export default new Vuex.Store({
       if (localStorage.getItem(data.url) === null) {
         var rate = ((state.postData.judgesCount * state.postData.postRate) + data.submitedRate) / (state.postData.judgesCount + 1)
         commit('writeTotalPostRateAndJudgesCount', { rate: rate, url: data.url })
+      } else {
+        alert('قبلا به این پست امتیاز دادی')
       }
-      alert('قبلا به این پست امتیاز دادی')
     }
 
   }

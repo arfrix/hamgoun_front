@@ -15,7 +15,7 @@
       <div  class="col-m-9-5 card-container">
         <div v-if="showPostList && this.$store.state.my_postsList.status && !this.$store.state.waitFor_fetch_my_postList" class="column-direction">
             <div v-for="item in this.$store.state.my_postsList.data" :key="item.id" @click="goto_postPage(item)" class="column-direction">
-                <card :key="item.id" class="col-m-9"  :kind="item.kind" :imgUrl="item.coverImgUrl" :title="item.title" :mainCategory="item.mainCategory" :username="item.publisherUsername" duration="" :text="item.postSummary" ></card>
+                <card :key="item.id" class="col-m-9"  :kind="item.kind" :type="item.postType" :imgUrl="item.coverImgUrl" :title="item.title" :mainCategory="item.mainCategory" :username="item.publisherUsername" duration="" :text="item.postSummary" ></card>
             </div>
         </div>
         <div v-else>

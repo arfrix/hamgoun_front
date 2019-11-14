@@ -167,10 +167,12 @@ export default {
   },
   beforeMount () {
     if (!this.skipPostFetch) {
-      this.$store.dispatch('fetch_the_post_is_being_written', localStorage.the_post_is_being_written_Id).then(() => {
+      if (localStorage.the_post_is_being_written_Id !== undefined) {
+        this.$store.dispatch('fetch_the_post_is_being_written', localStorage.the_post_is_being_written_Id).then(() => {
         // tip to force update editor.vue
-        this.editherKey += 1
-      })
+          this.editherKey += 1
+        })
+      }
     }
 
     if (this.isDraft) {

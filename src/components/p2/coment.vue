@@ -39,7 +39,7 @@ export default {
 
   methods: {
     reply () {
-      this.replyData.parentCommentId = this.parentCommentId
+      this.replyData.parentCommentId = this.id
       this.replyData.ParentCommentPublisherId = this.publisherId
       if (this.isBig) { this.$emit('isReply', this.replyData) } else { this.$emit('isReply', this.replyData) }
     },

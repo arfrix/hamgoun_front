@@ -91,7 +91,7 @@
         <div v-if="this.$store.state.waitingForComments" class="col-m-10 waiting-msg-container">
           <h3 class="waiting-msg"> ... کامنتا دارن میان</h3>
         </div>
-        <div v-if="!this.$store.state.waitingForComments">
+        <div v-if="!this.$store.state.waitingForComments" class="col-m-10">
           <div
             v-for="comment in this.$store.state.commentsList"
             :key="comment.id"
@@ -146,15 +146,26 @@ export default {
   beforeMount () {
     if (this.isFetch) {
       this.$store.dispatch('fetchPostData', this.uniqueUrl).then(() => {
-        if (document.getElementById('bottom_section_devider').offsetTop < (window.innerHeight - document.getElementById('navigation_bar').scrollHeight)) { this.show = true }
+        if (document.getElementById('bottom_section_devider').offsetTop < (window.innerHeight - document.getElementById('navigation_bar').scrollHeight)) {
+          this.show = true
+        }
 
         this.$store.dispatch('fetchComments', this.$store.state.postData.id)
       })
     } else {
+      if (document.getElementById('bottom_section_devider').offsetTop < (window.innerHeight - document.getElementById('navigation_bar').scrollHeight)) {
+        this.show = true
+      }
+
       this.$store.dispatch('fetchComments', this.$store.state.postData.id)
     }
   },
   mounted () {
+    if (document.getElementById('bottom_section_devider').offsetTop < (window.innerHeight - document.getElementById('navigation_bar').scrollHeight)) {
+      this.show = true
+    }
+    this.$store.dispatch('actSetWaitingForComments', true)
+    this.$store.dispatch('fetchComments', this.$store.state.postData.id)
     this.$store.dispatch('addHamegyry', { postId: this.$store.state.postData.id })
     console.log('enter mounted')
     window.addEventListener('scroll', this.onScroll)
@@ -223,6 +234,7 @@ export default {
       }
     },
     submitComment () {
+      this.$store.dispatch('actSetWaitingForComments', true)
       console.log(this.$store.state.postData)
       console.log(this.commentText)
       if (this.isComment) {
@@ -230,6 +242,8 @@ export default {
           PostId: this.$store.state.postData.id,
           CommentText: this.commentText,
           postPublisherId: this.$store.state.postData.publisherId
+        }).then(() => {
+          this.$store.dispatch('fetchComments', this.$store.state.postData.id)
         })
       }
       if (this.isReply) {
@@ -239,6 +253,8 @@ export default {
           parentCommentId: this.parentCommentId,
           postPublisherId: this.$store.state.postData.publisherId,
           ParentCommentPublisherId: this.ParentCommentPublisherId
+        }).then(() => {
+          this.$store.dispatch('fetchComments', this.$store.state.postData.id)
         })
       }
     },
@@ -259,18 +275,20 @@ export default {
     },
     rating (index) {
       this.$store.dispatch('updatePostRateOffline', { submitedRate: index, url: this.uniqueUrl })
-      this.$store
-        .dispatch('submitRating', {
-          PostId: this.$store.state.postData.id,
-          rate: index,
-          publisherId: this.$store.state.postData.publisherId
-        })
-        .then(() => {
-          this.submitRate = true
-          setTimeout(() => {
-            this.isShowRatingPopUp = false
-          }, 200)
-        })
+      if (localStorage.getItem(this.$store.state.postData.uniqueUrl) === null) {
+        this.$store
+          .dispatch('submitRating', {
+            PostId: this.$store.state.postData.id,
+            rate: index,
+            publisherId: this.$store.state.postData.publisherId
+          })
+          .then(() => {
+            this.submitRate = true
+            setTimeout(() => {
+              this.isShowRatingPopUp = false
+            }, 200)
+          })
+      }
       for (let i = 0; i < index; i++) {
         console.log(index)
         this.$set(this.isRating, i, true)
