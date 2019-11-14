@@ -71,8 +71,6 @@
           <img  :src="getImgUrl(this.$store.state.mainCategoryList[mainCategory].img)" alt="" class="main-group-img">
         </div>
 
-        -->
-
         <div class="draft-btn" @click="showDraftList()">
             <h3 class="draft-btn-lable">پیش نویس ها</h3>
         </div>
@@ -90,6 +88,7 @@
       <div class="post-body-section" @click="body()" >
         <!-- <h5 v-if="!this.writingBody" class="body-placeholder" >قلم به فرمان توست</h5> -->
         <editor v-model="post_body" :key="editherKey"></editor>
+
         <div class="publish-btn" @click="gotoPublishDetail()">
             <h3 class="publish-btn-lable">انتشار</h3>
         </div>

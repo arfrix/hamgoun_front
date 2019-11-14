@@ -235,6 +235,7 @@ export default {
     },
     submitComment () {
       this.$store.dispatch('actSetWaitingForComments', true)
+      this.showCommentInput = false
       console.log(this.$store.state.postData)
       console.log(this.commentText)
       if (this.isComment) {

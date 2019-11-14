@@ -139,6 +139,8 @@ export default {
       }
     }
 
+    console.log('999999999999999999999999999')
+    console.log(this.value)
     this.editor.root.innerHTML = this.value
 
     this.editor.on('text-change', () => this.update())
@@ -146,10 +148,7 @@ export default {
 
   methods: {
     update () {
-      this.$emit(
-        'input',
-        this.editor.getText() ? this.editor.root.innerHTML : ''
-      )
+      this.$emit('input', this.editor.getText() ? this.editor.root.innerHTML : '')
     },
     enterKeyPressed () {
       console.log('***')
