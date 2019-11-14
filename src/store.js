@@ -685,11 +685,11 @@ export default new Vuex.Store({
 
       }
     },
-    async fetch_fullDiscusion_cards ({ commit, state }) {
+    async fetch_fullDiscusion_cards ({ commit, state }, mainCat) {
       state.waitFor_fullDiscusion_cards = true
       let response = ''
       try {
-        response = await Axios.get(baseUrl + '/Posts/')
+        response = await Axios.get(baseUrl + '/Posts/mostCommentedPosts/' + mainCat)
         commit('write_fullDiscusion_cards', response.data)
       } catch (error) {
 

@@ -95,11 +95,11 @@
           <div class="card-container">
             <!-- //! bayad jilizviliz o hamrahash ba  fullDiscusion jabeja beshan-->
             <div
-              v-if="!this.$store.state.waiteFor_fetch_jilizViliz_cards"
+              v-if="!this.$store.state.waitFor_fullDiscusion_cards"
               class="col-m-10 card-container list"
             >
               <div
-                v-for="item in this.$store.state.jilizViliz_cards"
+                v-for="item in this.$store.state.fullDiscusion_cards"
                 :key="item.id"
                 @click="goto_postPage(item)"
               >
@@ -146,6 +146,7 @@ export default {
   beforeMount () {
     // this.$store.dispatch('fetch_home_page_cards',{'FollowerId':1,'MainCategory':1,'SubCategory':1})
     this.$store.dispatch('fetch_jilizViliz_cards', this.mainCat)
+    this.$store.dispatch('fetch_fullDiscusion_cards', this.mainCat)
   },
 
   mounted () {
@@ -190,6 +191,7 @@ export default {
         this.$store.dispatch('fetch_home_page_private_mode_cards', { layer: 125, mainCategory: this.mainCat })
       } else {
         this.$store.dispatch('fetch_jilizViliz_cards', this.mainCat)
+        this.$store.dispatch('fetch_fullDiscusion_cards', this.mainCat)
       }
     },
     clicked () {
