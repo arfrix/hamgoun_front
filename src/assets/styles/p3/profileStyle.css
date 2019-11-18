@@ -285,3 +285,16 @@
   height: 18vw;
   border-radius: 50%;
 }
+.close-btn{
+  position: absolute;
+  right: 53vw;
+  top: 8.25vh;
+  width: 5.5vw;
+  height: 5.5vw;
+  border-radius: 50%;   
+  z-index: 100;
+  background-color: #14213D;
+}
+.close-btn-img{
+  width: 100%
+}

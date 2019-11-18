@@ -6,6 +6,9 @@
         <div class="notif-lable-container">
           <h3 class="notif-lable">رخداد ها</h3>
         </div>
+        <div class="close-btn" @click="isShowNotifSidebar = false">
+            <img src="../../assets/icons/delete-button.png" alt class="close-btn-img" />
+        </div>
 
         <div class="notif-list-looper">
           <div v-for="item in this.$store.state.notifications" :key="item.id" class="notif-card">
