@@ -18,7 +18,7 @@
         </div>
       </transition>
 
-      <popup v-if="isShowErrorMsg" @btn_clicked="goToLogin_onClicked()" :msg="errorMsg"></popup>
+      <popup v-if="isShowErrorMsg" @btn_clicked="isShowErrorMsg = false" :msg="errorMsg"></popup>
 
       <div v-if="show_publish_detail" class="col-m-10 publish-detail-container">
         <div class="col-m-6-5 upload-img-container center" @click="profileImg()">
