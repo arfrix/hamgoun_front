@@ -5,6 +5,9 @@
           <div class="sidebar-lable-container">
             <h3 class="sidebar-lable">پیش نویس ها</h3>
           </div>
+          <div class="close-btn" @click="isShowSidebar = false">
+            <img src="../../assets/icons/delete-button.png" alt class="close-btn-img" />
+          </div>
 
           <div  class="list-looper">
             <div v-for="(item,index) in this.$store.state.drafted_post_list" :key="item.id" class="deraft-card" @click="draftClicked(index)">

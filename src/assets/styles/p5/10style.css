@@ -372,7 +372,7 @@ input:focus {
     box-shadow:-5px 0px 6px #0000005e ;
   }
   .sidebar-lable-container{
-    margin-top: 2.5vh;
+    margin-top: 9.5vh;
   }
   .sidebar-lable{
     color: #fff;
@@ -420,3 +420,16 @@ input:focus {
   }
   
   
+  .close-btn{
+    position: absolute;
+    right: 53vw;
+    top: 8.25vh;
+    width: 5.5vw;
+    height: 5.5vw;
+    border-radius: 50%;   
+    z-index: 100;
+    background-color: #14213D;
+  }
+  .close-btn-img{
+    width: 100%
+  }
