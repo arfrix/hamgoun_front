@@ -2,7 +2,7 @@
 
 <div class="col-m-9-3 card-main-div">
   <div class="card-lable-container">
-    <h5 class="lable">lable</h5>
+    <h5 class="lable">{{this.type}}</h5>
   </div>
 
   <!-- <div class="col-m-5 card-sections-container"> -->
@@ -32,7 +32,7 @@
 export default {
   name: 'card',
   props: [
-    'kind', 'text', 'imgUrl', 'iconUrl', 'title', 'username', 'duration', 'mainCategory', 'subCategory'
+    'kind', 'text', 'imgUrl', 'iconUrl', 'title', 'username', 'duration', 'mainCategory', 'subCategory', 'type'
   ],
   data () {
     return {
