@@ -63,6 +63,9 @@
               </div>
           </div>
         </div>
+        <div v-if="IsPubishDetailError" class="error-container">
+          <h3 class="error-msg">{{this.publishDetailErrorMsg}}</h3>
+        </div>
         <div class="publish-detail-publish-btn" @click="publish">
             <h3 class="publish-btn-lable">انتشار</h3>
         </div>
@@ -163,7 +166,9 @@ export default {
       second_tag: '',
       isShowErrorMsg: false,
       type_input_valueL: '',
-      errorMsg: ''
+      errorMsg: '',
+      publishDetailErrorMsg: '',
+      IsPubishDetailError: false
 
     }
   },
@@ -262,18 +267,25 @@ export default {
     //   console.log('nOrr' + this.titleAvailble)
     // },
     publish () {
-      this.$store.dispatch('update_post', { propName: 'postSummary', value: this.post_summery }).then(() => {
-        this.$store.dispatch('update_post', { propName: 'publisherUsername', value: this.$store.state.user_profile_data.userName }).then(() => {
-          this.$store.dispatch('update_post', { propName: 'publisherProfileImg', value: this.$store.state.user_profile_data.profileImgUrl }).then(() => {
-            // this.$store.dispatch('update_post', { propName: 'firstTag', value: this.first_tag }).then
-            this.$store.dispatch('update_post', { propName: 'firstTag', value: this.first_tag }).then(() => {
-              this.$store.dispatch('update_post', { propName: 'secondTag', value: this.second_tag }).then(() => {
-                this.$store.dispatch('publish_post')
+      if (this.typeLable === 'نوع' || this.typeLable === '') {
+        this.publishDetailErrorMsg = 'نوع پستت رو مشخص نکردی'
+        this.IsPubishDetailError = true
+      } else {
+        this.IsPubishDetailError = false
+        this.$store.dispatch('update_post', { propName: 'postSummary', value: this.post_summery }).then(() => {
+          this.$store.dispatch('update_post', { propName: 'publisherUsername', value: this.$store.state.user_profile_data.userName }).then(() => {
+            this.$store.dispatch('update_post', { propName: 'publisherProfileImg', value: this.$store.state.user_profile_data.profileImgUrl }).then(() => {
+              this.$store.dispatch('update_post', { propName: 'postType', value: this.typeLable }).then(() => {
+                this.$store.dispatch('update_post', { propName: 'firstTag', value: this.first_tag }).then(() => {
+                  this.$store.dispatch('update_post', { propName: 'secondTag', value: this.second_tag }).then(() => {
+                    this.$store.dispatch('publish_post')
+                  })
+                })
               })
             })
           })
         })
-      })
+      }
     },
     gotoPublishDetail () {
       if (localStorage.userId === undefined || localStorage.userName === undefined) {

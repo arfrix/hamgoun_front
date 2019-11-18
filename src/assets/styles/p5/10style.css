@@ -433,3 +433,10 @@ input:focus {
   .close-btn-img{
     width: 100%
   }
+  .error-container{
+    margin-top: 20vw;
+  }
+  .error-msg{
+    font-family: IranSans_Light;
+    color: rgb(216, 6, 6);
+  }
