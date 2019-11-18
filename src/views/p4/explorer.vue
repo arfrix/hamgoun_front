@@ -37,7 +37,7 @@
           <div v-if="isSwitchClicked[1] && showResult">
                 <div v-if="this.$store.state.contentSearch_result.status" class="post-loop-container" >
                     <div v-for="item in this.$store.state.contentSearch_result.data" :key="item.id"  @click="goto_postPage(item)">
-                    <postCard  class="col-m-9"  :kind="item.kind" :imgUrl="item.coverImgUrl" :title="item.title" :subCategory="item.subCategory" :mainCategory="item.mainCategory" :username="item.publisherUsername" duration="" :text="item.postSummary" ></postCard>
+                    <postCard  class="col-m-9"  :kind="item.kind" :type="getTypeLable(item.postType , item.mainCategory)" :imgUrl="item.coverImgUrl" :title="item.title" :subCategory="item.subCategory" :mainCategory="item.mainCategory" :username="item.publisherUsername" duration="" :text="item.postSummary" ></postCard>
                    </div>
                 </div>
                 <div  v-else>
@@ -185,6 +185,13 @@ export default {
       this.$store.dispatch('actSetPostData', data).then(() => {
         this.$router.push({ name: 'postPage', params: { uniqueUrl: data.uniqueUrl, isFetch: false } })
       })
+    },
+    getTypeLable (type, mainCategory) {
+      if (this.mainCat === -1) {
+        return this.$store.state.mainCategoryList[mainCategory].name
+      } else {
+        return type
+      }
     }
 
   }
