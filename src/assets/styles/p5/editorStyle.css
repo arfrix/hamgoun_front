@@ -132,7 +132,7 @@
     
     bottom: 16vw;
     z-index: 1;
-    background-color: #191f26;
+    /* background-color: #191f26; */
     height: 10vw;
     width: 11vw;
     display: flex;
