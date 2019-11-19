@@ -1,6 +1,7 @@
 
 <template>
   <div class="profile-main-div" :style="{height:height + 'px'}">
+    <popup v-if="isShowLoginPopup" @btn_clicked="goToLogin_onClicked()" msg="نیازه یبار وارد حسابت بشی ، چون الان نمیدونیم پروفایل کی رو باید نشون بدیم " class="popup"></popup>
     <transition name="notif-transition">
       <div v-if="isShowNotifSidebar" class="notif-side-bar">
         <div class="notif-lable-container">
@@ -63,7 +64,7 @@
           </div>
           <div class="col-m-4 data-container">
             <div class="follower-section">
-              <h3 class="number">{{this.profileData.hamegyry}}</h3>
+              <h3 class="number">{{hamegyry(this.profileData.hamegyry)}}</h3>
               <h3 class="follower-section-lable">همه گیری</h3>
             </div>
             <div class="viewed-section">
@@ -105,12 +106,14 @@
 import bio from '../../components/p3/bio'
 import myContent from '../../components/p3/myContent'
 import Axios from 'axios'
+import popup from '../../components/global/msgPopup'
 
 export default {
   name: 'profile',
   components: {
     bio,
-    myContent
+    myContent,
+    popup
   },
   props: {
     profile: {
@@ -129,18 +132,23 @@ export default {
       witchTab: [true, false],
       show_topSection: true,
       profileData: '',
-      isShowNotifSidebar: false
+      isShowNotifSidebar: false,
+      isShowLoginPopup: false
     }
   },
 
   beforeMount () {
     this.height = window.innerHeight
-    if (this.profile === undefined) {
-      this.$store.dispatch('fetch_user_profile_data', this.id).then(() => {
-        this.profileData = this.$store.state.user_profile_data
-      })
+    if (localStorage.userId === undefined || localStorage.userName === undefined) {
+      this.isShowLoginPopup = true
     } else {
-      this.profileData = this.profile
+      if (this.profile === undefined) {
+        this.$store.dispatch('fetch_user_profile_data', this.id).then(() => {
+          this.profileData = this.$store.state.user_profile_data
+        })
+      } else {
+        this.profileData = this.profile
+      }
     }
 
     this.$store.dispatch('actSetWitch_route_we_are', 12)
@@ -164,6 +172,13 @@ export default {
     getImgUrl (path) {
       return 'http://45.82.136.106:8080/images/' + path
     },
+    hamegyry (num) {
+      if (num === undefined) {
+        return 0
+      } else {
+        return num
+      }
+    },
 
     tabNavigate (tabNum) {
       this.show_topSection = false
@@ -186,8 +201,13 @@ export default {
       }
     },
     showNotif () {
-      this.isShowNotifSidebar = true
-      this.$store.dispatch('fetchNotif')
+      if (!this.isShowLoginPopup) {
+        this.isShowNotifSidebar = true
+        this.$store.dispatch('fetchNotif')
+      }
+    },
+    goToLogin_onClicked () {
+      this.$router.push('/landing')
     },
     profileImg () {
       if (!this.is_other_user_profile) {
