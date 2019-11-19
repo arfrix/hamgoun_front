@@ -1,5 +1,6 @@
 <template>
   <div class="main">
+    <popup v-if="isShowLoginPopup" @btn_clicked="goToLogin_onClicked()" msg="نیازه یبار وارد حسابت بشی ، چون الان نمیدونیم کیا رو پیگیری میکنی "></popup>
     <div class="row topRow">
       <list :isTopRound="true" @mainCatDefine="defineMainCat"></list>
     </div>
@@ -134,6 +135,7 @@ import campainCard from '../../components/global/campainCard'
 import miniCard from '../../components/global/miniCard'
 import list from '../../components/global/categoryList'
 import bigCard from '../../components/global/card'
+import popup from '../../components/global/msgPopup'
 
 export default {
   name: '1',
@@ -141,7 +143,8 @@ export default {
     list,
     miniCard,
     campainCard,
-    bigCard
+    bigCard,
+    popup
   },
   beforeMount () {
     // this.$store.dispatch('fetch_home_page_cards',{'FollowerId':1,'MainCategory':1,'SubCategory':1})
@@ -169,7 +172,8 @@ export default {
       witchModeLable: 0,
       witchModeImg: 'icons/chain.png',
       isCatSelected: false,
-      mainCat: -1
+      mainCat: -1,
+      isShowLoginPopup: false
     }
   },
   destroyed () {
@@ -232,15 +236,19 @@ export default {
       this.$router.push('/campainPage')
     },
     changeMode (depth) {
-      if (this.isPrivate) {
-        this.isPrivate = false
-
-        this.witchModeImg = 'icons/chain.png'
+      if (localStorage.userId === undefined || localStorage.userName === undefined) {
+        this.isShowLoginPopup = true
       } else {
-        this.isPrivate = true
-        this.witchModeImg = 'icons/yellowChain.png'
-        //! begin value of depth is one !
-        this.$store.dispatch('fetch_home_page_private_mode_cards', { layer: depth, mainCategory: this.mainCat })
+        if (this.isPrivate) {
+          this.isPrivate = false
+
+          this.witchModeImg = 'icons/chain.png'
+        } else {
+          this.isPrivate = true
+          this.witchModeImg = 'icons/yellowChain.png'
+          //! begin value of depth is one !
+          this.$store.dispatch('fetch_home_page_private_mode_cards', { layer: depth, mainCategory: this.mainCat })
+        }
       }
     },
     getTypeLable (type, mainCategory) {
@@ -249,6 +257,9 @@ export default {
       } else {
         return type
       }
+    },
+    goToLogin_onClicked () {
+      this.$router.push('/landing')
     }
 
   }
