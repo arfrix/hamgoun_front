@@ -767,6 +767,7 @@ export default new Vuex.Store({
     },
 
     async submitRating ({ commit, state }, params) {
+      console.log('on rating action')
       try {
         await Axios.post(baseUrl + '/Events/PostRating', {
           ActorId: state.userId,

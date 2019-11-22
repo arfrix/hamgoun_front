@@ -275,7 +275,6 @@ export default {
       }
     },
     rating (index) {
-      this.$store.dispatch('updatePostRateOffline', { submitedRate: index, url: this.uniqueUrl })
       if (localStorage.getItem(this.$store.state.postData.uniqueUrl) === null) {
         this.$store
           .dispatch('submitRating', {
@@ -283,12 +282,15 @@ export default {
             rate: index,
             publisherId: this.$store.state.postData.publisherId
           })
+        this.$store.dispatch('updatePostRateOffline', { submitedRate: index, url: this.uniqueUrl })
           .then(() => {
             this.submitRate = true
             setTimeout(() => {
               this.isShowRatingPopUp = false
             }, 200)
           })
+      } else {
+        console.log(localStorage.getItem(this.$store.state.postData.uniqueUrl))
       }
       for (let i = 0; i < index; i++) {
         console.log(index)
