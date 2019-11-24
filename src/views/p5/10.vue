@@ -73,8 +73,8 @@
       </div>
      <div class="add-post-top-section">
         <div class="col-m-2-5 main-group-section" >
-          <h5  class="main-group-lable">{{this.$store.state.mainCategoryList[this.mainCategory].name}}</h5>
-          <img  :src="getImgUrl(this.$store.state.mainCategoryList[mainCategory].img)" alt="" class="main-group-img">
+          <h5  class="main-group-lable">{{this.$store.state.mainCategoryList[this.MainCategory].name}}</h5>
+          <img  :src="getImgUrl(this.$store.state.mainCategoryList[MainCategory].img)" alt="" class="main-group-img">
         </div>
 
         <div class="draft-btn" @click="showDraftList()">
