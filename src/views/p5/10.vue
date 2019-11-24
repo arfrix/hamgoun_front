@@ -66,7 +66,7 @@
         <div v-if="IsPubishDetailError" class="error-container">
           <h3 class="error-msg">{{this.publishDetailErrorMsg}}</h3>
         </div>
-        <div class="publish-detail-publish-btn" @click="publish">
+        <div class="publish-detail-publish-btn" @click.once="publish">
             <h3 class="publish-btn-lable">انتشار</h3>
         </div>
 
