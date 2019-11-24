@@ -406,8 +406,8 @@ input:focus {
     margin-bottom: 1.8vw;
   }
   .publish-detail-publish-btn{
-    position: absolute;
-    bottom: 7vh;
+    position: fixed;
+    bottom: 10vh;
     border:1px solid #FFD615;
     border-radius: 8px;
     padding-right: 5.5vw;
@@ -416,7 +416,7 @@ input:focus {
     padding-bottom: 0.5vw;
     box-shadow:0px 3px 6px #00000031 ;
     width: 32vw;
-    margin-top: 2vw;
+    
   }
   
   
