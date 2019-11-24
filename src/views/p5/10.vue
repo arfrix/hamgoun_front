@@ -279,7 +279,9 @@ export default {
               this.$store.dispatch('update_post', { propName: 'postType', value: this.typeLable }).then(() => {
                 this.$store.dispatch('update_post', { propName: 'firstTag', value: this.first_tag }).then(() => {
                   this.$store.dispatch('update_post', { propName: 'secondTag', value: this.second_tag }).then(() => {
-                    this.$store.dispatch('publish_post')
+                    this.$store.dispatch('publish_post').then(() => {
+                      this.$router.push('/home')
+                    })
                   })
                 })
               })
@@ -341,6 +343,7 @@ export default {
     },
     type_input_onClick () {
       this.show_ph4 = false
+      this.IsPubishDetailError = false
       document.getElementById('pd_input4').focus()
       document.getElementById('pd_input1').blur()
       document.getElementById('pd_input2').blur()
@@ -352,10 +355,12 @@ export default {
     },
     showTypeList () {
       this.isShowTypeList = !this.isShowTypeList
+      this.IsPubishDetailError = false
     },
     typeCardOnClick (index) {
       this.typeLable = this.types[index]
       this.isShowTypeList = false
+      this.IsPubishDetailError = false
     },
 
     profileImg () {
