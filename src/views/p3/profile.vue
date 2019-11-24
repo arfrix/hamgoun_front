@@ -68,7 +68,7 @@
               <h3 class="follower-section-lable">همه گیری</h3>
             </div>
             <div class="viewed-section">
-              <h3 class="number">0</h3>
+              <h3 class="number">00:00</h3>
               <h3 class="viewed-section-lable">همراهی</h3>
             </div>
           </div>
