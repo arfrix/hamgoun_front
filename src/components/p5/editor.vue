@@ -3,7 +3,7 @@
     <div id="editor" class="test" v-on:keydown.enter="enterKeyPressed()"></div>
 
     <transition name="totil">
-      <div v-show="iSshowToolTip" id="toolbar" class="custom-toobar-style" >
+      <div v-show="iSshowToolTip && iSshowToolTipProp" id="toolbar" class="custom-toobar-style" >
           <select class="ql-size">
             <option value="small"></option>
             <!-- Note a missing, thus falsy value, is used to reset to default -->
@@ -38,6 +38,10 @@ export default {
     value: {
       type: String,
       default: ''
+    },
+    iSshowToolTipProp: {
+      type: Boolean,
+      default: true
     }
   },
 

@@ -93,7 +93,7 @@
       </div>
       <div class="post-body-section" @click="body()" >
         <!-- <h5 v-if="!this.writingBody" class="body-placeholder" >قلم به فرمان توست</h5> -->
-        <editor v-model="post_body" :key="editherKey"></editor>
+        <editor v-model="post_body" :key="editherKey" :iSshowToolTipProp="iShowToolTip"></editor>
 
         <div class="publish-btn" @click="gotoPublishDetail()">
             <h3 class="publish-btn-lable">انتشار</h3>
@@ -168,7 +168,8 @@ export default {
       type_input_valueL: '',
       errorMsg: '',
       publishDetailErrorMsg: '',
-      IsPubishDetailError: false
+      IsPubishDetailError: false,
+      iShowToolTip: true
 
     }
   },
@@ -297,6 +298,7 @@ export default {
           this.isShowErrorMsg = true
         } else {
           this.show_publish_detail = true
+          this.iShowToolTip = false
         }
       }
     },
