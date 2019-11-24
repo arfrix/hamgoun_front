@@ -273,8 +273,8 @@ export default {
       } else {
         this.IsPubishDetailError = false
         this.$store.dispatch('update_post', { propName: 'postSummary', value: this.post_summery }).then(() => {
-          this.$store.dispatch('update_post', { propName: 'publisherUsername', value: this.$store.state.user_profile_data.userName }).then(() => {
-            this.$store.dispatch('update_post', { propName: 'publisherProfileImg', value: this.$store.state.user_profile_data.profileImgUrl }).then(() => {
+          this.$store.dispatch('update_post', { propName: 'publisherUsername', value: localStorage.userName }).then(() => {
+            this.$store.dispatch('update_post', { propName: 'publisherProfileImg', value: localStorage.profileImgUrl }).then(() => {
               this.$store.dispatch('update_post', { propName: 'postType', value: this.typeLable }).then(() => {
                 this.$store.dispatch('update_post', { propName: 'firstTag', value: this.first_tag }).then(() => {
                   this.$store.dispatch('update_post', { propName: 'secondTag', value: this.second_tag }).then(() => {
