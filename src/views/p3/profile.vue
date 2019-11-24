@@ -94,7 +94,7 @@
       </div>
 
       <div class="bottom-section">
-        <bio v-if="witchTab[0]" :is_other_user_bio="ou" :profile="profileData"></bio>
+        <bio v-if="witchTab[0]" :is_other_user_bio="isOtherUser" :profile="profileData"></bio>
         <myContent v-if="witchTab[1]" :is_other_user_content="isOtherUser()" :Id="id"></myContent>
       </div>
     </div>
