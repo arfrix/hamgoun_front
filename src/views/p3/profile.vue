@@ -35,7 +35,7 @@
         <div class="col-m-10 two-icon-container">
           <img
             v-if="!this.isOtherUser()"
-            src="../../assets/icons/settings.png"
+            src="../../assets/icons/paper-plane.png"
             alt
             class="two-icon-img1"
           />
