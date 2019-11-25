@@ -23,7 +23,7 @@
         <div class="col-m-10 inputs-container" >
             <div v-for="(item,name,index) in this.bioInputPlaceHolders[this.tab]" @click="inputClicked(index)" :key="item" :class="inputContainerStyle(bioInputSideLight[index])" >
                 <h3 v-if="bioPlaceHolderToShow[index]" :class="placeHolder(isFilled[index])">{{item}}</h3>
-                <input  type="text" v-bind:id="bioInputId[index]"  v-model="bioFieldData[index]" class="col-m-9 input">
+                <input :disabled='is_other_user_bio'  type="text" v-bind:id="bioInputId[index]"  v-model="bioFieldData[index]" class="col-m-9 input">
             </div>
         </div>
 
@@ -195,38 +195,62 @@ export default {
       if (this.profile.work_job != undefined) {
         this.bioInputPlaceHolders[1].q1 = this.profile.work_job
         this.$set(this.isFilled, 0, true)
+      }else{
+        this.bioInputPlaceHolders[1].q1 = "چیزی نگفته"
+        this.$set(this.isFilled, 0, true)
       }
       if (this.profile.work_company != undefined) {
         this.bioInputPlaceHolders[1].q2 = this.profile.work_company
-        this.$set(this.isFilled, 1, true)
+        this.$set(this.isFilled, 1, false)
+      }else{
+        this.bioInputPlaceHolders[1].q2 = "چیزی نگفته"
+        this.$set(this.isFilled, 1, false)
       }
     },
     bioLanguageCheck () {
       if (this.profile.languge_motherTongue != undefined) {
         this.bioInputPlaceHolders[2].q1 = this.profile.languge_motherTongue
         this.$set(this.isFilled, 0, true)
+      }else{
+        this.bioInputPlaceHolders[2].q1 = "چیزی نگفته"
+        this.$set(this.isFilled, 0, false)
       }
       if (this.profile.languge_dialect != undefined) {
         this.bioInputPlaceHolders[2].q2 = this.profile.languge_dialect
         this.$set(this.isFilled, 1, true)
+      }else{
+        this.bioInputPlaceHolders[2].q2 = "چیزی نگفته"
+        this.$set(this.isFilled, 1, false)
       }
       if (this.profile.languge_secondLangName != undefined) {
         this.bioInputPlaceHolders[2].q3 = this.profile.languge_secondLangName
         this.$set(this.isFilled, 2, true)
+      }else{
+        this.bioInputPlaceHolders[2].q3 = "چیزی نگفته"
+        this.$set(this.isFilled, 2, false)
       }
     },
     bioLocationCheck () {
       if (this.profile.location_motherTown != undefined) {
         this.bioInputPlaceHolders[3].q1 = this.profile.location_motherTown
         this.$set(this.isFilled, 0, true)
+      }else{
+        this.bioInputPlaceHolders[3].q1 = "چیزی نگفته"
+        this.$set(this.isFilled, 0, false)
       }
       if (this.profile.location_livingCountry != undefined) {
         this.bioInputPlaceHolders[3].q2 = this.profile.location_livingCountry
         this.$set(this.isFilled, 1, true)
+      }else{
+        this.bioInputPlaceHolders[3].q2 = "چیزی نگفته"
+        this.$set(this.isFilled, 1, false)
       }
       if (this.profile.location_livingTown != undefined) {
         this.bioInputPlaceHolders[3].q3 = this.profile.location_livingTown
         this.$set(this.isFilled, 2, true)
+      }else{
+        this.bioInputPlaceHolders[3].q3 = "چیزی نگفته"
+        this.$set(this.isFilled, 2, false)
       }
     },
     update () {
