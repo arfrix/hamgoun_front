@@ -31,7 +31,7 @@
 .mainCategory-container-bordered{
     background: linear-gradient(180deg, rgba(20,33,61,1) 0%, rgba(26,41,73,1) 100%);
     border-bottom:1px solid #FFD615;
-    padding-top: 2.5vw;
+    padding-top: 2vw;
     padding-bottom: 0.5vw;
     border-radius: 0px 0px 19px 19px;
     box-shadow:0px 3px 6px rgba(0, 0, 0, 0.315) ;
@@ -150,8 +150,11 @@
 }
 
 .selected-line{
-    width: 6vw;
-    border: 1.5px solid #F95959;
+    /* width: 6vw; */
+    /* border: 1.5px solid #F95959; */
     border-radius: 15px;
     margin-top: 1.5vw;
+    font-family:IranSans_UltraLight ;
+    font-size: 3vw;
+    color: #F95959;
 }

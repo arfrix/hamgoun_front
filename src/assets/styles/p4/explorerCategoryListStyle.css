@@ -178,10 +178,11 @@
     color: #FFD615
 }
 .selected-line{
-    width: 6vw;
-    border: 1.5px solid #F95959;
     border-radius: 15px;
     margin-top: 1.5vw;
+    font-family:IranSans_Light ;
+    font-size: 3vw;
+    color: rgb(0, 0, 0);
 }
 .ml{
     margin-left: 4vw;
