@@ -10,6 +10,7 @@ import Profile from './views/p3/profile.vue'
 import Explorer from './views/p4/explorer.vue'
 import AddPost from './views/p5/addPost.vue'
 import CampainPage from './views/p1/campainPage.vue'
+import otherUserProfile from './views/p3/otherUserProfile.vue'
 
 Vue.use(Router)
 
@@ -56,6 +57,13 @@ export default new Router({
       path: '/profile/:me/:id',
       name: 'myProfile',
       component: Profile,
+      props: true
+
+    },
+    {
+      path: '/othersProfile/:me/:id',
+      name: 'othersProfile',
+      component: otherUserProfile,
       props: true
 
     },

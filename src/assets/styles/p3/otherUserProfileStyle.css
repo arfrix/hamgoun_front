@@ -1,0 +1,304 @@
+
+.profile-main-div{
+    display: flex;
+    flex-direction: column;
+    background-color: #14213D;
+}
+.top-section{
+    position: relative;
+    height: 60vw;
+    
+}
+.top-section-bc-img{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    
+}
+.profile-img-container{
+     position: relative;
+    
+    width: 18vw;
+    height: 18vw;
+    border-radius: 50%;
+    /* overflow: hidden; */
+    box-shadow:0px 3px 6px #00000028 ;
+    background-image: url(../../icons/user.png);
+    background-size: cover;
+}
+.top-section-text{
+    position: absolute;
+    top:2vw;
+    /* height: 20vw; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+}
+.username-container{
+    font-family: IranSans;
+    font-size: 4vw;
+    color: rgb(97, 97, 97);
+    margin-bottom: 7vw;
+    margin-top: 1.5vw;
+}
+.data-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.follower-section{
+    display: flex;
+    flex-direction: column;
+}
+.viewed-section{
+    display: flex;
+    flex-direction: column;
+}
+.number{
+    font-size: 5.5vw;
+    font-family: IranSans_Black;
+}
+.follower-section-lable{
+    font-size: 3.5vw;
+    font-family: IranSans_Light;
+    color: #05050581;
+}
+.viewed-section-lable{
+    font-size: 3.5vw;
+    font-family: IranSans_Light;
+    color: #05050581;
+}
+
+
+
+
+.middle-section{
+    position: relative;
+    
+    /* height: 10vw; */
+}
+.tabs-div{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around; 
+    color: #fff;
+    font-family: IranSans_Light;
+    padding-top:3vw;
+    padding-bottom:3vw;
+}
+.tab1-div{
+    position: relative;
+}
+.tab2-div{
+    position: relative;
+}
+.tab3-div{
+    position: relative;
+}
+.colored-line{
+    margin: auto;
+    margin-top: 2vw;
+    width: 20%;
+    height: 0px;
+    border: 0.5vw solid #F95959;
+    background-color: #F95959;
+    border-radius: 5px;
+}
+
+.devider-line{
+    position: absolute;
+    bottom: 3.25vw;
+    right: 5vw;
+    height: 0px;
+    /* border: 1px solid #444967; */
+    border: 1px solid #444967;
+}
+
+.tap-icon{
+    width: 18%;
+}
+
+.fade-enter-active {
+    transition: opacity 0.5s;
+    transition-delay: 0.2s;
+  }
+.fade-leave-active{
+    transition: opacity 0.3s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+
+}
+
+  .animat-container-to-up{
+    position: absolute;
+    
+    animation-name: up;
+    animation-duration: 0.5s;  
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+  }
+  .animat-container-to-down{
+    position: absolute;
+    
+    animation-name: down;
+    animation-duration: 0.5s;  
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes up {
+    from {top: 60vw;}
+    to {top: 0;}
+  }
+  @keyframes down {
+    from {top: 0px;}
+    to {top: 60vw;}
+  }
+
+
+
+
+  .two-icon-container{
+      width: 96%;
+      position: absolute;
+      top: 1vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-right: 2vw;
+      padding-left: 2vw;
+      z-index: 4;
+  }
+  .two-icon-img1{
+      width: 7vw;
+      
+  }
+  .two-icon-img2{
+      width: 7vw;
+  }
+
+
+
+  .notif-transition-enter{
+    right: -60vw;
+  }
+  .notif-transition-enter-to{
+    
+    animation-name: come;
+    animation-duration: 0.5s;  
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+  }
+  .notif-transition-leave-to{
+    animation-name: go;
+    animation-duration: 0.5s;  
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+  }
+  @keyframes come {
+    from {right: -60vw;}
+    to {right: 0px; opacity: 1;}
+  }
+  @keyframes go {
+    from {right: 0px;}
+    to {right: -60vw;}
+  }
+
+ .notif-side-bar{
+    height: 100vh;
+    width: 60vw;
+    position: fixed;
+    bottom: 0;
+    right: 0vw;
+    background-color: rgb(26, 41, 73);
+    z-index: 100;
+    opacity: 1;
+    overflow-y: scroll;
+    /* border-left: 1px solid #FFD615; */
+    box-shadow:-5px 0px 6px #0000005e ;
+  }
+  .notif-lable-container{
+    margin-top: 9.5vh;
+  }
+  .notif-lable{
+    color: #fff;
+    font-family: IranSans;
+    font-size: 5vw;
+  }
+  .notif-list-looper{
+      margin-top: 5vw;
+      border-top: 1px solid #FFD615;
+  }
+  .notif-card{
+      width: 55vw;
+      display: flex;
+      flex-direction:row;
+      align-items: center;
+      direction: rtl;
+      margin: auto;
+      margin-top: 5vw;
+        padding-bottom: 3vw;
+      border-bottom: 1px solid #FFD615;
+  }
+  .notif-card-title{
+    font-family: IranSans;
+    font-size: 3.9vw;
+    color: #fff;
+    
+  }
+  .notif-action{
+    font-family: IranSans_UltraLight;
+    font-size: 3.7vw;
+    color: rgb(230, 230, 230);
+  }
+  .notif-profile-img-container{
+    /* position: absolute;
+    top: 6vw;
+    right: 39vw; */
+    width: 10vw;
+    height: 10vw;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow:0px 3px 6px #00000028 ;
+    background-image: url(../../icons/user.png);
+    background-size: cover;
+}
+.notif-card-text{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 3.5vw;
+}
+.profile-img-add-btn{
+  position: absolute;
+  bottom: -2.5vw;
+  left: -2.5vw;
+  width: 5vw;
+  z-index: 5;
+}
+.profile-img{
+  width: 18vw;
+  height: 18vw;
+  border-radius: 50%;
+}
+.close-btn{
+  position: absolute;
+  right: 53vw;
+  top: 8.25vh;
+  width: 5.5vw;
+  height: 5.5vw;
+  border-radius: 50%;   
+  z-index: 100;
+  background-color: #14213D;
+}
+.close-btn-img{
+  width: 100%
+}
+
+.popup{
+  margin-top:5vh
+}

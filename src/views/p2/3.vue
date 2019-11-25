@@ -312,10 +312,11 @@ export default {
     },
     gotoProfile () {
       this.$router.push({
-        name: 'myProfile',
+        name: 'othersProfile',
         params: {
           me: false,
-          id: this.$store.state.postData.publisherId
+          id: this.$store.state.postData.publisherId,
+          isFetchNeed: true
         }
       })
     }

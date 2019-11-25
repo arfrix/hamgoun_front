@@ -171,6 +171,7 @@ export default new Vuex.Store({
     // ! api response container -----------------------
     home_page_cards: '',
     user_profile_data: '',
+    other_user_profile_data: '',
     is_other_user_profile: false,
     // otherUser_profile_data: '',
     the_post_is_being_written: '',
@@ -247,6 +248,9 @@ export default new Vuex.Store({
       state.user_profile_data = data
       localStorage.userName = data.userName
       localStorage.profileImgUrl = data.profileImgUrl
+    },
+    write_otherUser_profile_data (state, data) {
+      state.other_user_profile_data = data
     },
     write_on_userProfile (state, data) {
       console.log('from mutation ' + data.propName + ' ' + data.value)
@@ -325,9 +329,6 @@ export default new Vuex.Store({
     writeWaitingForComments (state, data) {
       state.waitingForComments = data
     }
-    // write_otherUser_profile_data (state, data) {
-    //   state.otherUser_profile_data = data
-    // }
 
   },
   actions: {
@@ -455,6 +456,20 @@ export default new Vuex.Store({
         console.log(response.data)
 
         commit('writeUser_profile_data', response.data)
+      } catch (error) {
+
+      }
+    },
+    async fetch_other_user_profile_data ({ commit, state }, userId) {
+      state.inProgress = true
+
+      let response = ''
+      try {
+        response = await Axios.get(baseUrl + '/Users/' + userId)
+
+        console.log(response.data)
+
+        commit('write_otherUser_profile_data', response.data)
       } catch (error) {
 
       }

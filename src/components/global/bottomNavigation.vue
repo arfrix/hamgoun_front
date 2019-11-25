@@ -42,7 +42,7 @@ export default {
         this.$store.dispatch('actSetWitch_route_we_are', 12)
         this.$router.push({ name: 'myProfile', params: { me: true, id: parseInt(localStorage.userId), isFetchNeed: true } })
         // this.$router.push({ name: 'profile', params: { profile: undefined, is_other_user_profile: false } })
-        this.$store.dispatch('actChangeSubCategoryList', false)
+        // this.$store.dispatch('actChangeSubCategoryList', false)
       }
     },
 
