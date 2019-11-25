@@ -94,7 +94,7 @@
       </div>
 
       <div class="bottom-section">
-        <bio v-if="witchTab[0]" :is_other_user_bio="isOtherUser" :profile="profileData"></bio>
+        <bio v-if="witchTab[0]" :is_other_user_bio="isOtherUser()" :profile="profileData"></bio>
         <myContent v-if="witchTab[1]" :is_other_user_content="isOtherUser()" :Id="id"></myContent>
       </div>
     </div>
@@ -125,6 +125,10 @@ export default {
     id: {
       type: Number,
       default: -1
+    },
+    isFetchNeed: {
+      type: Boolean,
+      default: true
     }
   },
   data () {
@@ -138,6 +142,7 @@ export default {
   },
 
   beforeMount () {
+    console.log('on beforeMount')
     this.height = window.innerHeight
     if (localStorage.userId === undefined || localStorage.userName === undefined) {
       this.isShowLoginPopup = true
@@ -152,6 +157,9 @@ export default {
     }
 
     this.$store.dispatch('actSetWitch_route_we_are', 12)
+  },
+  mounted () {
+    console.log('on Mounted')
   },
 
   methods: {

@@ -23,7 +23,7 @@
         <div class="col-m-10 inputs-container" >
             <div v-for="(item,name,index) in this.bioInputPlaceHolders[this.tab]" @click="inputClicked(index)" :key="item" :class="inputContainerStyle(bioInputSideLight[index])" >
                 <h3 v-if="bioPlaceHolderToShow[index]" :class="placeHolder(isFilled[index])">{{item}}</h3>
-                <input type="text" v-bind:id="bioInputId[index]"  v-model="bioFieldData[index]" class="col-m-9 input">
+                <input  type="text" v-bind:id="bioInputId[index]"  v-model="bioFieldData[index]" class="col-m-9 input">
             </div>
         </div>
 
@@ -152,7 +152,7 @@ export default {
       }
     },
     placeHolder (toShow) {
-      if (this.is_other_user_bio || toShow) {
+      if (toShow) {
         return {
           'other-user-placeHolder': true
         }
@@ -172,14 +172,23 @@ export default {
       if (this.profile.edu_highSchool != undefined) {
         this.bioInputPlaceHolders[0].q1 = this.profile.edu_highSchool
         this.$set(this.isFilled, 0, true)
+      }else{
+        this.bioInputPlaceHolders[0].q1 = "چیزی نگفته"
+        this.$set(this.isFilled, 0, false)
       }
       if (this.profile.edu_univercity != undefined) {
         this.bioInputPlaceHolders[0].q2 = this.profile.edu_univercity
         this.$set(this.isFilled, 1, true)
+      }else{
+        this.bioInputPlaceHolders[0].q2 =  "چیزی نگفته"
+        this.$set(this.isFilled, 1, false)
       }
       if (this.profile.edu_subject != undefined) {
         this.bioInputPlaceHolders[0].q3 = this.profile.edu_subject
         this.$set(this.isFilled, 2, true)
+      }else{
+        this.bioInputPlaceHolders[0].q3 = "چیزی نگفته"
+        this.$set(this.isFilled, 2, false)
       }
     },
     bioJobCheck () {

@@ -235,7 +235,7 @@ export default new Vuex.Store({
       console.log(state.subCategory)
       console.log(state.mainCategory)
 
-      state.subCategoryList[state.mainCategory][state.subCategory].isClicked = data
+      // state.subCategoryList[state.mainCategory][state.subCategory].isClicked = data
     },
 
     // ! api section
