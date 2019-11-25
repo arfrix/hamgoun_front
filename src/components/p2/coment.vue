@@ -10,9 +10,9 @@
     <h4 class="comment-text">{{this.comment}}</h4>
     <h5 class="reply" @click="reply">پاسخ</h5>
     <div class="mizouniat-container">
-        <img :src="mizounImgUrl(isSelectedMizoun)" alt="" class="mizoun-img" @click="mizounOnClick">
+        <img :src="mizounImgUrl(isSelectedMizoun)" alt="" class="mizoun-img" @click.once="mizounOnClick">
         <h3 class="mizount-count">{{mizoun}}</h3>
-        <img :src="naMizounImgUrl(isSelectedNamizoun)" alt="" class="namizoun-img" @click="namizounOnClick">
+        <img :src="naMizounImgUrl(isSelectedNamizoun)" alt="" class="namizoun-img" @click.once="namizounOnClick">
         <h3 class="namizoun-count">{{namizoun}}</h3>
     </div>
   </div>
