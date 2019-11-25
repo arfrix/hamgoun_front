@@ -32,15 +32,15 @@
                 <div class="bottom-line"></div>
             </div>
             <div class="col-m-8 tags-container">
-              <div class="col-m-3 tag-container center" @click="upload_detail_input_onClick(2)">
-                  <h3 v-if="show_ph2" class="placeHolder">برچسب اول</h3>
-                  <input type="text" v-model="first_tag" class="col-m-10 publish-detail-input"  id="pd_input2">
-                  <div class="bottom-line"></div>
-                  <h3 class="hint"></h3>
-              </div>
               <div class="col-m-3 tag-container center" @click="upload_detail_input_onClick(3)">
                   <h3 v-if="show_ph3" class="placeHolder">برچسب دوم</h3>
                   <input type="text" v-model="second_tag" class="col-m-10 publish-detail-input"  id="pd_input3">
+                  <div class="bottom-line"></div>
+                  <h3 class="hint"></h3>
+              </div>
+              <div class="col-m-3 tag-container center" @click="upload_detail_input_onClick(2)">
+                  <h3 v-if="show_ph2" class="placeHolder">برچسب اول</h3>
+                  <input type="text" v-model="first_tag" class="col-m-10 publish-detail-input"  id="pd_input2">
                   <div class="bottom-line"></div>
                   <h3 class="hint"></h3>
               </div>
