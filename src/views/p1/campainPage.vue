@@ -30,7 +30,7 @@
           ></card>
         </div>
       </div>
-      <div v-else class="col-m-6 waitin-lable-container">
+      <div v-else class="col-m-10 waitin-lable-container">
         <h1 class="col-m-10 waiting-lable">... پستا تو راهن</h1>
       </div>
     </div>
