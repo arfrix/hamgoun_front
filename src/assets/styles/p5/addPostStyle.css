@@ -43,8 +43,8 @@
 }
 .template-card{
     border: 2px dashed rgba(255, 255, 255, 0.4);
-    min-height: 35vw;
-    min-width: 30vw;
+    height: 35vw;
+    width: 30vw;
     border-radius: 25px;
     display: flex;
     align-items: center;
