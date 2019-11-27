@@ -3,7 +3,12 @@
   <div :class="gapSize"></div>
   <div :class="marginTop">
   <div class="col-m-1 profile-img-div">
-      <img :src="'http://45.82.136.106:8080/images/'+this.imgUrl" alt="" class="img profile-img">
+      <!-- <img :src="'http://45.82.136.106:8080/images/'+this.imgUrl" alt="" class="img profile-img"> -->
+      <picture>
+        <source :srcset="getImgUrl_webp(this.imgUrl)">
+        <source :srcset="getImgUrl(this.imgUrl)">
+        <img :src="getImgUrl(this.imgUrl)" class="img profile-img">
+      </picture>
   </div>
   <div :class="witchSize">
     <h4 class="username">{{this.username}}</h4>
@@ -62,7 +67,15 @@ export default {
         this.isSelectedNamizoun = !this.isSelectedNamizoun
         if (this.isSelectedMizoun) { this.isSelectedMizoun = false }
       })
+    },
+    getImgUrl (path) {
+      return 'http://45.82.136.106:8080/images/' + path
+    },
+    getImgUrl_webp (path) {
+      const imgName = path
+      return 'http://45.82.136.106:8080/images/' + imgName.replace('.jpg', '.webp')
     }
+
   },
   computed: {
     witchSize () {

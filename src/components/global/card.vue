@@ -17,7 +17,11 @@
 
     <div v-if="kind == 1" class="col-m-5 img-section">
       <div class="img-container">
-        <img :src="'http://45.82.136.106:8080/images/'+this.imgUrl" class="card-img">
+        <picture>
+          <source :srcset="getImgUrl_webp(this.imgUrl)">
+          <source :srcset="getImgUrl(this.imgUrl)">
+          <img :src="getImgUrl(this.imgUrl)" class="card-img">
+        </picture>
       </div>
     </div>
 
@@ -42,10 +46,13 @@ export default {
 
   methods: {
     // tip src binding!!!!
-    // getImgUrl (path) {
-    //   console.log('../../assets/' + path)
-    //   return require('http://45.82.136.106:8080/images/' + path)
-    // }
+    getImgUrl (path) {
+      return 'http://45.82.136.106:8080/images/' + path
+    },
+    getImgUrl_webp (path) {
+      const imgName = path
+      return 'http://45.82.136.106:8080/images/' + imgName.replace('.jpg', '.webp')
+    }
 
   },
   computed: {

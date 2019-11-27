@@ -30,14 +30,12 @@ export default {
 </script>
 
 <style>
-*:not(input.field) {
+/* *:not(input.field) {
     -webkit-user-select: none;
     -khtml-user-select: none;
-    -moz-user-select: -moz-none;
-    -o-user-select: none;
-    -ms-user-select: none;
+
     user-select: none;
-}
+} */
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

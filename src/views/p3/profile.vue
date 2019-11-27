@@ -14,7 +14,12 @@
         <div class="notif-list-looper">
           <div v-for="item in this.$store.state.notifications" :key="item.id" class="notif-card">
             <div class="notif-profile-img-container">
-              <img :src="getImgUrl(item.actorImgUrl)" alt class="img" />
+              <!-- <img :src="getImgUrl(item.actorImgUrl)" alt class="img" /> -->
+              <picture>
+                <source :srcset="getImgUrl_webp(item.actorImgUrl)">
+                <source :srcset="getImgUrl(item.actorImgUrl)">
+                <img :src="getImgUrl(item.actorImgUrl)" class="img">
+              </picture>
             </div>
             <div class="notif-card-text">
               <h3 class="notif-card-title">{{(item.actorUsername)}}</h3>
@@ -50,7 +55,12 @@
         </div>
         <div class="col-m-10 top-section-text">
           <div class="profile-img-container">
-            <img :src="getImgUrl(this.profileData.profileImgUrl)" alt class="profile-img" />
+            <!-- <img :src="getImgUrl(this.profileData.profileImgUrl)" alt class="profile-img" /> -->
+            <picture>
+              <source :srcset="getImgUrl_webp(this.profileData.profileImgUrl)">
+              <source :srcset="getImgUrl(this.profileData.profileImgUrl)">
+              <img :src="getImgUrl(this.profileData.profileImgUrl)" class="profile-img">
+            </picture>
             <img
               v-if="!this.isOtherUser()"
               src="../../assets/icons/plus.png"
@@ -179,6 +189,10 @@ export default {
     },
     getImgUrl (path) {
       return 'http://45.82.136.106:8080/images/' + path
+    },
+    getImgUrl_webp (path) {
+      const imgName = path
+      return 'http://45.82.136.106:8080/images/' + imgName.replace('.jpg', '.webp')
     },
     hamegyry (num) {
       if (num === undefined) {

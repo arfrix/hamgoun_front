@@ -28,11 +28,16 @@
       >{{this.$store.state.postData.publisherUsername}}</h4>
 
       <div id="top_section" class="col-m-1-5 circle-img-div" @click="gotoProfile">
-        <img
+        <!-- <img
           :src="'http://45.82.136.106:8080/images/'+ this.$store.state.postData.publisherProfileImg"
           alt
           class="img profile-img"
-        />
+        /> -->
+        <picture>
+          <source :srcset="getImgUrl_webp(this.$store.state.postData.publisherProfileImg)">
+          <source :srcset="getImgUrl(this.$store.state.postData.publisherProfileImg)">
+          <img :src="getImgUrl(this.$store.state.postData.publisherProfileImg)" class="img profile-img">
+        </picture>
       </div>
     </div>
     <div class="col-m-10 title-container">
@@ -319,6 +324,13 @@ export default {
           isFetchNeed: true
         }
       })
+    },
+    getImgUrl (path) {
+      return 'http://45.82.136.106:8080/images/' + path
+    },
+    getImgUrl_webp (path) {
+      const imgName = path
+      return 'http://45.82.136.106:8080/images/' + imgName.replace('.jpg', '.webp')
     }
   }
 }

@@ -22,7 +22,11 @@
     <div v-if="kind == 1" class="col-m-9-8 img-section">
       <h1 class="img-card-title">{{this.title}}</h1>
       <div class="img-container">
-        <img :src="getImgUrl(this.imgUrl)" class="card-img">
+        <picture>
+          <source :srcset="getImgUrl_webp(this.imgUrl)">
+          <source :srcset="getImgUrl(this.imgUrl)">
+          <img :src="getImgUrl(this.imgUrl)" class="card-img">
+        </picture>
       </div>
       <div class="img-card-details-container">
         <h3 class="img-card-username">{{this.username}}</h3>
@@ -53,6 +57,10 @@ export default {
     // tip src binding!!!!
     getImgUrl (path) {
       return 'http://45.82.136.106:8080/images/' + path
+    },
+    getImgUrl_webp (path) {
+      const imgName = path
+      return 'http://45.82.136.106:8080/images/' + imgName.replace('.jpg', '.webp')
     }
 
   },

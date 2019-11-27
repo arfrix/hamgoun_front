@@ -3,6 +3,11 @@
 <div class="userCard-main-div">
     <div class="profile-img-container">
         <img :src="'http://45.82.136.106:8080/images/' + imgUrl" alt="" class="profile-img">
+        <picture>
+          <source :srcset="getImgUrl_webp(imgUrl)">
+          <source :srcset="getImgUrl(imgUrl)">
+          <img :src="getImgUrl(imgUrl)" class="profile-img">
+        </picture>
     </div>
     <div class="userName-container">
         <h3 class="username">{{username}}</h3>
@@ -27,8 +32,11 @@ export default {
   methods: {
     // tip src binding!!!!
     getImgUrl (path) {
-      console.log('../../assets/' + path)
-      return require('../../assets/' + path)
+      return 'http://45.82.136.106:8080/images/' + path
+    },
+    getImgUrl_webp (path) {
+      const imgName = path
+      return 'http://45.82.136.106:8080/images/' + imgName.replace('.jpg', '.webp')
     }
 
   },
