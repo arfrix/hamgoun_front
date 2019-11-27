@@ -1,32 +1,25 @@
 <template>
-
-<div class="userCard-main-div">
+  <div class="userCard-main-div">
     <div class="profile-img-container">
-        <img :src="'http://45.82.136.106:8080/images/' + imgUrl" alt="" class="profile-img">
-        <picture>
-          <source :srcset="getImgUrl_webp(imgUrl)">
-          <source :srcset="getImgUrl(imgUrl)">
-          <img :src="getImgUrl(imgUrl)" class="profile-img">
-        </picture>
+      <img :src="'http://45.82.136.106:8080/images/' + imgUrl" alt class="profile-img" />
+      <picture>
+        <source :srcset="getImgUrl_webp(imgUrl)" type="image/webp" />
+        <source :srcset="getImgUrl(imgUrl)" type="image/jpeg" />
+        <img :src="getImgUrl(imgUrl)" class="profile-img" />
+      </picture>
     </div>
     <div class="userName-container">
-        <h3 class="username">{{username}}</h3>
+      <h3 class="username">{{username}}</h3>
     </div>
-</div>
-
+  </div>
 </template>
 
 <script>
-
 export default {
   name: 'userCard',
-  props: [
-    'imgUrl', 'username'
-  ],
+  props: ['imgUrl', 'username'],
   data () {
-    return {
-
-    }
+    return {}
   },
 
   methods: {
@@ -36,13 +29,12 @@ export default {
     },
     getImgUrl_webp (path) {
       const imgName = path
-      return 'http://45.82.136.106:8080/images/' + imgName.replace('.jpg', '.webp')
+      return (
+        'http://45.82.136.106:8080/images/' + imgName.replace('.jpg', '.webp')
+      )
     }
-
   },
-  computed: {
-
-  }
+  computed: {}
 }
 </script>
 <style scoped src='../../assets/styles/p4/userCardStyle.css'>

@@ -32,11 +32,20 @@
           :src="'http://45.82.136.106:8080/images/'+ this.$store.state.postData.publisherProfileImg"
           alt
           class="img profile-img"
-        /> -->
+        />-->
         <picture>
-          <source :srcset="getImgUrl_webp(this.$store.state.postData.publisherProfileImg)">
-          <source :srcset="getImgUrl(this.$store.state.postData.publisherProfileImg)">
-          <img :src="getImgUrl(this.$store.state.postData.publisherProfileImg)" class="img profile-img">
+          <source
+            :srcset="getImgUrl_webp(this.$store.state.postData.publisherProfileImg)"
+            type="image/webp"
+          />
+          <source
+            :srcset="getImgUrl(this.$store.state.postData.publisherProfileImg)"
+            type="image/jpeg"
+          />
+          <img
+            :src="getImgUrl(this.$store.state.postData.publisherProfileImg)"
+            class="img profile-img"
+          />
         </picture>
       </div>
     </div>
@@ -57,7 +66,7 @@
                 </div>
       </div>-->
       <div id="topOfBottomSection" class="row bottom-section-top-section">
-        <div  class="col-m-4-5">
+        <div class="col-m-4-5">
           <!-- <div class="custom-gap"></div>  -->
           <div v-if="this.show" class="col-m-3-5 hoy-bia-benevis" @click="writeComment()">
             <h4 class="hoy-bia-benevis-text">نظرت چیه ؟</h4>
@@ -94,7 +103,7 @@
       <!--//tip agar bind nakony miad props ro be sorat string mifreste   -->
       <div class="col-m-10 comments-container">
         <div v-if="this.$store.state.waitingForComments" class="col-m-10 waiting-msg-container">
-          <h3 class="waiting-msg"> ... کامنتا دارن میان</h3>
+          <h3 class="waiting-msg">... کامنتا دارن میان</h3>
         </div>
         <div v-if="!this.$store.state.waitingForComments" class="col-m-10">
           <div
@@ -151,14 +160,22 @@ export default {
   beforeMount () {
     if (this.isFetch) {
       this.$store.dispatch('fetchPostData', this.uniqueUrl).then(() => {
-        if (document.getElementById('bottom_section_devider').offsetTop < (window.innerHeight - document.getElementById('navigation_bar').scrollHeight)) {
+        if (
+          document.getElementById('bottom_section_devider').offsetTop <
+          window.innerHeight -
+            document.getElementById('navigation_bar').scrollHeight
+        ) {
           this.show = true
         }
 
         this.$store.dispatch('fetchComments', this.$store.state.postData.id)
       })
     } else {
-      if (document.getElementById('bottom_section_devider').offsetTop < (window.innerHeight - document.getElementById('navigation_bar').scrollHeight)) {
+      if (
+        document.getElementById('bottom_section_devider').offsetTop <
+        window.innerHeight -
+          document.getElementById('navigation_bar').scrollHeight
+      ) {
         this.show = true
       }
 
@@ -166,12 +183,18 @@ export default {
     }
   },
   mounted () {
-    if (document.getElementById('bottom_section_devider').offsetTop < (window.innerHeight - document.getElementById('navigation_bar').scrollHeight)) {
+    if (
+      document.getElementById('bottom_section_devider').offsetTop <
+      window.innerHeight -
+        document.getElementById('navigation_bar').scrollHeight
+    ) {
       this.show = true
     }
     this.$store.dispatch('actSetWaitingForComments', true)
     this.$store.dispatch('fetchComments', this.$store.state.postData.id)
-    this.$store.dispatch('addHamegyry', { postId: this.$store.state.postData.id })
+    this.$store.dispatch('addHamegyry', {
+      postId: this.$store.state.postData.id
+    })
     console.log('enter mounted')
     window.addEventListener('scroll', this.onScroll)
   },
@@ -244,24 +267,34 @@ export default {
       console.log(this.$store.state.postData)
       console.log(this.commentText)
       if (this.isComment) {
-        this.$store.dispatch('submitComment', {
-          PostId: this.$store.state.postData.id,
-          CommentText: this.commentText,
-          postPublisherId: this.$store.state.postData.publisherId
-        }).then(() => {
-          this.$store.dispatch('fetchComments', this.$store.state.postData.id)
-        })
+        this.$store
+          .dispatch('submitComment', {
+            PostId: this.$store.state.postData.id,
+            CommentText: this.commentText,
+            postPublisherId: this.$store.state.postData.publisherId
+          })
+          .then(() => {
+            this.$store.dispatch(
+              'fetchComments',
+              this.$store.state.postData.id
+            )
+          })
       }
       if (this.isReply) {
-        this.$store.dispatch('submitCommentReply', {
-          PostId: this.$store.state.postData.id,
-          CommentText: this.commentText,
-          parentCommentId: this.parentCommentId,
-          postPublisherId: this.$store.state.postData.publisherId,
-          ParentCommentPublisherId: this.ParentCommentPublisherId
-        }).then(() => {
-          this.$store.dispatch('fetchComments', this.$store.state.postData.id)
-        })
+        this.$store
+          .dispatch('submitCommentReply', {
+            PostId: this.$store.state.postData.id,
+            CommentText: this.commentText,
+            parentCommentId: this.parentCommentId,
+            postPublisherId: this.$store.state.postData.publisherId,
+            ParentCommentPublisherId: this.ParentCommentPublisherId
+          })
+          .then(() => {
+            this.$store.dispatch(
+              'fetchComments',
+              this.$store.state.postData.id
+            )
+          })
       }
     },
     toReply (val) {
@@ -281,13 +314,16 @@ export default {
     },
     rating (index) {
       if (localStorage.getItem(this.$store.state.postData.uniqueUrl) === null) {
+        this.$store.dispatch('submitRating', {
+          PostId: this.$store.state.postData.id,
+          rate: index,
+          publisherId: this.$store.state.postData.publisherId
+        })
         this.$store
-          .dispatch('submitRating', {
-            PostId: this.$store.state.postData.id,
-            rate: index,
-            publisherId: this.$store.state.postData.publisherId
+          .dispatch('updatePostRateOffline', {
+            submitedRate: index,
+            url: this.uniqueUrl
           })
-        this.$store.dispatch('updatePostRateOffline', { submitedRate: index, url: this.uniqueUrl })
           .then(() => {
             this.submitRate = true
             setTimeout(() => {
@@ -330,7 +366,9 @@ export default {
     },
     getImgUrl_webp (path) {
       const imgName = path
-      return 'http://45.82.136.106:8080/images/' + imgName.replace('.jpg', '.webp')
+      return (
+        'http://45.82.136.106:8080/images/' + imgName.replace('.jpg', '.webp')
+      )
     }
   }
 }

@@ -1,14 +1,19 @@
 
 <template>
   <div class="profile-main-div" :style="{height:height + 'px'}">
-    <popup v-if="isShowLoginPopup" @btn_clicked="goToLogin_onClicked()" msg="نیازه یبار وارد حسابت بشی ، چون الان نمیدونیم پروفایل کی رو باید نشون بدیم " class="popup"></popup>
+    <popup
+      v-if="isShowLoginPopup"
+      @btn_clicked="goToLogin_onClicked()"
+      msg="نیازه یبار وارد حسابت بشی ، چون الان نمیدونیم پروفایل کی رو باید نشون بدیم "
+      class="popup"
+    ></popup>
     <transition name="notif-transition">
       <div v-if="isShowNotifSidebar" class="notif-side-bar">
         <div class="notif-lable-container">
           <h3 class="notif-lable">رخداد ها</h3>
         </div>
         <div class="close-btn" @click="isShowNotifSidebar = false">
-            <img src="../../assets/icons/delete-button.png" alt class="close-btn-img" />
+          <img src="../../assets/icons/delete-button.png" alt class="close-btn-img" />
         </div>
 
         <div class="notif-list-looper">
@@ -16,9 +21,9 @@
             <div class="notif-profile-img-container">
               <!-- <img :src="getImgUrl(item.actorImgUrl)" alt class="img" /> -->
               <picture>
-                <source :srcset="getImgUrl_webp(item.actorImgUrl)">
-                <source :srcset="getImgUrl(item.actorImgUrl)">
-                <img :src="getImgUrl(item.actorImgUrl)" class="img">
+                <source :srcset="getImgUrl_webp(item.actorImgUrl)" type="image/webp" />
+                <source :srcset="getImgUrl(item.actorImgUrl)" type="image/jpeg" />
+                <img :src="getImgUrl(item.actorImgUrl)" class="img" />
               </picture>
             </div>
             <div class="notif-card-text">
@@ -57,9 +62,9 @@
           <div class="profile-img-container">
             <!-- <img :src="getImgUrl(this.profileData.profileImgUrl)" alt class="profile-img" /> -->
             <picture>
-              <source :srcset="getImgUrl_webp(this.profileData.profileImgUrl)">
-              <source :srcset="getImgUrl(this.profileData.profileImgUrl)">
-              <img :src="getImgUrl(this.profileData.profileImgUrl)" class="profile-img">
+              <source :srcset="getImgUrl_webp(this.profileData.profileImgUrl)" type="image/webp" />
+              <source :srcset="getImgUrl(this.profileData.profileImgUrl)" type="image/jpeg" />
+              <img :src="getImgUrl(this.profileData.profileImgUrl)" class="profile-img" />
             </picture>
             <img
               v-if="!this.isOtherUser()"
@@ -154,7 +159,10 @@ export default {
   beforeMount () {
     console.log('on beforeMount')
     this.height = window.innerHeight
-    if (localStorage.userId === undefined || localStorage.userName === undefined) {
+    if (
+      localStorage.userId === undefined ||
+      localStorage.userName === undefined
+    ) {
       this.isShowLoginPopup = true
     } else {
       if (this.profile === undefined) {
@@ -192,7 +200,9 @@ export default {
     },
     getImgUrl_webp (path) {
       const imgName = path
-      return 'http://45.82.136.106:8080/images/' + imgName.replace('.jpg', '.webp')
+      return (
+        'http://45.82.136.106:8080/images/' + imgName.replace('.jpg', '.webp')
+      )
     },
     hamegyry (num) {
       if (num === undefined) {

@@ -1,13 +1,12 @@
 
 <template>
+  <div class="col-m-1 card-main-div">
+    <div class="card-lable-container">
+      <!-- <h5 class="lable">{{this.$store.state.subCategoryList[mainCategory][subCategory].name}}</h5> -->
+      <h5 class="lable">{{this.type}}</h5>
+    </div>
 
-<div class="col-m-1 card-main-div">
-  <div class="card-lable-container">
-    <!-- <h5 class="lable">{{this.$store.state.subCategoryList[mainCategory][subCategory].name}}</h5> -->
-    <h5 class="lable">{{this.type}}</h5>
-  </div>
-
-  <!-- <div class="col-m-5 card-sections-container"> -->
+    <!-- <div class="col-m-5 card-sections-container"> -->
     <div v-if="kind != 1" class="col-m-9 text-section">
       <h1 class="title">{{this.title}}</h1>
       <div class="text-body-container">
@@ -23,9 +22,9 @@
       <h1 class="img-card-title">{{this.title}}</h1>
       <div class="img-container">
         <picture>
-          <source :srcset="getImgUrl_webp(this.imgUrl)">
-          <source :srcset="getImgUrl(this.imgUrl)">
-          <img :src="getImgUrl(this.imgUrl)" class="card-img">
+          <source :srcset="getImgUrl_webp(this.imgUrl)" type="image/webp" />
+          <source :srcset="getImgUrl(this.imgUrl)" type="image/jpeg" />
+          <img :src="getImgUrl(this.imgUrl)" class="card-img" />
         </picture>
       </div>
       <div class="img-card-details-container">
@@ -34,23 +33,27 @@
       </div>
     </div>
 
-  <!-- </div> -->
-
-</div>
-
+    <!-- </div> -->
+  </div>
 </template>
 
 <script>
-
 export default {
   name: 'miniCard',
   props: [
-    'kind', 'text', 'imgUrl', 'iconUrl', 'title', 'username', 'duration', 'mainCategory', 'subCategory', 'type'
+    'kind',
+    'text',
+    'imgUrl',
+    'iconUrl',
+    'title',
+    'username',
+    'duration',
+    'mainCategory',
+    'subCategory',
+    'type'
   ],
   data () {
-    return {
-
-    }
+    return {}
   },
 
   methods: {
@@ -60,9 +63,10 @@ export default {
     },
     getImgUrl_webp (path) {
       const imgName = path
-      return 'http://45.82.136.106:8080/images/' + imgName.replace('.jpg', '.webp')
+      return (
+        'http://45.82.136.106:8080/images/' + imgName.replace('.jpg', '.webp')
+      )
     }
-
   },
   computed: {
     card_text_div () {
@@ -95,12 +99,12 @@ export default {
       if (this.kind === 1) {
         return {
           'col-m-7': true,
-          'gap': true
+          gap: true
         }
       } else {
         return {
           'col-m-7-8': true,
-          'gap': true
+          gap: true
         }
       }
     }

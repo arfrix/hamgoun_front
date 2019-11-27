@@ -1,11 +1,10 @@
 <template>
+  <div class="col-m-9-3 card-main-div">
+    <div class="card-lable-container">
+      <h5 class="lable">{{this.type}}</h5>
+    </div>
 
-<div class="col-m-9-3 card-main-div">
-  <div class="card-lable-container">
-    <h5 class="lable">{{this.type}}</h5>
-  </div>
-
-  <!-- <div class="col-m-5 card-sections-container"> -->
+    <!-- <div class="col-m-5 card-sections-container"> -->
     <div :class="card_text_div">
       <h1 class="title">{{this.title}}</h1>
       <h4 class="body">{{this.text}}</h4>
@@ -18,30 +17,34 @@
     <div v-if="kind == 1" class="col-m-5 img-section">
       <div class="img-container">
         <picture>
-          <source :srcset="getImgUrl_webp(this.imgUrl)">
-          <source :srcset="getImgUrl(this.imgUrl)">
-          <img :src="getImgUrl(this.imgUrl)" class="card-img">
+          <source :srcset="getImgUrl_webp(this.imgUrl)" type="image/webp" />
+          <source :srcset="getImgUrl(this.imgUrl)" type="image/jpeg" />
+          <img :src="getImgUrl(this.imgUrl)" class="card-img" />
         </picture>
       </div>
     </div>
 
-  <!-- </div> -->
-
-</div>
-
+    <!-- </div> -->
+  </div>
 </template>
 
 <script>
-
 export default {
   name: 'card',
   props: [
-    'kind', 'text', 'imgUrl', 'iconUrl', 'title', 'username', 'duration', 'mainCategory', 'subCategory', 'type'
+    'kind',
+    'text',
+    'imgUrl',
+    'iconUrl',
+    'title',
+    'username',
+    'duration',
+    'mainCategory',
+    'subCategory',
+    'type'
   ],
   data () {
-    return {
-
-    }
+    return {}
   },
 
   methods: {
@@ -51,9 +54,10 @@ export default {
     },
     getImgUrl_webp (path) {
       const imgName = path
-      return 'http://45.82.136.106:8080/images/' + imgName.replace('.jpg', '.webp')
+      return (
+        'http://45.82.136.106:8080/images/' + imgName.replace('.jpg', '.webp')
+      )
     }
-
   },
   computed: {
     card_text_div () {
@@ -69,7 +73,6 @@ export default {
         }
       }
     }
-
   }
 }
 </script>
