@@ -34,10 +34,10 @@
           class="img profile-img"
         />-->
         <picture>
-          <source
+          <!-- <source
             :srcset="getImgUrl_webp(this.$store.state.postData.publisherProfileImg)"
             type="image/webp"
-          />
+          /> -->
           <source
             :srcset="getImgUrl(this.$store.state.postData.publisherProfileImg)"
             type="image/jpeg"

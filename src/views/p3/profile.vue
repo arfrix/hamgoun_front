@@ -21,7 +21,7 @@
             <div class="notif-profile-img-container">
               <!-- <img :src="getImgUrl(item.actorImgUrl)" alt class="img" /> -->
               <picture>
-                <source :srcset="getImgUrl_webp(item.actorImgUrl)" type="image/webp" />
+                <!-- <source :srcset="getImgUrl_webp(item.actorImgUrl)" type="image/webp" /> -->
                 <source :srcset="getImgUrl(item.actorImgUrl)" type="image/jpeg" />
                 <img :src="getImgUrl(item.actorImgUrl)" class="img" />
               </picture>
@@ -62,7 +62,7 @@
           <div class="profile-img-container">
             <!-- <img :src="getImgUrl(this.profileData.profileImgUrl)" alt class="profile-img" /> -->
             <picture>
-              <source :srcset="getImgUrl_webp(this.profileData.profileImgUrl)" type="image/webp" />
+              <!-- <source :srcset="getImgUrl_webp(this.profileData.profileImgUrl)" type="image/webp" /> -->
               <source :srcset="getImgUrl(this.profileData.profileImgUrl)" type="image/jpeg" />
               <img :src="getImgUrl(this.profileData.profileImgUrl)" class="profile-img" />
             </picture>

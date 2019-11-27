@@ -17,7 +17,7 @@
     <div v-if="kind == 1" class="col-m-5 img-section">
       <div class="img-container">
         <picture>
-          <source :srcset="getImgUrl_webp(this.imgUrl)" type="image/webp" />
+          <!-- <source :srcset="getImgUrl_webp(this.imgUrl)" type="image/webp" /> -->
           <source :srcset="getImgUrl(this.imgUrl)" type="image/jpeg" />
           <img :src="getImgUrl(this.imgUrl)" class="card-img" />
         </picture>
