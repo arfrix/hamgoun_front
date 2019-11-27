@@ -47,7 +47,7 @@
           <div v-if="isSwitchClicked[0] && showResult" >
 
                 <div v-if="this.$store.state.userSearch_result.status" class="col-m-10 user-loop-container" >
-                    <div v-for="item in this.$store.state.userSearch_result.data" :key="item.id" class="test" @click="visit_other_user_profile(item)">
+                    <div v-for="item in this.$store.state.userSearch_result.data" :key="item.id" class="col-m-10" @click="visit_other_user_profile(item)">
 
                     <userCard   :imgUrl="item.profileImgUrl" :username="item.userName" ></userCard>
                     </div>

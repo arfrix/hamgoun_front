@@ -107,6 +107,7 @@ input:focus {
     align-items: center;
     justify-content: space-evenly;
     min-width: 100vw;
+    padding-bottom: 17vw;
 }
 .post-loop-container{
     display: flex;

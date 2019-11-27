@@ -1,5 +1,5 @@
 .userCard-main-div{
-    width: 90vw;
+    /* width: 60vw; */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -19,16 +19,14 @@
 }
 .profile-img-container{
     
-    width: 14vw;
-    height: 14vw;
-    border-radius: 50%;
-    overflow: hidden;
-    background-image: url('../../icons/user.png');
-    background-size: cover;
-    background-color: #14213D;
+    
 }
 .profile-img{
-    width: 100%;
+    width: 17vw;
+    height: 17vw;
+    margin: auto;
+    display: block;
+    border-radius: 50%;
 }
 
 .username{

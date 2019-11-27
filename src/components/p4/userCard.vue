@@ -1,12 +1,12 @@
 <template>
   <div class="userCard-main-div">
-    <div class="profile-img-container">
+    <!-- <div class="profile-img-container"> -->
       <picture>
         <source :srcset="getImgUrl_webp(imgUrl)" type="image/webp" />
         <source :srcset="getImgUrl(imgUrl)" type="image/jpeg" />
         <img :src="getImgUrl(imgUrl)" class="profile-img" />
       </picture>
-    </div>
+    <!-- </div> -->
 
     <div class="userName-container">
       <h3 class="username">{{username}}</h3>
