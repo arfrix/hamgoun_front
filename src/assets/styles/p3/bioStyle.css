@@ -38,7 +38,7 @@
     color: #fff;
     font-size: 3vw;
     font-family: IranSans_Light;
-    margin-top: 2vw;;
+    margin-top: 2vw;
 }
 
 .inputs-container{
@@ -47,6 +47,7 @@
     align-items: flex-end;
     /* padding-right: 8vw; */
     margin-top: 13vw;
+    margin-bottom: 25vw;
 }
 .input-card{
     position: relative;

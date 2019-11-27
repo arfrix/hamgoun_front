@@ -1,6 +1,6 @@
 
 <template>
-  <div class="profile-main-div" :style="{height:height + 'px'}">
+  <div class="profile-main-div" >
     <popup
       v-if="isShowLoginPopup"
       @btn_clicked="goToLogin_onClicked()"
