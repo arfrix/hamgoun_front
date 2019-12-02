@@ -48,6 +48,7 @@
             src="../../assets/icons/paper-plane.png"
             alt
             class="two-icon-img1"
+            @click="gotoChat()"
           />
           <!-- <img src="../../assets/icons/paper-plane.png" alt="" class="two-icon-img2"> -->
           <img
@@ -57,6 +58,9 @@
             class="two-icon-img2"
             @click="showNotif()"
           />
+          <div v-if="!this.$store.state.isNotifSeen" class="notifNumberContainer" @click="showNotif()">
+            <p>{{this.$store.state.newNotifCount}}</p>
+          </div>
         </div>
         <div class="col-m-10 top-section-text">
           <div class="profile-img-container">
@@ -177,7 +181,17 @@ export default {
     this.$store.dispatch('actSetWitch_route_we_are', 12)
   },
   mounted () {
-    console.log('on Mounted')
+    this.$store.dispatch('fetchNotif').then(() => {
+      if (localStorage.getItem('notifCount') !== null) {
+        if (this.$store.state.newNotifCount !== (this.$store.state.notifications.length - localStorage.getItem('notifCount'))) {
+          console.log(this.$store.state.notifications.length - localStorage.getItem('notifCount'))
+          this.$store.dispatch('actSetNewNotifCount', this.$store.state.notifications.length - localStorage.getItem('notifCount'))
+          this.$store.dispatch('actSetIsNotifSeen', false)
+        }
+      } else {
+        this.$store.dispatch('actSetNewNotifCount', this.$store.state.notifications.length)
+      }
+    })
   },
 
   methods: {
@@ -235,11 +249,15 @@ export default {
     showNotif () {
       if (!this.isShowLoginPopup) {
         this.isShowNotifSidebar = true
-        this.$store.dispatch('fetchNotif')
+        this.$store.dispatch('actSetIsNotifSeen', true)
+        localStorage.setItem('notifCount', this.$store.state.notifications.length)
       }
     },
     goToLogin_onClicked () {
       this.$router.push('/landing')
+    },
+    gotoChat () {
+      window.open('http://193.176.241.61:3000/', '_self')
     },
     profileImg () {
       if (!this.is_other_user_profile) {

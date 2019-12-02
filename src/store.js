@@ -198,8 +198,10 @@ export default new Vuex.Store({
     postData: '',
     wait_for_fetch_home_page_private_mode_cards: false,
     notifications: '',
-    waitingForComments: false
+    waitingForComments: false,
     // commentToSend: ''
+    newNotifCount: 0,
+    isNotifSeen: true
 
   },
   mutations: {
@@ -328,6 +330,12 @@ export default new Vuex.Store({
     },
     writeWaitingForComments (state, data) {
       state.waitingForComments = data
+    },
+    writeNewNotifCount (state, data) {
+      state.newNotifCount = data
+    },
+    writeIsNotifSeen (state, data) {
+      state.isNotifSeen = data
     }
 
   },
@@ -411,7 +419,12 @@ export default new Vuex.Store({
     actSetWaitingForComments ({ commit, state }, data) {
       commit('writeWaitingForComments', data)
     },
-
+    actSetNewNotifCount ({ commit, state }, data) {
+      commit('writeNewNotifCount', data)
+    },
+    actSetIsNotifSeen ({ commit, state }, data) {
+      commit('writeIsNotifSeen', data)
+    },
     // actOtherUser_profile_data ({ commit, state }, data) {
     //   commit('write_otherUser_profile_data', data)
     // },

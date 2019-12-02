@@ -3,7 +3,13 @@
     <div :class="tab1Style(this.$store.state.witch_route_we_are)" @click="gotoHome()">خانه</div>
     <div :class="tab2Style(this.$store.state.witch_route_we_are)" @click="gotoExplore()">کاوش</div>
     <div :class="tab3Style(this.$store.state.witch_route_we_are)" @click="gotoAddPost()">پست</div>
-    <div :class="tab4Style(this.$store.state.witch_route_we_are)" @click="gotoProfile()">پروفایل</div>
+
+    <div :class="tab4Style(this.$store.state.witch_route_we_are)" @click="gotoProfile()">
+      <div v-if="!this.$store.state.isNotifSeen" class="notifNumberContainer">
+        <p>{{this.$store.state.newNotifCount}}</p>
+      </div>
+      <p>پروفایل</p>
+    </div>
 </div>
 
 </template>
@@ -19,6 +25,7 @@ export default {
   },
 
   methods: {
+
     gotoHome () {
       this.$store.dispatch('actSetWitch_route_we_are', 1)
       this.$router.push('/home')

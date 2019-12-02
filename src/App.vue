@@ -19,6 +19,9 @@ export default {
     // this.$store.dispatch('fetch_user_profile_data',this.$store.state.userId)
 
   },
+  mounted () {
+
+  },
 
   data () {
     return {

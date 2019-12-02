@@ -1,7 +1,9 @@
 
 
 
-
+p{
+    margin: 0;;
+}
 
 .main-navigation{
     width: 100%;
@@ -32,4 +34,23 @@
 }
 .four{
     color: #FFD615;
+}
+.notifNumberContainer{
+    position: absolute;
+    right: 6vw;
+    top: -1vw;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;;
+    width: 4.75vw;
+    height:4.75vw;
+    border-radius: 50%;
+    /* background-color: #FFD615;
+    color: rgb(0, 0, 0); */
+    background-color: #F95959;
+    color: rgb(255, 255, 255);
+    font-family: IranSans;
+    font-size: 2.75vw;
+    border: 1px solid rgb(0, 0, 0);
 }

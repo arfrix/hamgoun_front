@@ -158,6 +158,16 @@ export default {
     this.$store.state.cards.forEach(element => {
       this.cardsSeenSituation.push(false)
     })
+    this.$store.dispatch('fetchNotif').then(() => {
+      if (localStorage.getItem('notifCount') !== null) {
+        if (this.$store.state.newNotifCount !== (this.$store.state.notifications.length - localStorage.getItem('notifCount'))) {
+          this.$store.dispatch('actSetNewNotifCount', this.$store.state.notifications.length - localStorage.getItem('notifCount'))
+          this.$store.dispatch('actSetIsNotifSeen', false)
+        }
+      } else {
+        this.$store.dispatch('actSetNewNotifCount', this.$store.state.notifications.length)
+      }
+    })
   },
   beforeDestroy () {
     window.removeEventListener('scroll', this.onScroll)
