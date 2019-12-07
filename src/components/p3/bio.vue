@@ -1,4 +1,5 @@
 <template>
+<!-- use for ling ignore -->
 <!-- eslint-disable -->
     <div class="bio-main">
         <div class="col-m-10 tab-row-container">

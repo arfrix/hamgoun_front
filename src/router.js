@@ -11,6 +11,7 @@ import Explorer from './views/p4/explorer.vue'
 import AddPost from './views/p5/addPost.vue'
 import CampainPage from './views/p1/campainPage.vue'
 import otherUserProfile from './views/p3/otherUserProfile.vue'
+import Chat from './views/chat/chat.vue'
 
 Vue.use(Router)
 
@@ -89,6 +90,11 @@ export default new Router({
       name: 'edither',
       component: P5_10,
       props: true
+    },
+    {
+      path: '/chat',
+      name: 'Chat',
+      component: Chat
     }
 
   ]

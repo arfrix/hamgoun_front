@@ -8,6 +8,7 @@ const baseUrl = 'http://45.82.136.106:8080'
 // const baseUrl = 'https://localhost:5001'
 // const baseUrl = 'http://193.176.241.61:80'
 
+Axios.defaults.headers.common['Authorization'] = 'Bearer' + ' ' + localStorage.getItem('aut_token')
 Axios.interceptors.response.use(
   response => response,
   errorResponseHandler
@@ -16,7 +17,7 @@ Axios.interceptors.response.use(
 function errorResponseHandler (error) {
   // if has response show the error
   if (error.response) {
-    console.log('error')
+    console.log('api responce error')
     console.log(error.response)
   }
 }
@@ -891,6 +892,11 @@ export default new Vuex.Store({
       } else {
         alert('قبلا به این پست امتیاز دادی')
       }
+    },
+    async getRocketChat_autToken ({ commit, state }, data) {
+      let response = '9Mph5jCHUfhaBiK_mhhIaoctywmK0ni2Et_DtseNf9r'
+      // get token via api
+      localStorage.setItem('RocketChat_autToken', response)
     }
 
   }

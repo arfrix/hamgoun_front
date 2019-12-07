@@ -1,0 +1,42 @@
+.chatContainer{
+    margin: auto;
+    /* margin-top: .5vh; */
+    /* width: 95vw;
+    height: 82vh; */
+    /* height: 100vh; */
+    background-color: #2F343D;
+    /* padding-right: 2vw; */
+}
+
+
+iframe{
+    height: 100%;
+    width: 100%;
+    border: none;
+    /* border-bottom: 20px solid red; */
+}
+.backBtn{
+    position: absolute;
+    top: 2vh;
+    right: 2vw;
+    width: 15vw;
+    background-color: aqua;
+}
+.main-body{
+    margin-right: 2vw;
+}
+.main-body > div {
+    direction: rtl;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.container-lable{
+    font-family: IranSans_Bold;
+    font-size: 4.25vw;
+    margin-right: 4vw;
+    margin-top: 9vw;
+    margin-bottom: 3vw;
+    color :#b8bcc2;
+}
