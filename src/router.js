@@ -85,7 +85,7 @@ export default new Router({
     },
 
     {
-      path: '/edither/:isDraft',
+      path: '/edither/:isDraft/:MainCategory',
       name: 'edither',
       component: P5_10,
       props: true

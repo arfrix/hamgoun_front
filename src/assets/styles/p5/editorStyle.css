@@ -121,7 +121,8 @@
     bottom: 0;
     z-index: 120;
     width: 100vw;
-    background-color: #fff;
+    background-color:rgb(26, 41, 73);
+    
     min-height: 8vw;
     padding-top: 2.5vw;
     padding-bottom: 2.5;

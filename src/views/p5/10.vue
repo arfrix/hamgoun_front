@@ -73,7 +73,7 @@
       </div>
      <div class="add-post-top-section">
         <div class="col-m-2-5 main-group-section" >
-          <h5  class="main-group-lable">{{this.$store.state.mainCategoryList[this.MainCategory].name}}</h5>
+          <h5  class="main-group-lable">{{this.$store.state.mainCategoryList[MainCategory].name}}</h5>
           <img  :src="getImgUrl(this.$store.state.mainCategoryList[MainCategory].img)" alt="" class="main-group-img">
         </div>
 
@@ -230,7 +230,7 @@ export default {
     },
     draftClicked (index) {
       this.$store.dispatch('act_update_draft', index).then(() => {
-        this.$router.push({ name: 'edither', params: { template: 'reddddddddddddddi', MainCategory: this.mainCat, isDraft: true, skipPostFetch: true } })
+        this.$router.push({ name: 'edither', params: { template: 'reddddddddddddddi', MainCategory: this.MainCategory, isDraft: true, skipPostFetch: true } })
         this.editherKey += 1
       })
 
