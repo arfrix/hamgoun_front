@@ -257,7 +257,7 @@ export default {
       this.$router.push('/landing')
     },
     gotoChat () {
-      window.open('http://193.176.241.61:3000/', '_self')
+      this.$router.push('/chat')
     },
     profileImg () {
       if (!this.is_other_user_profile) {

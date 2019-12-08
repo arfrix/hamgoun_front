@@ -168,6 +168,8 @@ export default {
         this.$store.dispatch('actSetNewNotifCount', this.$store.state.notifications.length)
       }
     })
+
+    this.$store.dispatch('getRocketChat_autToken')
   },
   beforeDestroy () {
     window.removeEventListener('scroll', this.onScroll)

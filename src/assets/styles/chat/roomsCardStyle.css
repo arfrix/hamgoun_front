@@ -1,0 +1,48 @@
+h3,h4{
+    margin: 0;
+}
+
+.rooms-card-main-container{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2.5vw;
+    margin-top: 2.5vw;
+    
+}
+
+.avatar{
+    width: 13vw;
+    height: 13vw;
+    border-radius: 50%;
+}
+
+.lables-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-right: 2.5vw;
+    color :#9ea2a8;
+}
+.room-card-userName{
+    font-family: IranSans;
+    font-size: 3.65vw;
+    
+}
+.lastMsg{
+    white-space: nowrap;
+    font-family: IranSans_Light;
+    font-size: 3.5vw;
+    color :#9ea2a8;
+}
+.line{
+    position: absolute;
+    bottom: -2vw;
+    right: 15vw;
+    height: 1px;
+    width: 79vw;
+    background-color: rgba(255, 255, 255, 0.1);
+    
+
+}
