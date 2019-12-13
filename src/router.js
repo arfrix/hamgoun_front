@@ -12,6 +12,8 @@ import AddPost from './views/p5/addPost.vue'
 import CampainPage from './views/p1/campainPage.vue'
 import otherUserProfile from './views/p3/otherUserProfile.vue'
 import Chat from './views/chat/chat.vue'
+import lan from './views/desktop/landing/desktopLanding.vue'
+import price from './views/desktop/landing/priceList.vue'
 
 Vue.use(Router)
 
@@ -95,6 +97,16 @@ export default new Router({
       path: '/chat',
       name: 'Chat',
       component: Chat
+    },
+    {
+      path: '/desktop/landing',
+      name: 'landing',
+      component: lan
+    },
+    {
+      path: '/desktop/landing/pricelist',
+      name: 'pricelist',
+      component: price
     }
 
   ]

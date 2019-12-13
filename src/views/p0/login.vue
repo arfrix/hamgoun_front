@@ -70,7 +70,6 @@ export default {
       console.log(this.userNameInput + ' -- ' + this.passInput)
 
       this.$store.dispatch('login', { userName: this.userNameInput, pass: this.passInput }).then(() => {
-        // this.$store.dispatch('fetch_home_page_cards',{'FollowerId':this.$store.state.userId,'MainCategory':1,'SubCategory':1})
         this.$store.dispatch('fetch_user_profile_data', this.$store.state.userId)
       }).then(() => {
         console.log(this.$store.state.userId)

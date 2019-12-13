@@ -4,11 +4,13 @@ import Axios from 'axios'
 
 Vue.use(Vuex)
 
-const baseUrl = 'http://45.82.136.106:8080'
+// const baseUrl = 'http://45.82.136.106:8080'
 // const baseUrl = 'https://localhost:5001'
-// const baseUrl = 'http://193.176.241.61:80'
+const baseUrl = 'http://193.176.241.61:80'
 
-Axios.defaults.headers.common['Authorization'] = 'Bearer' + ' ' + localStorage.getItem('aut_token')
+Axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('aut_token')
+Axios.defaults.headers.common['Content-Type'] = 'application/json'
+Axios.defaults.headers.post['Content-Type'] = 'application/json'
 Axios.interceptors.response.use(
   response => response,
   errorResponseHandler
@@ -663,17 +665,19 @@ export default new Vuex.Store({
       state.waitingForLogin = true
       let response = ''
       try {
-        response = await Axios.post(baseUrl + '/Users/login', {
-          userName: params.userName,
-          pass: params.pass
-        })
+        response = await Axios.post(baseUrl + '/login', {
+          Username: params.userName,
+          Password: params.pass
+        }
+        )
         console.log('login')
         console.log(response.data)
         commit('write_userPassLogin', response.data.status)
 
         if (response.data.status) {
-          localStorage.userId = response.data.data
-          commit('write_userId', response.data.data)
+          localStorage.setItem('aut_token', response.data.token)
+          localStorage.setItem('userId', response.data.userId)
+          commit('write_userId', response.data.userId)
         }
       } catch (error) {
 

@@ -43,12 +43,12 @@ export default {
       this.$store.dispatch('actSetWitch_route_we_are', 10)
     },
     gotoProfile () {
-      if (localStorage.userId === undefined) {
+      if (localStorage.getItem('userId') === undefined) {
         //! super shity and kesafat
         this.$router.push({ name: 'myProfile', params: { me: true, id: -1 } })
       } else {
         this.$store.dispatch('actSetWitch_route_we_are', 12)
-        this.$router.push({ name: 'myProfile', params: { me: true, id: parseInt(localStorage.userId), isFetchNeed: true } })
+        this.$router.push({ name: 'myProfile', params: { me: true, id: localStorage.getItem('userId'), isFetchNeed: true } })
         // this.$router.push({ name: 'profile', params: { profile: undefined, is_other_user_profile: false } })
         // this.$store.dispatch('actChangeSubCategoryList', false)
       }
