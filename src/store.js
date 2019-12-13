@@ -437,7 +437,7 @@ export default new Vuex.Store({
       let response = ''
       try {
         response = await Axios.post(baseUrl + '/Posts/followedNewPosts', {
-          followerId: localStorage.userId,
+          followerId: parseInt(localStorage.userId),
           mainCategory: params.mainCategory
           // Layer: params.layer
         })
@@ -570,8 +570,8 @@ export default new Vuex.Store({
       let response = ''
       try {
         response = await Axios.post(baseUrl + '/Posts/draftList', {
-          publisherId: state.userId,
-          mainCategory: params.MainCategory
+          publisherId: parseInt(localStorage.userId),
+          mainCategory: parseInt(params.MainCategory)
 
         })
         console.log(response)
@@ -587,11 +587,12 @@ export default new Vuex.Store({
     },
 
     async fetch_my_postList ({ commit, state }, data) {
+      console.log(data)
       state.waitFor_fetch_my_postList = true
       let response = ''
       try {
         response = await Axios.post(baseUrl + '/Posts/myPostsList', {
-          publisherId: data.publisherId,
+          publisherId: parseInt(data.publisherId),
           mainCategory: data.mainCategory
 
         })
