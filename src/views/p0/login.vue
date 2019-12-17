@@ -38,7 +38,7 @@
         <div v-if="!this.$store.state.waitingForLogin" class="col-m-2 button" @click="login()">
             <h3 class="button-lable">ورود</h3>
         </div>
-        <div v-if="this.$store.state.waitingForLogin" class="col-m-2 button" >
+        <div v-if="this.$store.state.waitingForLogin && !showError" class="col-m-2 button" >
             <h3 class="button-waiting-lable"><h6>.</h6><h6>.</h6><h6>.</h6></h3>
         </div>
     </div>

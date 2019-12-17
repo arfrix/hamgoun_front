@@ -21,6 +21,7 @@ function errorResponseHandler (error) {
   if (error.response) {
     console.log('api responce error')
     console.log(error.response)
+    console.log(error)
   }
 }
 
@@ -689,7 +690,7 @@ export default new Vuex.Store({
       state.waitingForLogin = true
       let response = ''
       try {
-        response = await Axios.post(baseUrl + '/Users/login', {
+        response = await Axios.post(baseUrl + '/Userds/login', {
           userName: params.userName,
           pass: params.pass
         })
@@ -703,7 +704,7 @@ export default new Vuex.Store({
           commit('write_userId', response.data.data)
         }
       } catch (error) {
-
+        commit('write_userPassLogin', false)
       }
     },
     async register ({ commit, state }, params) {
