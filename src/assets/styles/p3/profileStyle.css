@@ -5,6 +5,9 @@
     background-color: #14213D;
     
 }
+.rtl-container{
+  direction: rtl;
+}
 .top-section{
     position: relative;
     height: 60vw;
@@ -201,10 +204,18 @@
       width: 7vw;
   }
 
+  .notif-transition-enter { right: -60vw; }
+  .notif-transition-enter-to { right: 0vw; }
+  .notif-transition-enter-active { position: fixed }
+  
+  .notif-transition-leave { right: 0vw; }
+  .notif-transition-leave-to { right: -60vw; }
+  
+  .notif-transition-enter-active,
+  .notif-transition-leave-active { transition: all 750ms ease-in-out }
 
-
-  .notif-transition-enter{
-    right: -60vw;
+  /* .notif-transition-enter{
+    right: -60vw; 
   }
   .notif-transition-enter-to{
     
@@ -212,28 +223,30 @@
     animation-duration: 0.5s;  
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
+    opacity: 1;
   }
   .notif-transition-leave-to{
     animation-name: go;
     animation-duration: 0.5s;  
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
+    opacity: 0;
   }
   @keyframes come {
     from {right: -60vw;}
-    to {right: 0px; opacity: 1;}
+    to {right: 0vw; }
   }
   @keyframes go {
     from {right: 0px;}
     to {right: -60vw;}
-  }
+  } */
 
  .notif-side-bar{
     height: 100vh;
     width: 60vw;
     position: fixed;
     top: 0;
-    right: 0vw;
+    /* right: -60vw; */
     background-color: rgb(26, 41, 73);
     z-index: 100;
     opacity: 1;
@@ -327,8 +340,8 @@
 }
 .notifNumberContainer{
   position: absolute;
-  right: 1vw;
-  top: 0vw;
+  left: 6vw;
+  top: -1vw;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -343,6 +356,7 @@
   font-family: IranSans;
   font-size: 2.75vw;
   border: 1px solid rgb(0, 0, 0);
+  z-index: 1;
 }
 .loading-container{
   color: rgb(221, 194, 194);
@@ -379,4 +393,14 @@
 
 .button-waiting-lable h6:nth-child(3) {
   animation-delay: .4s;
+}
+
+.showNotifClickableArea{
+  position: absolute;
+  left: 0;
+  top: -1vw;
+  width: 13vw;
+  height: 13vw;
+  /* background-color: #fff; */
+  z-index: 2;
 }

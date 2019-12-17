@@ -1,14 +1,15 @@
 
 <template>
   <div class="profile-main-div" >
-    <popup
+      <popup
       v-if="isShowLoginPopup"
       @btn_clicked="goToLogin_onClicked()"
       msg="نیازه یبار وارد حسابت بشی ، چون الان نمیدونیم پروفایل کی رو باید نشون بدیم "
       class="popup"
     ></popup>
+    <div class="rtl-container">
     <transition name="notif-transition">
-      <div v-if="isShowNotifSidebar" class="notif-side-bar" v-click-outside="hideNotifSideBar">
+      <div v-if="isShowNotifSidebar" class="notif-side-bar" >
         <div class="notif-lable-container">
           <h3 class="notif-lable">رخداد ها</h3>
         </div>
@@ -41,18 +42,12 @@
         </div>
       </div>
     </transition>
+    </div>
 
     <transition name="fade">
       <div v-if="!witchTab[1]" class="top-section">
         <img src="../../assets/images/backGround/profile4.png" class="top-section-bc-img" />
         <div class="col-m-10 two-icon-container">
-          <img
-            v-if="!this.isOtherUser()"
-            src="../../assets/icons/paper-plane.png"
-            alt
-            class="two-icon-img1"
-            @click="!isShowNotifSidebar ? gotoChat() : null"
-          />
           <!-- <img src="../../assets/icons/paper-plane.png" alt="" class="two-icon-img2"> -->
           <img
             id="notifIcon"
@@ -60,9 +55,16 @@
             src="../../assets/icons/alarm.png"
             alt
             class="two-icon-img2"
-            @click="showNotif()"
           />
-          <div v-if="!this.$store.state.isNotifSeen" class="notifNumberContainer" @click="showNotif()">
+          <img
+            v-if="!this.isOtherUser()"
+            src="../../assets/icons/paper-plane.png"
+            alt
+            class="two-icon-img1"
+            @click="!isShowNotifSidebar ? gotoChat() : null"
+          />
+          <div class="showNotifClickableArea" @click="showNotif()" v-click-outside="hideNotifSideBar"></div>
+          <div v-if="!this.$store.state.isNotifSeen" class="notifNumberContainer">
             <p>{{this.$store.state.newNotifCount}}</p>
           </div>
         </div>
@@ -121,6 +123,7 @@
         <myContent v-if="witchTab[1]" :is_other_user_content="isOtherUser()" :Id="id"></myContent>
       </div>
     </div>
+
     <navigation></navigation>
   </div>
 </template>
@@ -257,7 +260,7 @@ export default {
     },
     showNotif () {
       if (!this.isShowLoginPopup) {
-        this.isShowNotifSidebar = true
+        this.isShowNotifSidebar = !this.isShowNotifSidebar
         this.$store.dispatch('actSetIsNotifSeen', true)
         localStorage.setItem('notifCount', this.$store.state.notifications.length)
       }
