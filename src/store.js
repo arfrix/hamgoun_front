@@ -325,7 +325,8 @@ export default new Vuex.Store({
       state.postData = data
     },
     writeNotif (state, data) {
-      state.notifications = data
+      if (data !== undefined) { state.notifications = data.slice().reverse() }
+
       state.waitForNotif = false
     },
     writeTotalPostRateAndJudgesCount (state, data) {

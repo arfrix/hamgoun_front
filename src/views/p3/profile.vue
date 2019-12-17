@@ -21,7 +21,7 @@
           <div v-if="this.$store.state.waitForNotif" class="loading-container">
             <h3 class="button-waiting-lable"><h6>.</h6><h6>.</h6><h6>.</h6></h3>
           </div>
-          <div v-for="item in this.$store.state.notifications.slice().reverse()" :key="item.id" class="notif-card">
+          <div v-for="item in this.$store.state.notifications" :key="item.id" class="notif-card">
             <div class="notif-profile-img-container">
               <!-- <img :src="getImgUrl(item.actorImgUrl)" alt class="img" /> -->
               <picture>
