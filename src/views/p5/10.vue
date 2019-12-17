@@ -1,13 +1,14 @@
 <template>
 <div class="add-post-main">
+    <div class="rtl-container">
       <transition name="sidebar-transition">
         <div v-if="isShowSidebar" class="draft-side-bar">
           <div class="sidebar-lable-container">
             <h3 class="sidebar-lable">پیش نویس ها</h3>
           </div>
-          <div class="close-btn" @click="isShowSidebar = false">
+          <!-- <div class="close-btn" @click="isShowSidebar = false">
             <img src="../../assets/icons/delete-button.png" alt class="close-btn-img" />
-          </div>
+          </div> -->
 
           <div  class="list-looper">
             <div v-for="(item,index) in this.$store.state.drafted_post_list" :key="item.id" class="deraft-card" @click="draftClicked(index)">
@@ -17,6 +18,7 @@
           </div>
         </div>
       </transition>
+    </div>
 
       <popup v-if="isShowErrorMsg" @btn_clicked="isShowErrorMsg = false" :msg="errorMsg"></popup>
 
@@ -77,7 +79,7 @@
           <img  :src="getImgUrl(this.$store.state.mainCategoryList[MainCategory].img)" alt="" class="main-group-img">
         </div>
 
-        <div class="draft-btn" @click="showDraftList()">
+        <div id="DraftListBtn" class="draft-btn" @click="showDraftList()" v-click-outside="hideDraftSideBar">
             <h3 class="draft-btn-lable">پیش نویس ها</h3>
         </div>
 
@@ -112,6 +114,7 @@
 import Axios from 'axios'
 import popup from '../../components/global/msgPopup'
 import editor from '../../components/p5/editor'
+import ClickOutside from 'vue-click-outside'
 
 // import { async } from 'q'
 export default {
@@ -137,6 +140,9 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  directives: {
+    ClickOutside
   },
   data () {
     return {
@@ -222,6 +228,10 @@ export default {
           30
         )
       }
+    },
+    hideDraftSideBar (e) {
+      console.log('/*/*/*/*/*/*/*/')
+      if (e.target.id !== 'DraftListBtn') { this.isShowSidebar = false }
     },
     showDraftList () {
       console.log('value')
