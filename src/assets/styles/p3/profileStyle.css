@@ -19,15 +19,34 @@
 }
 .profile-img-container{
      position: relative;
-    
-    width: 18vw;
-    height: 18vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 17vw;
+    height: 17vw;
     border-radius: 50%;
     /* overflow: hidden; */
     box-shadow:0px 3px 6px #00000028 ;
     background-image: url(../../icons/user.png);
     background-size: cover;
+    margin-top: 1vw;
 }
+.profile-img-container-inside{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    overflow: hidden;
+    border-radius: 50%;
+}
+.profile-img{
+  width: 18vw;
+  height: 18vw;
+  border-radius: 50%;
+  object-fit: cover;
+  
+}
+
 .top-section-text{
     position: absolute;
     top:2vw;
@@ -268,6 +287,13 @@
     background-image: url(../../icons/user.png);
     background-size: cover;
 }
+.notifProfileImg{
+  width: 10vw;
+    height: 10vw;
+    object-fit: cover;
+  border-radius: 50%;
+}
+
 .notif-card-text{
     display: flex;
     flex-direction: column;
@@ -281,11 +307,7 @@
   width: 5vw;
   z-index: 5;
 }
-.profile-img{
-  width: 18vw;
-  height: 18vw;
-  border-radius: 50%;
-}
+
 .close-btn{
   position: absolute;
   right: 53vw;

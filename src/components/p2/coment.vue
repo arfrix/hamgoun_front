@@ -6,8 +6,8 @@
         <!-- <img :src="'http://45.82.136.106:8080/images/'+this.imgUrl" alt="" class="img profile-img"> -->
         <picture>
           <!-- <source :srcset="getImgUrl_webp(this.imgUrl) " type="image/webp" /> -->
-          <source :srcset="getImgUrl(this.imgUrl)" type="image/jpeg" />
-          <img :src="getImgUrl(this.imgUrl)" class="img profile-img" />
+          <source :srcset="getImgUrl(this.imgUrl)" type="image/jpeg" alt=""/>
+          <img :src="getImgUrl(this.imgUrl)" class="img profile-img" alt=""/>
         </picture>
       </div>
       <div :class="witchSize">

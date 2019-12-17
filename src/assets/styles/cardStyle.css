@@ -77,6 +77,8 @@
     overflow: hidden;
 }
 .card-img{
-    width: 100%;
+    width: 45vw;
+    height: 17vh;
+    object-fit: cover;
     border-radius: 7px;
 }

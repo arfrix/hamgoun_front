@@ -12,9 +12,9 @@
         <div class="notif-lable-container">
           <h3 class="notif-lable">رخداد ها</h3>
         </div>
-        <div class="close-btn" @click="isShowNotifSidebar = false">
+        <!-- <div class="close-btn" @click="isShowNotifSidebar = false">
           <img src="../../assets/icons/delete-button.png" alt class="close-btn-img" />
-        </div>
+        </div> -->
 
         <div class="notif-list-looper">
           <div v-for="item in this.$store.state.notifications.slice().reverse()" :key="item.id" class="notif-card">
@@ -22,8 +22,8 @@
               <!-- <img :src="getImgUrl(item.actorImgUrl)" alt class="img" /> -->
               <picture>
                 <!-- <source :srcset="getImgUrl_webp(item.actorImgUrl)" type="image/webp" /> -->
-                <source :srcset="getImgUrl(item.actorImgUrl)" type="image/jpeg" />
-                <img :src="getImgUrl(item.actorImgUrl)" class="img" />
+                <source :srcset="getImgUrl(item.actorImgUrl)" type="image/jpeg" alt=""/>
+                <img :src="getImgUrl(item.actorImgUrl)" class="notifProfileImg" alt=""/>
               </picture>
             </div>
             <div class="notif-card-text">
@@ -68,8 +68,8 @@
             <!-- <img :src="getImgUrl(this.profileData.profileImgUrl)" alt class="profile-img" /> -->
             <picture>
               <!-- <source :srcset="getImgUrl_webp(this.profileData.profileImgUrl)" type="image/webp" /> -->
-              <source :srcset="getImgUrl(this.profileData.profileImgUrl)" type="image/jpeg" />
-              <img :src="getImgUrl(this.profileData.profileImgUrl)" class="profile-img" />
+              <source :srcset="getImgUrl(this.profileData.profileImgUrl)" type="image/jpeg" alt=""/>
+              <img :src="getImgUrl(this.profileData.profileImgUrl)" class="profile-img" alt=""/>
             </picture>
             <img
               v-if="!this.isOtherUser()"

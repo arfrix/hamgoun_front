@@ -23,8 +23,8 @@
       <div class="img-container">
         <picture>
           <!-- <source :srcset="getImgUrl_webp(this.imgUrl)" type="image/webp" /> -->
-          <source :srcset="getImgUrl(this.imgUrl)" type="image/jpeg" />
-          <img :src="getImgUrl(this.imgUrl)" class="card-img" />
+          <source :srcset="getImgUrl(this.imgUrl)" type="image/jpeg" alt=""/>
+          <img :src="getImgUrl(this.imgUrl)" class="card-img" alt=""/>
         </picture>
       </div>
       <div class="img-card-details-container">

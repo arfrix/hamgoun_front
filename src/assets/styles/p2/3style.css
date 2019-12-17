@@ -125,6 +125,12 @@
     background-image: url(../../icons/user.png);
     background-size: cover;
 }
+.profile-img{
+    width: 10vw;
+    height: 10vw;
+    object-fit: cover;
+  border-radius: 50%;
+}
 
 .input-comment-container{
     position: fixed;

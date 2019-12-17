@@ -41,10 +41,12 @@
           <source
             :srcset="getImgUrl(this.$store.state.postData.publisherProfileImg)"
             type="image/jpeg"
+            alt=""
           />
           <img
             :src="getImgUrl(this.$store.state.postData.publisherProfileImg)"
-            class="img profile-img"
+            class="profile-img"
+            alt=""
           />
         </picture>
       </div>

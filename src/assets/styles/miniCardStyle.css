@@ -102,9 +102,10 @@
     overflow: hidden;
 }
 .card-img{
-    width: 100%;
+    width: 37vw;
+    height: 14.5vh;
     border-radius: 7px;
-    
+    object-fit: cover;
 }
 .img-card-details-container{
     /* margin-top: 1vw; */

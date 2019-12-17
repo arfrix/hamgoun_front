@@ -3,8 +3,8 @@
     <!-- <div class="profile-img-container"> -->
       <picture>
         <!-- <source :srcset="getImgUrl_webp(imgUrl)" type="image/webp" />  -->
-        <source :srcset="getImgUrl(imgUrl)" type="image/jpeg" />
-        <img :src="getImgUrl(imgUrl)" class="profile-img" />
+        <source :srcset="getImgUrl(imgUrl)" type="image/jpeg" alt=""/>
+        <img :src="getImgUrl(imgUrl)" class="profile-img" alt=""/>
       </picture>
     <!-- </div> -->
 

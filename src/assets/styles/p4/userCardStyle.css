@@ -28,7 +28,9 @@
     margin: auto;
     display: block;
     border-radius: 50%;
+    object-fit: cover;
 }
+
 
 .username{
     font-family:IranSans_Light;
