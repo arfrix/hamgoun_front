@@ -3,19 +3,19 @@
 <!-- eslint-disable -->
     <div class="bio-main">
         <div class="col-m-10 tab-row-container">
-            <div  class="card" @click="tabClicked(0)">
+            <div  class="card" @click="!doNotWork ? tabClicked(0) : null">
                 <img :src="getImgUrl(this.bioCardDetail[0].img)" alt="" class="card-icon c0">
                 <h6 class="card-lable">{{this.bioCardDetail[0].name}}</h6>
             </div>
-            <div  class="card" @click="tabClicked(1)">
+            <div  class="card" @click="!doNotWork ? tabClicked(1) : null">
                 <img :src="getImgUrl(this.bioCardDetail[1].img)" alt="" class="card-icon c1">
                 <h6 class="card-lable">{{this.bioCardDetail[1].name}}</h6>
             </div>
-            <div  class="card" @click="tabClicked(2)">
+            <div  class="card" @click="!doNotWork ? tabClicked(2) : null">
                 <img :src="getImgUrl(this.bioCardDetail[2].img)" alt="" class="card-icon c2">
                 <h6 class="card-lable">{{this.bioCardDetail[2].name}}</h6>
             </div>
-            <div  class="card" @click="tabClicked(3)">
+            <div  class="card" @click="!doNotWork ? tabClicked(3) : null">
                 <img :src="getImgUrl(this.bioCardDetail[3].img)" alt="" class="card-icon c3">
                 <h6 class="card-lable">{{this.bioCardDetail[3].name}}</h6>
             </div>
@@ -43,7 +43,7 @@ export default {
   components: {
   },
   props: [
-    'is_other_user_bio', 'profile'
+    'is_other_user_bio', 'profile', 'doNotWork'
   ],
   data () {
     return {

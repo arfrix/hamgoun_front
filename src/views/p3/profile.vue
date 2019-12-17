@@ -8,7 +8,7 @@
       class="popup"
     ></popup>
     <transition name="notif-transition">
-      <div v-if="isShowNotifSidebar" class="notif-side-bar">
+      <div v-if="isShowNotifSidebar" class="notif-side-bar" v-click-outside="hideNotifSideBar">
         <div class="notif-lable-container">
           <h3 class="notif-lable">رخداد ها</h3>
         </div>
@@ -17,7 +17,7 @@
         </div>
 
         <div class="notif-list-looper">
-          <div v-for="item in this.$store.state.notifications" :key="item.id" class="notif-card">
+          <div v-for="item in this.$store.state.notifications.slice().reverse()" :key="item.id" class="notif-card">
             <div class="notif-profile-img-container">
               <!-- <img :src="getImgUrl(item.actorImgUrl)" alt class="img" /> -->
               <picture>
@@ -48,10 +48,11 @@
             src="../../assets/icons/paper-plane.png"
             alt
             class="two-icon-img1"
-            @click="gotoChat()"
+            @click="!isShowNotifSidebar ? gotoChat() : null"
           />
           <!-- <img src="../../assets/icons/paper-plane.png" alt="" class="two-icon-img2"> -->
           <img
+            id="notifIcon"
             v-if="!this.isOtherUser()"
             src="../../assets/icons/alarm.png"
             alt
@@ -75,7 +76,7 @@
               src="../../assets/icons/plus.png"
               alt
               class="profile-img-add-btn"
-              @click="profileImg()"
+              @click="!isShowNotifSidebar ? profileImg() : null"
             />
           </div>
           <div class="username-container">
@@ -100,11 +101,11 @@
         <div class="row tab-section">
           <div class="col-m-9 devider-line"></div>
           <div class="tabs-div">
-            <div class="tab1-div" @click="tabNavigate(0)">
+            <div class="tab1-div" @click="!isShowNotifSidebar ? tabNavigate(0) : null">
               <img src="../../assets/icons/user.png" alt class="tap-icon" />
               <div v-if="this.witchTab[0]" class="colored-line"></div>
             </div>
-            <div class="tab2-div" @click="tabNavigate(1)">
+            <div class="tab2-div" @click="!isShowNotifSidebar ? tabNavigate(1) : null">
               <img src="../../assets/icons/posts.png" alt class="tap-icon" />
               <div v-if="this.witchTab[1]" class="colored-line"></div>
             </div>
@@ -113,7 +114,7 @@
       </div>
 
       <div class="bottom-section">
-        <bio v-if="witchTab[0]" :is_other_user_bio="isOtherUser()" :profile="profileData"></bio>
+        <bio v-if="witchTab[0]" :is_other_user_bio="isOtherUser()" :profile="profileData" :doNotWork="isShowNotifSidebar"></bio>
         <myContent v-if="witchTab[1]" :is_other_user_content="isOtherUser()" :Id="id"></myContent>
       </div>
     </div>
@@ -126,6 +127,7 @@ import bio from '../../components/p3/bio'
 import myContent from '../../components/p3/myContent'
 import Axios from 'axios'
 import popup from '../../components/global/msgPopup'
+import ClickOutside from 'vue-click-outside'
 
 export default {
   name: 'profile',
@@ -192,6 +194,10 @@ export default {
         this.$store.dispatch('actSetNewNotifCount', this.$store.state.notifications.length)
       }
     })
+    // this.popupItem = this.$el
+  },
+  directives: {
+    ClickOutside
   },
 
   methods: {
@@ -258,6 +264,17 @@ export default {
     },
     gotoChat () {
       this.$router.push('/chat')
+    },
+    hideNotifSideBar (e) {
+      // TIP KIND OF ENTRIES
+      // hideNotifSideBar(e, el, extras) {
+      //       console.log("onClickOutside");
+      //       console.log("Event:", e);
+      //       console.log("Element clicked on:", e.target);
+      //       console.log("Element clicked outside of:", el);
+      //       console.log("Extras:", extras)
+      console.log(e.target.id)
+      if (e.target.id !== 'notifIcon') { this.isShowNotifSidebar = false }
     },
     profileImg () {
       if (!this.is_other_user_profile) {

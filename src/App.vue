@@ -22,10 +22,16 @@ export default {
   mounted () {
 
   },
+  created () {
+    if (this.width > 800) {
+      this.$router.push('/desktop/landing')
+    }
+  },
 
   data () {
     return {
-
+      width: window.innerWidth,
+      height: window.innerHeight
     }
   }
 
