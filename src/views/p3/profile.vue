@@ -190,14 +190,16 @@ export default {
   },
   mounted () {
     this.$store.dispatch('fetchNotif').then(() => {
-      if (localStorage.getItem('notifCount') !== null) {
-        if (this.$store.state.newNotifCount !== (this.$store.state.notifications.length - localStorage.getItem('notifCount'))) {
-          console.log(this.$store.state.notifications.length - localStorage.getItem('notifCount'))
-          this.$store.dispatch('actSetNewNotifCount', this.$store.state.notifications.length - localStorage.getItem('notifCount'))
+      const arrivedNotifications = this.$store.state.notifications.length
+      const savedNotifCount = parseInt(localStorage.getItem('notifCount'))
+
+      if (savedNotifCount !== null) {
+        if (this.$store.state.newNotifCount !== (arrivedNotifications - savedNotifCount)) {
+          this.$store.dispatch('actSetNewNotifCount', arrivedNotifications - savedNotifCount)
           this.$store.dispatch('actSetIsNotifSeen', false)
         }
       } else {
-        this.$store.dispatch('actSetNewNotifCount', this.$store.state.notifications.length)
+        this.$store.dispatch('actSetNewNotifCount', arrivedNotifications)
       }
     })
     // this.popupItem = this.$el
