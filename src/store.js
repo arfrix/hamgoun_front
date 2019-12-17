@@ -201,7 +201,8 @@ export default new Vuex.Store({
     commentsList: '',
     postData: '',
     wait_for_fetch_home_page_private_mode_cards: false,
-    notifications: '',
+    notifications: [],
+    waitForNotif: false,
     waitingForComments: false,
     // commentToSend: ''
     newNotifCount: 0,
@@ -325,6 +326,7 @@ export default new Vuex.Store({
     },
     writeNotif (state, data) {
       state.notifications = data
+      state.waitForNotif = false
     },
     writeTotalPostRateAndJudgesCount (state, data) {
       localStorage.setItem(data.url, true)
@@ -690,7 +692,7 @@ export default new Vuex.Store({
       state.waitingForLogin = true
       let response = ''
       try {
-        response = await Axios.post(baseUrl + '/Userds/login', {
+        response = await Axios.post(baseUrl + '/Users/login', {
           userName: params.userName,
           pass: params.pass
         })
@@ -902,6 +904,7 @@ export default new Vuex.Store({
       }
     },
     async fetchNotif ({ commit, state }) {
+      state.waitForNotif = true
       let response = ''
 
       try {
@@ -910,7 +913,7 @@ export default new Vuex.Store({
         console.log('notif')
         console.log(response.data.data)
       } catch (error) {
-
+        commit('writeNotif', '')
       }
     },
     updatePostRateOffline ({ commit, state }, data) {
