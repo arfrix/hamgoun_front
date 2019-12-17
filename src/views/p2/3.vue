@@ -75,7 +75,7 @@
           </div>
         </div>
 
-        <div class="col-m-4-5 rate-number-container" @click="showRatingPopUp">
+        <div id="RatingPopUp" class="col-m-2 rate-number-container" @click="showRatingPopUp" v-click-outside="hideRatingPopUp">
           <h3 class="rateNumber">{{this.fillterRateNumber(this.$store.state.postData.postRate)}}</h3>
           <img :src="mizounImgUrl(submitRate)" class="rateImg" />
         </div>
@@ -96,9 +96,9 @@
 
           <h2 class="votesCount">{{this.$store.state.postData.judgesCount}}</h2>
           <h2 class="voteLable">رای</h2>
-          <div class="close-btn" @click="closeRatingPopUp()">
+          <!-- <div class="close-btn" @click="closeRatingPopUp()">
             <img src="../../assets/icons/delete-button.png" alt class="close-btn-img" />
-          </div>
+          </div> -->
         </div>
       </transition>
       <div id="bottom_section_devider" class="col-m-8-5 devider-line"></div>
@@ -141,10 +141,11 @@
 <script>
 import coment from './../../components/p2/coment'
 
-//! in chiv bedard bokhorie bara list hamon!!!!!!----------------------------------
+//! in chiz bedard bokhorie bara list hamon!!!!!!----------------------------------
 // import InfiniteLoading from 'vue-infinite-loading'
 
 // import writeComment from '../../components/p2/writeComment'
+import ClickOutside from 'vue-click-outside'
 
 export default {
   name: '3',
@@ -158,7 +159,9 @@ export default {
       type: String
     }
   },
-
+  directives: {
+    ClickOutside
+  },
   beforeMount () {
     if (this.isFetch) {
       this.$store.dispatch('fetchPostData', this.uniqueUrl).then(() => {
@@ -244,6 +247,10 @@ export default {
       } else {
         this.show = false
       }
+    },
+    hideRatingPopUp (e) {
+      console.log(e.target.id)
+      if (e.target.id !== 'RatingPopUp') { this.isShowRatingPopUp = false }
     },
     writeComment () {
       this.showCommentInput = true

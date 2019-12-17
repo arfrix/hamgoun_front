@@ -230,7 +230,6 @@ export default {
       }
     },
     hideDraftSideBar (e) {
-      console.log('/*/*/*/*/*/*/*/')
       if (e.target.id !== 'DraftListBtn') { this.isShowSidebar = false }
     },
     showDraftList () {

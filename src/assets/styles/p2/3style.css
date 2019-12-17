@@ -11,7 +11,7 @@
 .bottom-section{
     display:flex;
     flex-direction:column;
-    align-items:center;
+    /* align-items:center; */
 }
 .top-section{
     display: flex;
@@ -75,6 +75,7 @@
 
 .devider-line{
     height:4px;
+    margin: auto;
     border-bottom:2px solid rgba(255, 255, 255, 0.151);
 }
 .comments-container{
@@ -203,26 +204,7 @@ textarea:focus {
      margin-right: 3vw;
  }
 
- .rating-container{
-     
-     width: 18vw;
-     background-color: rgb(26, 41, 73);
-     border-top-right-radius:10px; 
-     border-bottom-right-radius:10px; 
-     position: fixed;  
-     top: 20vh;  
-     left: 0vw;
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: space-evenly;
-     /* overflow: hidden; */
-     z-index: 5;
-     box-shadow:5px 3px 6px #00000015 ;
-     border-top: 1px solid #FFD615;
-     border-bottom: 1px solid #FFD615;
-     border-right: 1px solid #FFD615;
- }
+ 
  .close-btn{
      position: absolute;
      left: 18.5vw;
@@ -276,6 +258,7 @@ textarea:focus {
      flex-direction: row;
      align-items: center;
      justify-content: flex-start;
+     margin-right: 25vw;
  }
  .rateNumber{
      color: #FFD615;
@@ -285,7 +268,7 @@ textarea:focus {
      margin-top: 1vw;
  }
 
- .ratingPopUp-enter-active {
+ /* .ratingPopUp-enter-active {
     transition: opacity 0s;
     animation: ratingPopUp-rise 0.5s;
     animation-timing-function: ease-in-out;
@@ -298,20 +281,50 @@ textarea:focus {
     animation-fill-mode: forwards;
     
 }
-  .ratingPopUp-enter, .ratingPopUp-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  .ratingPopUp-enter, .ratingPopUp-leave-to  {
     opacity: 0;
     
-  }
+  } */
 
-  @keyframes ratingPopUp-rise {
+  /* @keyframes ratingPopUp-rise {
     from {left: -20vw;opacity: 0;}
     to {left: 0vw;opacity: 1;}
 }
   @keyframes ratingPopUp-fall {
     from {left: 0vw;opacity: 1;}
     to {left: -20vw;opacity: 0;}
-}
+} */
+.ratingPopUp-enter { left: -20vw; }
+.ratingPopUp-enter-to { left: 0vw; }
+.ratingPopUp-enter-active { position: fixed }
 
+.ratingPopUp-leave { left: 0vw; }
+.ratingPopUp-leave-to { left: -20vw; }
+
+.ratingPopUp-enter-active,
+.ratingPopUp-leave-active { transition: all 750ms ease-in-out }
+
+
+.rating-container{
+     
+    width: 18vw;
+    background-color: rgb(26, 41, 73);
+    border-top-right-radius:20px; 
+    border-bottom-right-radius:20px; 
+    position: fixed;  
+    top: 20vh;  
+    /* left: 0vw; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    /* overflow: hidden; */
+    z-index: 5;
+    box-shadow:5px 3px 6px #00000015 ;
+    border-top: 1px solid #FFD615;
+    border-bottom: 1px solid #FFD615;
+    border-right: 1px solid #FFD615;
+}
 .waiting-msg-container{
     margin-top: 10vw;
     margin-bottom: 19vw;
