@@ -57,7 +57,7 @@
         </div>
         <div class="hotTopic-section">
           <div class="section-lable-container">
-            <h3 class="section-lable">جیلیز ویلیز</h3>
+            <h3 id="jiliz" class="section-lable">جیلیز ویلیز</h3>
           </div>
           <div class="card-container">
             <!-- <miniCard class="col-m-3"  kind=0 imgUrl="images/cardImage2.jpg" title="فیلم maz runner" category="طراحی" username="mandora" duration="" text="این فیلم رو اولین بار تو دوران منم و در کنکور دیدم یادمه تو اون زمان خیل وقت برا این کارا نبود که بشه اینطوری سر در  "></miniCard> -->
@@ -91,7 +91,7 @@
         </div>
         <div class="fullDiscusion-section">
           <div class="section-lable-container">
-            <h3 class="section-lable">پچ پچ</h3>
+            <h3 id="pech" class="section-lable">پچ پچ</h3>
           </div>
           <div class="card-container">
             <!-- //! bayad jilizviliz o hamrahash ba  fullDiscusion jabeja beshan-->
@@ -125,7 +125,10 @@
         </div>
       </div>
     </div>
+    <!-- <v-tour name="myTour" :steps="steps" :options="myOptions"></v-tour> -->
+    <v-tour name="myTour" :steps="steps" :callbacks="callbacks" :options="myOptions">
 
+    </v-tour>
     <navigation></navigation>
   </div>
 </template>
@@ -145,6 +148,7 @@ export default {
     campainCard,
     bigCard,
     popup
+
   },
   beforeMount () {
     // this.$store.dispatch('fetch_home_page_cards',{'FollowerId':1,'MainCategory':1,'SubCategory':1})
@@ -153,6 +157,8 @@ export default {
   },
 
   mounted () {
+    if (localStorage.getItem('homeTourFinished') !== 'true') { this.$tours['myTour'].start() }
+    console.log(typeof localStorage.getItem('homeTour'))
     this.$store.dispatch('actSetTheListToShow', { level: 1, index: '' })
     window.addEventListener('scroll', this.onScroll)
     this.$store.state.cards.forEach(element => {
@@ -188,7 +194,62 @@ export default {
       witchModeImg: 'icons/chain.png',
       isCatSelected: false,
       mainCat: -1,
-      isShowLoginPopup: false
+      isShowLoginPopup: false,
+      myOptions: {
+        useKeyboardNavigation: false,
+        labels: {
+          buttonSkip: 'بیخیال',
+          buttonPrevious: 'قبلی',
+          buttonNext: 'اها',
+          buttonStop: 'خدافظ'
+        }
+      },
+      steps: [
+        {
+          target: '.categoryList-main-div',
+          header: {
+            title: '! عمیق شو'
+          },
+          content: `میتونی اسکرول کنی از بین دسته ها یکی رو انتخاب کنی تا ببینی توی اون دسته چه خبره`
+        },
+        {
+          target: '.mode-lable',
+          header: {
+            title: ' اگر پیگیری'
+          },
+          content: `با زدن روش میتونی تو هر دسته پستایی رو ببینی که قبلا نویسنده اش رو پیگیر شدی`,
+          params: {
+            placement: 'top'
+          }
+        },
+        {
+          target: '#jiliz',
+          header: {
+            title: ' اگر پیگیری'
+          },
+          content: `اینجا پستایی رو نشون میدیم که داغ داغ از تنور درومدن`,
+          params: {
+            placement: 'bottom'
+          }
+        },
+        {
+          target: '#pech',
+          header: {
+            title: ' اگر پیگیری'
+          },
+          content: `اینجا پستایی رو نشون میدیم که کلی درموردشون حرفه`,
+          params: {
+            placement: 'top'
+          }
+        }
+
+      ],
+      callbacks: {
+        onPreviousStep: this.myCustomPreviousStepCallback,
+        onNextStep: this.myCustomNextStepCallback,
+        onStop: this.myCustomStopCallback
+      }
+
     }
   },
   destroyed () {
@@ -199,6 +260,29 @@ export default {
 
   },
   methods: {
+
+    // vue tour
+    nextStep () {
+      this.$tours['myTour'].nextStep()
+    },
+    showLastStep () {
+      this.$tours['myTour'].currentStep = this.steps.length - 1
+    },
+    myCustomPreviousStepCallback (currentStep) {
+      console.log('[Vue Tour] A custom previousStep callback has been called on step ' + (currentStep + 1))
+    },
+    myCustomStopCallback (currentStep) {
+      localStorage.setItem('homeTourFinished', true)
+    },
+    myCustomNextStepCallback (currentStep) {
+      console.log('[Vue Tour] A custom nextStep callback has been called on step ' + (currentStep + 1))
+      if (currentStep === 1) {
+        console.log('[Vue Tour] A custom nextStep callback has been called from step 2 to step 3')
+      }
+    },
+    //
+    //
+    //
     // tip src binding!!!!
     getImgUrl (path) {
       return require('../../assets/' + path)

@@ -19,13 +19,14 @@
     "vue-infinite-loading": "^2.4.4",
     "vue-router": "^3.0.3",
     "vue-socket.io": "^3.0.7",
+    "vue-tour": "^1.1.0",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.9.0",
     "@vue/cli-plugin-eslint": "^3.9.0",
     "@vue/cli-plugin-pwa": "^3.9.0",
-    "@vue/cli-service": "^3.9.0",
+    "@vue/cli-service": "^4.1.1",
     "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",

@@ -28,7 +28,8 @@
         </div>
 
     </div>
-
+<v-tour name="list" :steps="steps1" :callbacks="callbacks" :options="myOptions"></v-tour>
+<v-tour name="template" :steps="steps2" :callbacks="callbacks" :options="myOptions"></v-tour>
 <navigation></navigation>
 </div>
 
@@ -50,6 +51,7 @@ export default {
   },
 
   mounted () {
+    if (localStorage.getItem('addPostFirstTourFinished') !== 'true') { this.$tours['list'].start() }
     if (localStorage.userId === undefined || localStorage.userName === undefined) {
       this.isShowLoginPopup = true
     }
@@ -128,7 +130,37 @@ export default {
       ],
       mainCat: null,
       subCat: null,
-      isShowLoginPopup: false
+      isShowLoginPopup: false,
+      myOptions: {
+        useKeyboardNavigation: false,
+        labels: {
+          buttonSkip: 'بیخیال',
+          buttonPrevious: 'قبلی',
+          buttonNext: 'اها',
+          buttonStop: 'اها'
+        }
+      },
+      steps1: [
+        {
+          target: '.mainCategory-container-bordered',
+          header: {
+            title: '! عمیق شو'
+          },
+          content: `میتونی اسکرول کنی از بین دسته ها اونی که پستت بهش میخوره رو پیدا کنی`
+        }
+      ],
+      steps2: [
+        {
+          target: '.template-card',
+          header: {
+            title: 'قالبش چی باشه'
+          },
+          content: `برای اینکه یه پست رو شروع کنی میتونی یکی از قالب ها رو انتخاب کنی`
+        }
+      ],
+      callbacks: {
+        onStop: this.myCustomStopCallback
+      }
 
     }
   },
@@ -137,6 +169,10 @@ export default {
     this.$store.dispatch('actChangeSubCategory', -1)
   },
   methods: {
+    myCustomStopCallback (currentStep) {
+      localStorage.setItem('addPostFirstTourFinished', true)
+      if (localStorage.getItem('addPostFirstTourFinished') === 'true') { localStorage.setItem('addPostSecondTourFinished', true) }
+    },
     // tip src binding!!!!
     getImgUrl (path) {
       return require('../../assets/' + path)
@@ -161,6 +197,7 @@ export default {
       })
     },
     defineMainCat (val) {
+      if (localStorage.getItem('addPostSecondTourFinished') !== 'true') { this.$tours['template'].start() }
       this.mainCat = val
       console.log(val)
     },

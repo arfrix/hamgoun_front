@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
+import VueTour from 'vue-tour'
 import router from './router'
 import store from './store'
 import navigation from './components/global/bottomNavigation.vue'
 import './registerServiceWorker'
 import axios from 'axios'
+
 // import socketio from 'socket.io'
 // import VueSocketIO from 'vue-socket.io'
 
@@ -12,7 +14,7 @@ import './assets/styles/globalStyles.css'
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
-
+require('vue-tour/dist/vue-tour.css')
 // Vue.use(new VueSocketIO({
 //   debug: true,
 //   connection: 'ws://193.176.241.61:3000/websocket',
@@ -22,7 +24,7 @@ import 'quill/dist/quill.bubble.css'
 //     mutationPrefix: 'SOCKET_'
 //   }
 // }))
-
+Vue.use(VueTour)
 Vue.component('navigation', navigation)
 
 Vue.config.productionTip = false

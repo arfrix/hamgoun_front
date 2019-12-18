@@ -3,6 +3,7 @@
     background-color: #14213D;
     position: relative;
     overflow-x: hidden;
+    min-height: 70vh;
 }
 
 .card-container{

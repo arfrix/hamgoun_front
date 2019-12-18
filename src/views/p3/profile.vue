@@ -56,19 +56,19 @@
             alt
             class="two-icon-img2"
           />
-          <img
+          <!-- <img
             v-if="!this.isOtherUser()"
             src="../../assets/icons/paper-plane.png"
             alt
             class="two-icon-img1"
             @click="!isShowNotifSidebar ? gotoChat() : null"
-          />
+          /> -->
           <div class="showNotifClickableArea" @click="showNotif()" v-click-outside="hideNotifSideBar"></div>
           <div v-if="!this.$store.state.isNotifSeen" class="notifNumberContainer">
             <p>{{this.$store.state.newNotifCount}}</p>
           </div>
         </div>
-        <div class="col-m-10 top-section-text">
+        <div id="top_section" class="col-m-10 top-section-text">
           <div class="profile-img-container">
             <!-- <img :src="getImgUrl(this.profileData.profileImgUrl)" alt class="profile-img" /> -->
             <picture>
@@ -87,15 +87,16 @@
           <div class="username-container">
             <h4 class="username">{{this.profileData.userName}}</h4>
           </div>
-          <div class="col-m-4 data-container">
+          <div id="data-container" class="col-m-4 data-container">
             <div class="follower-section">
               <h3 class="number">{{hamegyry(this.profileData.hamegyry)}}</h3>
               <h3 class="follower-section-lable">همه گیری</h3>
+            <div class="test-guid-palce"></div>
             </div>
-            <div class="viewed-section">
+            <!-- <div class="viewed-section">
               <h3 class="number">00:00</h3>
               <h3 class="viewed-section-lable">همراهی</h3>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -124,6 +125,7 @@
       </div>
     </div>
 
+    <v-tour name="myTour" :steps="steps" :callbacks="callbacks" :options="myOptions"></v-tour>
     <navigation></navigation>
   </div>
 </template>
@@ -164,7 +166,45 @@ export default {
       show_topSection: true,
       profileData: '',
       isShowNotifSidebar: false,
-      isShowLoginPopup: false
+      isShowLoginPopup: false,
+      myOptions: {
+        useKeyboardNavigation: false,
+        labels: {
+          buttonSkip: 'بیخیال',
+          buttonPrevious: 'قبلی',
+          buttonNext: 'اها',
+          buttonStop: 'خدافظ'
+        }
+      },
+      steps: [
+        {
+          target: '.follower-section-lable',
+          header: {
+            title: 'همیگیری ایا ؟'
+          },
+          content: `عدد همه گیری داره مجموع تعداد بازدیدای پست هات رو میگه`,
+          params: {
+            placement: 'bottom'
+          }
+        },
+        {
+          target: '.tab2-div',
+          header: {
+            title: 'پستات'
+          },
+          content: `از اینجا میتونی تمام پستات رو تو دسته بندی هاشون ببینی`
+        },
+        {
+          target: '.card-lable',
+          header: {
+            title: 'از خودت بگو'
+          },
+          content: `اینجا میتون با زدن روی هر دسته بیشتر از خودت برامون بگی`
+        }
+      ],
+      callbacks: {
+        onStop: this.myCustomStopCallback
+      }
     }
   },
 
@@ -180,9 +220,11 @@ export default {
       if (this.profile === undefined) {
         this.$store.dispatch('fetch_user_profile_data', this.id).then(() => {
           this.profileData = this.$store.state.user_profile_data
+          if (localStorage.getItem('profileTourFinished') !== 'true') { this.$tours['myTour'].start() }
         })
       } else {
         this.profileData = this.profile
+        if (localStorage.getItem('profileTourFinished') !== 'true') { this.$tours['myTour'].start() }
       }
     }
 
@@ -209,6 +251,9 @@ export default {
   },
 
   methods: {
+    myCustomStopCallback (currentStep) {
+      localStorage.setItem('profileTourFinished', true)
+    },
     isOtherUser () {
       if (!this.me) {
         if (this.id === parseInt(localStorage.userId)) {

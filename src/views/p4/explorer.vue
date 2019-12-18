@@ -59,8 +59,8 @@
       </div>
 
     </div>
-
-<navigation></navigation>
+  <v-tour name="myTour" :steps="steps" :callbacks="callbacks" :options="myOptions"></v-tour>
+  <navigation></navigation>
 </div>
 
 </template>
@@ -83,7 +83,7 @@ export default {
   },
 
   mounted () {
-
+    if (localStorage.getItem('searchTourFinished') !== 'true') { this.$tours['myTour'].start() }
   },
   beforeDestroy () {
 
@@ -99,7 +99,38 @@ export default {
       subCat: -1,
       bio: -1,
       searchKeyword: '',
-      showResult: false
+      showResult: false,
+      myOptions: {
+        useKeyboardNavigation: false,
+        labels: {
+          buttonSkip: 'بیخیال',
+          buttonPrevious: 'قبلی',
+          buttonNext: 'اها',
+          buttonStop: 'خدافظ'
+        }
+      },
+      steps: [
+        {
+          target: '.switch-btn',
+          header: {
+            title: '! رو کدوم'
+          },
+          content: `اینجا مشخص میکنی که میخوای دنبال کاربر بگردی یا دنبال یه پستی`
+        },
+        {
+          target: '.mainCategory-container',
+          header: {
+            title: 'حتی عمیق تر '
+          },
+          content: `اگر دنبال کاربری هستی میتونی روی بیو اش سرچ کنی و اگر دنبال پستی میتونی بگی رو کدوم دسته برات کاوش کنه`,
+          params: {
+            placement: 'top'
+          }
+        }
+      ],
+      callbacks: {
+        onStop: this.myCustomStopCallback
+      }
     }
   },
   destroyed () {
@@ -107,6 +138,10 @@ export default {
     this.$store.dispatch('actChangeSubCategory', -1)
   },
   methods: {
+    myCustomStopCallback (currentStep) {
+      localStorage.setItem('searchTourFinished', true)
+    },
+
     // tip src binding!!!!
     getImgUrl (path) {
       return require('../../assets/' + path)

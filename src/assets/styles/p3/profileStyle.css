@@ -70,7 +70,7 @@
 .data-container{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
 }
 .follower-section{
     display: flex;
@@ -403,4 +403,10 @@
   height: 13vw;
   /* background-color: #fff; */
   z-index: 2;
+}
+.test-guid-palce{
+  width: 5vw;
+  height: 1.5rem;
+  /* background-color: #fff; */
+  margin: auto;
 }
