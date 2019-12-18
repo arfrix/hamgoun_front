@@ -206,7 +206,7 @@ export default {
       },
       steps: [
         {
-          target: '.categoryList-main-div',
+          target: '.topRow',
           header: {
             title: '! عمیق شو'
           },
