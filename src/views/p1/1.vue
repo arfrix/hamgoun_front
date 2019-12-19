@@ -167,14 +167,17 @@ export default {
     this.$store.dispatch('fetchNotif').then(() => {
       const arrivedNotifications = this.$store.state.notifications.length
       const savedNotifCount = parseInt(localStorage.getItem('notifCount'))
-
-      if (savedNotifCount !== null) {
+      console.log('++++++++++++')
+      console.log(savedNotifCount)
+      console.log(arrivedNotifications)
+      console.log(this.$store.state.newNotifCount)
+      if (savedNotifCount !== null && !isNaN(savedNotifCount)) {
         if (this.$store.state.newNotifCount !== (arrivedNotifications - savedNotifCount)) {
           this.$store.dispatch('actSetNewNotifCount', arrivedNotifications - savedNotifCount)
           this.$store.dispatch('actSetIsNotifSeen', false)
         }
       } else {
-        this.$store.dispatch('actSetNewNotifCount', arrivedNotifications)
+        if (isNaN(savedNotifCount)) { this.$store.dispatch('actSetNewNotifCount', 0) } else { this.$store.dispatch('actSetNewNotifCount', arrivedNotifications) }
       }
     })
 

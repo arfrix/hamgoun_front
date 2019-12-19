@@ -4,9 +4,9 @@ import Axios from 'axios'
 
 Vue.use(Vuex)
 
-const baseUrl = 'http://45.82.136.106:8080'
+// const baseUrl = 'http://45.82.136.106:8080'
 // const baseUrl = 'https://localhost:5001'
-// const baseUrl = 'http://193.176.241.61:80'
+const baseUrl = 'http://193.176.241.61:8081'
 
 Axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('aut_token')
 Axios.defaults.headers.common['Content-Type'] = 'application/json'
