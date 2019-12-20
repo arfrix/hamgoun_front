@@ -198,11 +198,11 @@ export default {
         this.$set(this.isFilled, 0, true)
       }else{
         this.bioInputPlaceHolders[1].q1 = "چیزی نگفته"
-        this.$set(this.isFilled, 0, true)
+        this.$set(this.isFilled, 0, false)
       }
       if (this.profile.work_company != undefined) {
         this.bioInputPlaceHolders[1].q2 = this.profile.work_company
-        this.$set(this.isFilled, 1, false)
+        this.$set(this.isFilled, 1, true)
       }else{
         this.bioInputPlaceHolders[1].q2 = "چیزی نگفته"
         this.$set(this.isFilled, 1, false)
