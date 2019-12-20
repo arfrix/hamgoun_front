@@ -667,49 +667,51 @@ export default new Vuex.Store({
       }
     },
     // newton version
-    // async login ({ commit, state }, params) {
-    //   state.waitingForLogin = true
-    //   let response = ''
-    //   try {
-    //     response = await Axios.post(baseUrl + '/login', {
-    //       Username: params.userName,
-    //       Password: params.pass
-    //     }
-    //     )
-    //     console.log('login')
-    //     console.log(response.data)
-    //     commit('write_userPassLogin', response.data.status)
-
-    //     if (response.data.status) {
-    //       localStorage.setItem('aut_token', response.data.token)
-    //       localStorage.setItem('userId', response.data.userId)
-    //       commit('write_userId', response.data.userId)
-    //     }
-    //   } catch (error) {
-
-    //   }
-    // },
     async login ({ commit, state }, params) {
       state.waitingForLogin = true
       let response = ''
       try {
-        response = await Axios.post(baseUrl + '/Users/login', {
-          userName: params.userName,
-          pass: params.pass
-        })
-
+        response = await Axios.post(baseUrl + '/login', {
+          Username: params.userName,
+          Password: params.pass
+        }
+        )
         console.log('login')
         console.log(response.data)
         commit('write_userPassLogin', response.data.status)
 
         if (response.data.status) {
-          localStorage.setItem('userId', response.data.data)
-          commit('write_userId', response.data.data)
+          localStorage.setItem('aut_token', response.data.token)
+          localStorage.setItem('userId', response.data.userId)
+          commit('write_userId', response.data.userId)
         }
       } catch (error) {
-        commit('write_userPassLogin', false)
+
       }
     },
+
+    // before newton
+    // async login ({ commit, state }, params) {
+    //   state.waitingForLogin = true
+    //   let response = ''
+    //   try {
+    //     response = await Axios.post(baseUrl + '/Users/login', {
+    //       userName: params.userName,
+    //       pass: params.pass
+    //     })
+
+    //     console.log('login')
+    //     console.log(response.data)
+    //     commit('write_userPassLogin', response.data.status)
+
+    //     if (response.data.status) {
+    //       localStorage.setItem('userId', response.data.data)
+    //       commit('write_userId', response.data.data)
+    //     }
+    //   } catch (error) {
+    //     commit('write_userPassLogin', false)
+    //   }
+    // },
     async register ({ commit, state }, params) {
       state.waitingForRegister = true
       console.log(state.waitingForRegister)

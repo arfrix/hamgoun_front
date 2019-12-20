@@ -56,10 +56,22 @@ export default {
         { img: 'icons/maps-and-flags2.png', name: 'محل سکونت' }
       ],
       bioInputPlaceHolders: [
+        { q1: '', q2: '', q3: '' },
+        { q1: '', q2: '' },
+        { q1: '', q2: '', q3: '' },
+        { q1: '', q2: '', q3: '' }
+      ],
+      bioInputPlaceHoldersForMe: [
         { q1: 'کدوم دبیرستان درس خوندی ؟', q2: 'کدوم دانشگاهی ؟', q3: 'راستی رشتت چیه بود ؟' },
         { q1: 'شغلت چیه ؟', q2: 'کجا کار میکنی ؟' },
         { q1: 'زبان مادریت چیه ؟', q2: 'گویش محلی ای بلدی ؟', q3: 'دومین زبونی که بلدی چیه ؟' },
         { q1: 'بچه کجایی ؟', q2: 'تو کدوم کشور زندگی میکنی ؟', q3: 'کدوم شهری ؟' }
+      ],
+      bioInputPlaceHoldersForTheir: [
+        { q1: 'نگفته دبیرستان کجا بوده', q2: 'نگفته کدوم دانشگاه بوده', q3: 'رشتشو هم نگفته' },
+        { q1: 'چیزی درمورد شغلش نگفته', q2: 'نگفته کجا کار میکنه' },
+        { q1: 'نگفته زبون مادریش چیه', q2: 'گویشش رو  نگفته', q3: 'دومشن زبونی که بلده رو هم نگفته' },
+        { q1: 'نگفته بچه کجاست', q2: 'نگفته الان کدوم کشوره', q3: 'شهری که توشه رو هم نگفته' }
       ],
       bioFieldData: [null, null, null],
       bioInputId: ['in1', 'in2', 'in3'],
@@ -174,7 +186,11 @@ export default {
         this.bioInputPlaceHolders[0].q1 = this.profile.edu_highSchool
         this.$set(this.isFilled, 0, true)
       }else{
-        this.bioInputPlaceHolders[0].q1 = "چیزی نگفته"
+        if(this.is_other_user_bio)
+        this.bioInputPlaceHolders[0].q1 = this.bioInputPlaceHoldersForTheir[0].q1 
+        else
+        this.bioInputPlaceHolders[0].q1 = this.bioInputPlaceHoldersForMe[0].q1 
+
         this.$set(this.isFilled, 0, false)
       }
       if (this.profile.edu_univercity != undefined) {
