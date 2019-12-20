@@ -6,7 +6,7 @@
     <!-- <div :class="tab5Style(this.$store.state.witch_route_we_are)" @click="gotoChat()">چت</div> -->
 
     <div :class="tab4Style(this.$store.state.witch_route_we_are)" @click="gotoProfile()">
-      <div v-if="!this.$store.state.isNotifSeen && this.$store.state.newNotifCount > 0" class="notifNumberContainer">
+      <div v-if="!this.$store.state.isNotifSeen && this.$store.state.newNotifCount > 0 && this.$store.state.newNotifCount != NaN" class="notifNumberContainer">
         <p>{{this.$store.state.newNotifCount}}</p>
       </div>
       <p>پروفایل</p>

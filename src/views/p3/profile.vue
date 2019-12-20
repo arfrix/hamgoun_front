@@ -64,7 +64,7 @@
             @click="!isShowNotifSidebar ? gotoChat() : null"
           /> -->
           <div class="showNotifClickableArea" @click="showNotif()" v-click-outside="hideNotifSideBar"></div>
-          <div v-if="!this.$store.state.isNotifSeen" class="notifNumberContainer">
+          <div v-if="!this.$store.state.isNotifSeen && this.$store.state.newNotifCount > 0 && this.$store.state.newNotifCount != NaN" class="notifNumberContainer">
             <p>{{this.$store.state.newNotifCount}}</p>
           </div>
         </div>
