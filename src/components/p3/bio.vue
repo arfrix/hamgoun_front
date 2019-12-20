@@ -197,14 +197,20 @@ export default {
         this.bioInputPlaceHolders[0].q2 = this.profile.edu_univercity
         this.$set(this.isFilled, 1, true)
       }else{
-        this.bioInputPlaceHolders[0].q2 =  "چیزی نگفته"
+        if(this.is_other_user_bio)
+        this.bioInputPlaceHolders[0].q2 =  this.bioInputPlaceHoldersForTheir[0].q2
+        else
+        this.bioInputPlaceHolders[0].q2 =  this.bioInputPlaceHoldersForMe[0].q2
         this.$set(this.isFilled, 1, false)
       }
       if (this.profile.edu_subject != undefined) {
         this.bioInputPlaceHolders[0].q3 = this.profile.edu_subject
         this.$set(this.isFilled, 2, true)
       }else{
-        this.bioInputPlaceHolders[0].q3 = "چیزی نگفته"
+        if(this.is_other_user_bio)
+        this.bioInputPlaceHolders[0].q3 = this.bioInputPlaceHoldersForTheir[0].q3
+        else
+        this.bioInputPlaceHolders[0].q3 = this.bioInputPlaceHoldersForMe[0].q3
         this.$set(this.isFilled, 2, false)
       }
     },
@@ -213,14 +219,20 @@ export default {
         this.bioInputPlaceHolders[1].q1 = this.profile.work_job
         this.$set(this.isFilled, 0, true)
       }else{
-        this.bioInputPlaceHolders[1].q1 = "چیزی نگفته"
+        if(this.is_other_user_bio)
+        this.bioInputPlaceHolders[1].q1 = this.bioInputPlaceHoldersForTheir[1].q1
+        else
+        this.bioInputPlaceHolders[1].q1 = this.bioInputPlaceHoldersForMe[1].q1
         this.$set(this.isFilled, 0, false)
       }
       if (this.profile.work_company != undefined) {
         this.bioInputPlaceHolders[1].q2 = this.profile.work_company
         this.$set(this.isFilled, 1, true)
       }else{
-        this.bioInputPlaceHolders[1].q2 = "چیزی نگفته"
+        if(this.is_other_user_bio)
+        this.bioInputPlaceHolders[1].q2 = this.bioInputPlaceHoldersForTheir[1].q2
+        else
+        this.bioInputPlaceHolders[1].q2 = this.bioInputPlaceHoldersForMe[1].q2
         this.$set(this.isFilled, 1, false)
       }
     },
@@ -229,21 +241,30 @@ export default {
         this.bioInputPlaceHolders[2].q1 = this.profile.languge_motherTongue
         this.$set(this.isFilled, 0, true)
       }else{
-        this.bioInputPlaceHolders[2].q1 = "چیزی نگفته"
+        if(this.is_other_user_bio)
+        this.bioInputPlaceHolders[2].q1 = this.bioInputPlaceHoldersForTheir[2].q1
+        else
+        this.bioInputPlaceHolders[2].q1 = this.bioInputPlaceHoldersForMe[2].q1
         this.$set(this.isFilled, 0, false)
       }
       if (this.profile.languge_dialect != undefined) {
         this.bioInputPlaceHolders[2].q2 = this.profile.languge_dialect
         this.$set(this.isFilled, 1, true)
       }else{
-        this.bioInputPlaceHolders[2].q2 = "چیزی نگفته"
+        if(this.is_other_user_bio)
+        this.bioInputPlaceHolders[2].q2 = this.bioInputPlaceHoldersForTheir[2].q2
+        else
+        this.bioInputPlaceHolders[2].q2 = this.bioInputPlaceHoldersForMe[2].q2
         this.$set(this.isFilled, 1, false)
       }
       if (this.profile.languge_secondLangName != undefined) {
         this.bioInputPlaceHolders[2].q3 = this.profile.languge_secondLangName
         this.$set(this.isFilled, 2, true)
       }else{
-        this.bioInputPlaceHolders[2].q3 = "چیزی نگفته"
+        if(this.is_other_user_bio)
+        this.bioInputPlaceHolders[2].q3 = this.bioInputPlaceHoldersForTheir[2].q3
+        else
+        this.bioInputPlaceHolders[2].q3 = this.bioInputPlaceHoldersForMe[2].q3
         this.$set(this.isFilled, 2, false)
       }
     },
@@ -252,21 +273,30 @@ export default {
         this.bioInputPlaceHolders[3].q1 = this.profile.location_motherTown
         this.$set(this.isFilled, 0, true)
       }else{
-        this.bioInputPlaceHolders[3].q1 = "چیزی نگفته"
+        if(this.is_other_user_bio)
+        this.bioInputPlaceHolders[3].q1 = this.bioInputPlaceHoldersForTheir[3].q1
+        else
+        this.bioInputPlaceHolders[3].q1 = this.bioInputPlaceHoldersForMe[3].q1
         this.$set(this.isFilled, 0, false)
       }
       if (this.profile.location_livingCountry != undefined) {
         this.bioInputPlaceHolders[3].q2 = this.profile.location_livingCountry
         this.$set(this.isFilled, 1, true)
       }else{
-        this.bioInputPlaceHolders[3].q2 = "چیزی نگفته"
+        if(this.is_other_user_bio)
+        this.bioInputPlaceHolders[3].q2 = this.bioInputPlaceHoldersForTheir[3].q2
+        else
+        this.bioInputPlaceHolders[3].q2 = this.bioInputPlaceHoldersForMe[3].q2
         this.$set(this.isFilled, 1, false)
       }
       if (this.profile.location_livingTown != undefined) {
         this.bioInputPlaceHolders[3].q3 = this.profile.location_livingTown
         this.$set(this.isFilled, 2, true)
       }else{
-        this.bioInputPlaceHolders[3].q3 = "چیزی نگفته"
+        if(this.is_other_user_bio)
+        this.bioInputPlaceHolders[3].q3 = this.bioInputPlaceHoldersForTheir[3].q3
+        else
+        this.bioInputPlaceHolders[3].q3 = this.bioInputPlaceHoldersForMe[3].q3
         this.$set(this.isFilled, 2, false)
       }
     },
