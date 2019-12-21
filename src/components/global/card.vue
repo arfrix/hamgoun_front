@@ -6,8 +6,12 @@
 
     <!-- <div class="col-m-5 card-sections-container"> -->
     <div :class="card_text_div">
-      <h1 class="title">{{this.title}}</h1>
-      <h4 class="body">{{this.text}}</h4>
+      <div class="title-container">
+        <h1 class="title">{{this.title}}</h1>
+      </div>
+      <div class="text-body-container">
+        <h4 class="body">{{this.text}}</h4>
+      </div>
       <div class="details-container">
         <h3 class="username">{{this.username}}</h3>
         <h3 class="duration">{{this.duration}}</h3>

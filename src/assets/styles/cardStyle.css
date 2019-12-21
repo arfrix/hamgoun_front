@@ -40,14 +40,22 @@
     flex-direction: column;
     align-items:flex-start; 
     padding-right: 2vw;
-    
+    padding-top: 0.5vw;
 }
 .title{
-    font-size: 4.5vw;
+    font-size: 3.5vw;
     font-family: IranSans_Bold; 
+    white-space: nowrap;
+    max-width: 42.78vw ;
+}
+.title-container{
+    width: 40vw ;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
 }
 .body{
-    font-size: 3.25vw;
+    font-size: 3.1vw;
     text-align: right;
     font-family: IranSans_UltraLight;
 }
@@ -59,6 +67,7 @@
     margin-left: 4vw;
     font-family: IranSans_Medium;
     color: #747474;
+    margin-bottom: 0.5vw;
 }
 .duration{
     font-size: 3vw;
@@ -81,4 +90,10 @@
     height: 17vh;
     object-fit: cover;
     border-radius: 7px;
+}
+.text-body-container{
+    height: 11.25vh;
+    display: flex;
+    align-items: flex-start;
+    /* background-color: rgb(241, 163, 163); */
 }
