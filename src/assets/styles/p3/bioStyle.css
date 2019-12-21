@@ -21,6 +21,12 @@
 .card-lable{
 
 }
+.selected-card-lable{
+    color: #F95959;
+    font-size: 3vw;
+    font-family: IranSans_Light;
+    margin-top: 2vw;
+}
 
 .c0{
     width: 71%;

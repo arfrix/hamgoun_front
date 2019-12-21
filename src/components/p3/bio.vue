@@ -5,19 +5,19 @@
         <div class="col-m-10 tab-row-container">
             <div  class="card" @click="!doNotWork ? tabClicked(0) : null">
                 <img :src="getImgUrl(this.bioCardDetail[0].img)" alt="" class="card-icon c0">
-                <h6 class="card-lable">{{this.bioCardDetail[0].name}}</h6>
+                <h6 :class="cardLableStyle(0)">{{this.bioCardDetail[0].name}}</h6>
             </div>
             <div  class="card" @click="!doNotWork ? tabClicked(1) : null">
                 <img :src="getImgUrl(this.bioCardDetail[1].img)" alt="" class="card-icon c1">
-                <h6 class="card-lable">{{this.bioCardDetail[1].name}}</h6>
+                <h6 :class="cardLableStyle(1)">{{this.bioCardDetail[1].name}}</h6>
             </div>
             <div  class="card" @click="!doNotWork ? tabClicked(2) : null">
                 <img :src="getImgUrl(this.bioCardDetail[2].img)" alt="" class="card-icon c2">
-                <h6 class="card-lable">{{this.bioCardDetail[2].name}}</h6>
+                <h6 :class="cardLableStyle(2)">{{this.bioCardDetail[2].name}}</h6>
             </div>
             <div  class="card" @click="!doNotWork ? tabClicked(3) : null">
                 <img :src="getImgUrl(this.bioCardDetail[3].img)" alt="" class="card-icon c3">
-                <h6 class="card-lable">{{this.bioCardDetail[3].name}}</h6>
+                <h6 :class="cardLableStyle(3)">{{this.bioCardDetail[3].name}}</h6>
             </div>
         </div>
 
@@ -97,6 +97,9 @@ export default {
     // tip src binding!!!!
     getImgUrl (path) {
       return require('../../assets/' + path)
+    },
+    cardLableStyle (witchTab) {
+      if (witchTab === this.tab) { return 'selected-card-lable' } else { return 'card-lable' }
     },
     tabClicked (index) {
       this.tab = index
